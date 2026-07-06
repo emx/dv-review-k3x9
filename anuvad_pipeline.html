@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANUVAD — The Pipeline, Whole</title>
+<style>
+  :root{
+    --paper:#ECE7DA;
+    --paper-deep:#E3DCCB;
+    --ink:#221E16;
+    --ink-soft:#4A443A;
+    --sindoor:#B23315;
+    --sindoor-deep:#8E2810;
+    --turmeric:#9A7418;
+    --turmeric-wash:#F0E5C4;
+    --indigo:#3E4A66;
+    --indigo-wash:#DCDFE6;
+    --verdant:#3E6B4F;
+    --rule:#C9C0AC;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --serif:Charter,"Bitstream Charter",Cambria,Georgia,serif;
+    --deva:"ITF Devanagari","Devanagari MT","Noto Serif Devanagari","Nirmala UI",serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-size:17px;
+    line-height:1.62;
+  }
+  /* pothi folio rules */
+  .folio{
+    max-width:860px;margin:0 auto;padding:0 56px;
+    border-left:1px solid var(--sindoor);
+    border-right:1px solid var(--sindoor);
+    position:relative;
+  }
+  .folio::before,.folio::after{
+    content:"";position:absolute;top:0;bottom:0;width:1px;background:var(--sindoor);opacity:.45;
+  }
+  .folio::before{left:5px}
+  .folio::after{right:5px}
+  @media (max-width:720px){
+    .folio{padding:0 22px;border:none}
+    .folio::before,.folio::after{display:none}
+  }
+
+  a{color:var(--sindoor-deep)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--sindoor);outline-offset:2px}
+
+  .eyebrow{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--sindoor);margin-bottom:10px;
+  }
+  h1,h2,h3{font-weight:600;line-height:1.2}
+  h2{font-size:27px;margin-bottom:6px}
+  h3{font-size:19px}
+  p{max-width:66ch}
+  section{padding:64px 0;border-bottom:1px solid var(--rule)}
+  section:last-of-type{border-bottom:none}
+  .lede{font-size:18.5px;color:var(--ink-soft);max-width:62ch}
+  em{font-style:italic}
+  strong{font-weight:600}
+
+  code,.chip{
+    font-family:var(--mono);font-size:.82em;background:var(--paper-deep);
+    padding:1px 6px;border-radius:3px;white-space:nowrap;
+  }
+  .chip{border:1px solid var(--rule);color:var(--ink-soft)}
+  .chip.red{color:var(--sindoor-deep);border-color:var(--sindoor);background:transparent}
+  .chip.indigo{color:var(--indigo);border-color:var(--indigo);background:var(--indigo-wash)}
+  .chip.green{color:var(--verdant);border-color:var(--verdant);background:transparent}
+  .chip.gold{color:var(--turmeric);border-color:var(--turmeric);background:var(--turmeric-wash)}
+
+  /* ---------- HERO ---------- */
+  header{padding:88px 0 66px;border-bottom:1px solid var(--rule)}
+  .glyph-story{
+    display:flex;align-items:baseline;gap:34px;flex-wrap:wrap;margin:30px 0 26px;
+    font-family:var(--deva);
+  }
+  .glyph-right{font-size:96px;line-height:1;font-weight:600}
+  .glyph-wrong{
+    font-size:96px;line-height:1;color:var(--sindoor);position:relative;font-weight:600;opacity:.85;
+  }
+  .glyph-wrong::after{
+    content:"";position:absolute;left:-4%;right:-4%;top:54%;height:3px;background:var(--sindoor);
+    transform:rotate(-4deg);
+  }
+  .glyph-label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-soft);display:block;margin-top:14px;font-weight:400}
+  .thesis{font-size:21px;max-width:60ch;margin-top:8px}
+  .hero-meta{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:34px;line-height:2}
+
+  /* ---------- TOC ---------- */
+  nav.toc{padding:26px 0;border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:12.5px}
+  nav.toc a{margin-right:22px;text-decoration:none;color:var(--ink-soft);line-height:2.2}
+  nav.toc a:hover{color:var(--sindoor-deep)}
+  nav.toc .dn{color:var(--sindoor);margin-right:5px;font-family:var(--deva)}
+
+  /* ---------- PHASES ---------- */
+  .phase-pair{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:30px}
+  @media (max-width:720px){.phase-pair{grid-template-columns:1fr}}
+  .phase-card{border:1px solid var(--rule);padding:22px 24px;background:var(--paper-deep)}
+  .phase-card.live{border-color:var(--ink);background:transparent}
+  .phase-card h3{margin-bottom:8px}
+  .phase-card p{font-size:15.5px;color:var(--ink-soft)}
+  .phase-status{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;display:block}
+  .phase-card.live .phase-status{color:var(--verdant)}
+  .phase-card .phase-status{color:var(--indigo)}
+
+  /* ---------- PIPELINE RAIL ---------- */
+  .rail{margin-top:40px;position:relative}
+  .stage{
+    display:grid;grid-template-columns:64px 1fr;gap:22px;
+    padding:26px 0;position:relative;
+  }
+  .stage + .stage{border-top:1px dashed var(--rule)}
+  .stage-num{
+    font-family:var(--deva);font-size:34px;color:var(--sindoor);line-height:1.15;
+    text-align:center;
+  }
+  .stage-num small{display:block;font-family:var(--mono);font-size:10px;color:var(--ink-soft);letter-spacing:.1em;margin-top:2px}
+  .stage h3{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .stage p{font-size:15.5px;color:var(--ink-soft);margin-bottom:8px}
+  .io{font-family:var(--mono);font-size:12px;color:var(--ink);margin:10px 0 4px;line-height:1.9}
+  .io b{color:var(--sindoor-deep);font-weight:600}
+  .guards{margin-top:10px;font-size:14px}
+  .guards li{margin-left:18px;margin-bottom:4px;color:var(--ink-soft)}
+  .guards li::marker{content:"⟦ ";color:var(--turmeric);font-family:var(--mono)}
+  .dids{margin-top:10px}
+
+  /* ---------- SUTRAS ---------- */
+  .sutra-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:34px}
+  @media (max-width:720px){.sutra-grid{grid-template-columns:1fr}}
+  .sutra{border-top:3px solid var(--sindoor);padding:16px 2px 0}
+  .sutra .verse{
+    font-size:18px;font-weight:600;line-height:1.4;margin-bottom:8px;
+  }
+  .sutra .verse::before{content:"॥ ";color:var(--sindoor);font-family:var(--deva)}
+  .sutra .verse::after{content:" ॥";color:var(--sindoor);font-family:var(--deva)}
+  .sutra .comm{font-size:14.5px;color:var(--ink-soft);margin-bottom:10px}
+  .sutra .earned{font-family:var(--mono);font-size:11px;color:var(--indigo);letter-spacing:.06em}
+
+  /* ---------- INCIDENTS ---------- */
+  .incident{
+    display:grid;grid-template-columns:150px 1fr;gap:22px;padding:22px 0;
+  }
+  .incident + .incident{border-top:1px dashed var(--rule)}
+  @media (max-width:720px){.incident{grid-template-columns:1fr;gap:8px}}
+  .caught{font-family:var(--mono);font-size:12px;line-height:1.8;color:var(--sindoor-deep)}
+  .incident h3{margin-bottom:6px;font-size:17px}
+  .incident p{font-size:15px;color:var(--ink-soft)}
+  .incident .deva-ex{font-family:var(--deva);font-size:17px;color:var(--ink)}
+  .arrow-note{
+    margin-top:26px;padding:16px 20px;background:var(--paper-deep);border-left:3px solid var(--verdant);
+    font-size:15.5px;
+  }
+
+  /* ---------- BOOK ANATOMY ---------- */
+  .anatomy{margin-top:34px}
+  .bar{display:flex;height:52px;border:1px solid var(--ink);margin-bottom:18px;min-width:0}
+  .seg{height:100%;position:relative;min-width:2px}
+  .seg-canon{background:var(--ink);flex:7711}
+  .seg-vflag{background:var(--turmeric);flex:186}
+  .seg-mat{background:var(--paper-deep);flex:6973}
+  .seg-base{background:var(--indigo-wash);flex:762;border-left:1px solid var(--ink)}
+  .seg-label{background:var(--rule);flex:538}
+  .legend{font-size:14px;line-height:2}
+  .legend .sw{display:inline-block;width:12px;height:12px;border:1px solid var(--ink);vertical-align:-1px;margin-right:9px}
+  .legend b{font-family:var(--mono);font-weight:600;font-size:13px}
+  .numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2px;margin-top:34px;border:1px solid var(--rule)}
+  .num-cell{padding:16px 18px;background:var(--paper-deep)}
+  .num-cell .n{font-family:var(--mono);font-size:22px;font-weight:600;display:block}
+  .num-cell .l{font-size:12.5px;color:var(--ink-soft);line-height:1.45;display:block;margin-top:4px}
+  .num-cell.red .n{color:var(--sindoor-deep)}
+  .num-cell.green .n{color:var(--verdant)}
+
+  /* ---------- OPEN ---------- */
+  .open-list{margin-top:26px}
+  .open-item{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:14px 0;border-top:1px dashed var(--rule);font-size:15.5px}
+  .open-item .st{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;padding-top:3px}
+  .open-item .st.now{color:var(--verdant)}
+  .open-item .st.later{color:var(--indigo)}
+  @media (max-width:720px){.open-item{grid-template-columns:1fr;gap:4px}}
+
+  footer{padding:44px 0 70px;font-family:var(--mono);font-size:12px;color:var(--ink-soft);line-height:2}
+  .flagmark{font-family:var(--mono);color:var(--turmeric);font-weight:600}
+</style>
+</head>
+<body>
+<div class="folio">
+
+<!-- ================= HERO ================= -->
+<header>
+  <div class="eyebrow">ANUVAD · pipeline reference · for the director's validation</div>
+  <h1 style="font-size:15px;font-family:var(--mono);letter-spacing:.22em;text-transform:uppercase;font-weight:400;color:var(--ink-soft)">The Pipeline, Whole</h1>
+
+  <div class="glyph-story">
+    <div>
+      <span class="glyph-right" lang="mr">धर्म</span>
+      <span class="glyph-label">what the book says</span>
+    </div>
+    <div>
+      <span class="glyph-wrong" lang="mr">धम्म</span>
+      <span class="glyph-label">what a machine, left alone, wrote — 442 times</span>
+    </div>
+    <div>
+      <span class="glyph-right" style="font-family:var(--mono);color:var(--turmeric)">⟦?⟧</span>
+      <span class="glyph-label">what honesty looks like instead</span>
+    </div>
+  </div>
+
+  <p class="thesis">ANUVAD turns a 796-page sacred Marathi text with a broken digital text-layer into a clean, honest Devanāgarī corpus — by preferring a <em>visible open question</em> over an <em>invisible wrong answer</em>, at every single step. This document is the whole machine: every phase, every stage, every rule, and the incident that earned each rule.</p>
+
+  <div class="hero-meta">
+    source · Dāsbodh, Samarth Ramdas, 17th c. — verse (ovī) + prose commentary + Sanskrit ślokas<br>
+    release · <span class="chip">anuvad_dasbodh_v1.0.1</span> &nbsp;master <span class="chip">a1ec7213…</span> &nbsp;16,170 units · 0 substitutions · 3,005 flags<br>
+    formal record · PROJECT_REGISTER.md (D-001…D-035) · BUILD_JOURNAL.md · this document is a synthesis, the register wins
+  </div>
+</header>
+
+<nav class="toc" aria-label="Contents">
+  <a href="#phases"><span class="dn">१</span>Two phases</a>
+  <a href="#problem"><span class="dn">२</span>The problem</a>
+  <a href="#rail"><span class="dn">३</span>The pipeline</a>
+  <a href="#sutras"><span class="dn">४</span>The rules</a>
+  <a href="#incidents"><span class="dn">५</span>How they were earned</a>
+  <a href="#book"><span class="dn">६</span>The book shipped</a>
+  <a href="#open"><span class="dn">७</span>What's open</a>
+</nav>
+
+<!-- ================= PHASES ================= -->
+<section id="phases">
+  <div class="eyebrow">१ · one goal, two sequential phases</div>
+  <h2>The end is English. The path is Marathi first.</h2>
+  <p class="lede">The operator's framing, ratified in D-029: the end goal is the English translation; for that we need the Marathi text first. Never either/or — one goal, two phases.</p>
+  <div class="phase-pair">
+    <div class="phase-card live">
+      <span class="phase-status">Phase 1 · delivered — final QA in flight</span>
+      <h3>The transcription</h3>
+      <p>Produce the cleanest honest Devanāgarī text of the Dāsbodh achievable under one hard constraint: <strong>nobody on the engineering side reads Marathi.</strong> Delivered as <code>anuvad_dasbodh_v1.0.1</code>. Everything below this line is Phase 1.</p>
+    </div>
+    <div class="phase-card">
+      <span class="phase-status">Phase 2 · parked, behind its own gate</span>
+      <h3>The translation</h3>
+      <p>Two-stage classical path (literal gloss → polish), Claude Opus-class. Not started. Its gate opens on decisions not yet taken: how the translator consumes ⟦?⟧ flags, context window, batch-API wiring, honest cost ≈ $2.8k (D-015).</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEM ================= -->
+<section id="problem">
+  <div class="eyebrow">२ · why this is hard</div>
+  <h2>The dangerous errors are invisible</h2>
+  <p>The source PDF is born-digital, but its text layer is mojibake from a broken legacy font — unusable. So the pages are treated as <em>images</em>: rasterized and read by OCR. That opens the real problem:</p>
+  <p style="margin-top:14px">An OCR mistake in Devanāgarī usually produces <strong>valid-looking Devanāgarī</strong>. <span class="deva-ex" lang="mr" style="font-family:var(--deva)">धम्म</span> is a perfectly renderable word — it's simply not the word on the page. No mechanical check can catch it, no non-reader can see it, and in a revered religious text a plausible-but-wrong "correction" is <strong>worse than the error it replaced</strong>. The project calls this the cardinal sin: silent corruption.</p>
+  <p style="margin-top:14px">Every design choice below is downstream of that one fact. The pipeline is not built to fix everything; it is built so that <strong>everything it cannot prove, it marks</strong> — <span class="flagmark">⟦?⟧</span> — and everything it ships unmarked, it can defend with evidence.</p>
+</section>
+
+<!-- ================= PIPELINE RAIL ================= -->
+<section id="rail">
+  <div class="eyebrow">३ · the pipeline, stage by stage</div>
+  <h2>From broken PDF to honest book</h2>
+  <p class="lede">Nine stages. Each card: what enters, what leaves, what guards it, and the register decisions that govern it. Indigo chips mark machinery that was <em>built, measured, and retired to telemetry</em> — kept as evidence, forbidden from touching text.</p>
+
+  <div class="rail">
+
+    <div class="stage">
+      <div class="stage-num" lang="mr">०<small>SOURCE</small></div>
+      <div>
+        <h3>Rasterize <span class="chip green">stable</span></h3>
+        <p>The mojibake text layer is discarded entirely. Pages become images at <strong>192 DPI</strong> — measured as the sweet spot for VLM OCR on this font. Higher resolution <em>hurts</em> (the model downsamples to a fixed token budget). Classical "300 DPI" folklore does not apply and was tested, not assumed.</p>
+        <div class="io"><b>in</b> Dāsbodh PDF, 796 pp &nbsp;·&nbsp; <b>out</b> page rasters @192</div>
+        <div class="dids"><span class="chip">D-007</span></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num" lang="mr">१<small>OCR</small></div>
+      <div>
+        <h3>Two independent readers <span class="chip green">stable</span></h3>
+        <p><strong>Surya 2</strong> (VLM OCR, primary) and <strong>Google Vision</strong> (second engine) each read every page, run out-of-band by the operator. Two engines exist for one reason: <em>agreement is confidence, disagreement is exactly where to look.</em></p>
+        <div class="io"><b>in</b> rasters &nbsp;·&nbsp; <b>out</b> two full independent readings per page</div>
+        <div class="dids"><span class="chip">D-002</span></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num" lang="mr">२<small>STRUCTURE</small></div>
+      <div>
+        <h3>Extract into units <span class="chip green">stable</span></h3>
+        <p>Surya's output is parsed into the book's own anatomy: <strong>ovī</strong> (verse) · <strong>commentary</strong> (prose) · <strong>heading</strong> · <strong>śloka</strong>, with dashak/samās structure derived from page footers. The unit is the atom everything downstream operates on — 16,170 of them.</p>
+        <div class="io"><b>in</b> OCR JSON &nbsp;·&nbsp; <b>out</b> typed, ordered units</div>
+        <ul class="guards"><li>Known accepted defect: 7 units with śloka-span bleed (A2) — 0.043% of the book, refused as below the fix threshold, shipped flagged.</li></ul>
+        <div class="dids"><span class="chip">D-028</span></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num" lang="mr">३<small>CONSENSUS</small></div>
+      <div>
+        <h3>Engines vote, per occurrence <span class="chip green">stable</span></h3>
+        <p>Every reading site lands in one of three buckets. <strong>Unanimous</strong> — engines agree: the text stands. <strong>Flag</strong> — genuine uncertainty: the site gets <span class="flagmark">⟦?⟧</span> candidates. <strong>ocr-split</strong> — engines disagree at input level: the <strong>Surya baseline stands</strong> (policy decided on evidence: the reader sided with Surya 9–1 in a blind probe; Vision's failure mode named).</p>
+        <p>Alongside runs the <strong>glyphbreak axis</strong> — forensics on the broken legacy font's glyph shapes. It informs <em>which sites are suspicious</em>. It is telemetry.</p>
+        <div class="io"><b>in</b> two readings &nbsp;·&nbsp; <b>out</b> unanimous text + flagged sites + split log</div>
+        <div class="dids"><span class="chip">D-013</span> <span class="chip">D-023 R-C</span></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num" lang="mr">४<small>CANON</small></div>
+      <div>
+        <h3>Canonical alignment — the verse goes gold <span class="chip green">stable</span></h3>
+        <p>The Dāsbodh's verse exists as a canonical edition (Marathi Wikisource). Every OCR'd ovī is aligned against it: a <strong>confident match ships the canonical text</strong> — the strongest evidence in the whole pipeline. No confident match → the OCR text ships with a unit-level flag, <em>never guessed, never partial-aligned</em>. Result: <strong>7,726 of 7,743 ovīs (99.78%)</strong> confidently canonical; 186 unit-flagged; <strong>0 cardinal-sin violations</strong>.</p>
+        <p>Caveat, standing: canonical is a <em>different edition</em> — orthographic variants are not OCR errors. Strong for verse; the commentary has no canonical source and never touches this stage.</p>
+        <div class="io"><b>in</b> verse units &nbsp;·&nbsp; <b>out</b> gold verse / flagged verse</div>
+        <div class="dids"><span class="chip">D-010</span> <span class="chip">D-028</span></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num" lang="mr">५<small>READER</small></div>
+      <div>
+        <h3>Human evidence — the ruling cache <span class="chip indigo">text-application retired</span></h3>
+        <p><strong>Vidya Padvi</strong> is the sole content authority — the only party who reads the script. Four sessions (D3 review · intra-rater A, 8/10 · accuracy B · template D4) produced 47 byte-rulings in a cache. The critical history: every attempt to convert her <em>identity</em> rulings ("this glyph is X") into <em>automatic text substitution</em> was measured and <strong>corrupted words</strong>. All three categories — class, name, byte-constant — are retired to telemetry.</p>
+        <p>Final cache census: <span class="chip indigo">1 signal · 35 telemetry · 11 anti · 0 constant</span> — <strong>no byte changes any text.</strong> Her rulings remain fully valid as glyph-identity evidence; the byte-wide application was the defect, not her reading.</p>
+        <ul class="guards">
+          <li>Reader criterion: a question reaches her only if the answer changes a rule, a policy, or a release decision — never to settle one occurrence.</li>
+          <li>Reader pages ship under a 4-item checklist (cold presentation, foreign-state guard, storage-state runtime checks, on-device dry run).</li>
+        </ul>
+        <div class="io"><b>in</b> ambiguous glyph classes &nbsp;·&nbsp; <b>out</b> identity evidence (telemetry) + anti-rules</div>
+        <div class="dids"><span class="chip">D-016…D-022</span> <span class="chip">D-025</span> <span class="chip">D-032</span></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num" lang="mr">६<small>MATERIALIZE</small></div>
+      <div>
+        <h3>Place the flags — change nothing <span class="chip green">stable</span></h3>
+        <p>Per dashak, the commentary text is finalized: unresolved uncertainty sites receive their visible <span class="flagmark">⟦?⟧</span> markers. Under the completed doctrine this stage applies <strong>zero substitutions</strong> — it is the abstention made concrete. It is also the most heavily guarded step in the pipeline:</p>
+        <ul class="guards">
+          <li><strong>Rewrite guard</strong> — content-substitution units ≤ 20% of a dashak, and ≤ 400 occurrences. Threat: unreviewed text change.</li>
+          <li><strong>Flag guard</strong> — ⟦?⟧-marker units ≤ 60%. Threat: upstream degradation. Separate from the rewrite guard <em>by design</em>: a guard must never punish abstention.</li>
+          <li><strong>Verse-skip guard</strong> — edits targeting verse abort the dashak if count &gt; 5 <em>and</em> rate &gt; 3% (verse is gold; the materializer must never touch it).</li>
+          <li><strong>Abort hygiene</strong> — outputs invalidated up front, written via temp + atomic replace: a tripped guard can never leave a stale artifact looking current.</li>
+          <li><strong>Linguistic sanity</strong> — mandatory diff-sample after any pass with substitutions &gt; 0 (reph-loss / conjunct-break / canon-unattested). Retro-tested: it catches the v1.0 corruption 442/637.</li>
+          <li><strong>Anti-loop rule</strong> — a tripped dashak ships OCR baseline + flags, logged, <em>not debugged</em>. Not-correcting is always a valid ship state. D2 and D17 shipped exactly this way.</li>
+        </ul>
+        <div class="io"><b>in</b> units + cache + guards &nbsp;·&nbsp; <b>out</b> final per-dashak text, deterministic</div>
+        <div class="dids"><span class="chip">D-026</span> <span class="chip">D-027</span> <span class="chip">D-032 R2</span> <span class="chip">D-034 S-1/S-5</span></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num" lang="mr">७<small>ASSEMBLE</small></div>
+      <div>
+        <h3>One deterministic book <span class="chip green">stable</span></h3>
+        <p>A pure join, in book order, re-runnable to the byte: the master <code>dasbodh.jsonl</code>, readable <code>md/</code> renderings per dashak, and an <strong>audit layer</strong> that traces every flag and every provenance claim to its site (before-text coordinates, documented). The MANIFEST states the fidelity claim honestly. This layout is also the NETI interface — versioned artifacts, zero code coupling.</p>
+        <div class="io"><b>in</b> 20 materialized dashaks &nbsp;·&nbsp; <b>out</b> <code>release/anuvad_dasbodh_v1_1/</code></div>
+        <div class="dids"><span class="chip">D-019</span> <span class="chip">D-028</span></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage-num" lang="mr">८<small>VERIFY</small></div>
+      <div>
+        <h3>Adversaries all the way down <span class="chip gold">QA in flight</span></h3>
+        <p>Verification is layered and none of it takes anyone's word: <strong>adversarial sub-verification</strong> inside every packet (fresh context, verbatim findings, a mandate to name missing checks) · a full <strong>quality inspection</strong> before the tag (zero criticals; 0/16,170 NFC anomalies; 0/80 positional drift) · the <strong>USV calibration</strong>, which measured the LLM-arbitration idea against 643 known answers and killed it at its own pre-committed gate (98.76% &lt; 99%, 7/8 wrongs the reph class — $15 to stop the corruption channel before it touched a unit) · and now the <strong>reader QA</strong>: 30 stratified units of the assembled release under Vidya's eye. The load-bearing number: <strong>silent corruption N/30, expectation 0.</strong></p>
+        <div class="io"><b>in</b> the release &nbsp;·&nbsp; <b>out</b> a measured fidelity claim</div>
+        <div class="dids"><span class="chip">D-033</span> <span class="chip">D-035</span> <span class="chip red">QA: PACKET_qa_v101</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= SUTRAS ================= -->
+<section id="sutras">
+  <div class="eyebrow">४ · the rules — set as the book itself is set: rule, then commentary</div>
+  <h2>The doctrine</h2>
+  <p class="lede">Ten standing rules. None was designed in advance; each was earned, and each cites the decision that made it law.</p>
+
+  <div class="sutra-grid">
+    <div class="sutra">
+      <div class="verse">Demonstrate, don't assert.</div>
+      <div class="comm">Self-reports — the coding agent's, the AI's, any reviewer's — are inadmissible. Only on-disk artifacts, measured numbers, and demonstrated behavior count. This has repeatedly caught real bugs and one forced-fix attempt.</div>
+      <div class="earned">standing since inception · applied to every handback</div>
+    </div>
+    <div class="sutra">
+      <div class="verse">Identity is telemetry; text needs per-occurrence evidence.</div>
+      <div class="comm">A ruling that a glyph, name, or byte "is X" never licenses substituting X into running text — the same byte is different glyphs in different words. The core lesson, paid for three times at three levels: class, name, byte.</div>
+      <div class="earned">D-022 · D-025 · D-032</div>
+    </div>
+    <div class="sutra">
+      <div class="verse">Never silently correct — flag.</div>
+      <div class="comm">An invisible wrong word in a sacred text is worse than a visible open question. ⟦?⟧ is not a defect ledger; it is the product working. The project is explicitly not chasing 100%.</div>
+      <div class="earned">founding principle · D-021 made it measurable</div>
+    </div>
+    <div class="sutra">
+      <div class="verse">Traceable-and-deterministic is not correct.</div>
+      <div class="comm">v1.0's corruption had perfect provenance and perfect reproducibility — and 442 wrong words. Auditability is necessary, never sufficient; hence the mandatory linguistic-sanity stage on any text-changing pass.</div>
+      <div class="earned">D-032 R2 · measured a second time by D-035</div>
+    </div>
+    <div class="sutra">
+      <div class="verse">One configuration, one run; a near-miss is a miss.</div>
+      <div class="comm">Gates are pre-committed before the measurement, then read literally. Peeking at failures and re-running measures the patch, not the system. USV came in at 98.76% against 99% and died — that is the rule holding, not failing.</div>
+      <div class="earned">D-029 · executed by D-035</div>
+    </div>
+    <div class="sutra">
+      <div class="verse">Every failure path terminates in a ship state.</div>
+      <div class="comm">A tripped guard means "don't correct here" — the dashak ships baseline + flags, logged, never individually debugged. No iteration loops, no per-item chases; a systematic pattern (≥4 same-cause trips) is reported once, after the batch.</div>
+      <div class="earned">D-027 · exercised by D2 and D17</div>
+    </div>
+    <div class="sutra">
+      <div class="verse">A guard must never punish abstention.</div>
+      <div class="comm">The change-rate guard is two independent gates — rewrite (≤20%) and flag-density (≤60%) — because a single gate conflating them would incentivize silent guessing, the one failure the project exists to prevent.</div>
+      <div class="earned">D-026</div>
+    </div>
+    <div class="sutra">
+      <div class="verse">Ask the reader only what changes a rule, a policy, or a release.</div>
+      <div class="comm">Vidya's attention is the scarcest resource in the system. Never a per-occurrence question; sessions are budgeted, cold-presented, and shipped under the four-item page checklist.</div>
+      <div class="earned">D-027 · reader-page checklist after the Session-B incident</div>
+    </div>
+    <div class="sutra">
+      <div class="verse">Build behind evidence.</div>
+      <div class="comm">No machinery is constructed ahead of the proof that justifies it. The corollary was learned at a stocktake: an eager correction layer generated most of its own workload.</div>
+      <div class="earned">standing · reaffirmed at the D-023 gate</div>
+    </div>
+    <div class="sutra">
+      <div class="verse">The decision gates history, not the keyboard.</div>
+      <div class="comm">No commit or tag moves without a per-instance operator approval recorded in the conversation; the agent then executes exactly what was approved and reports the hash. Approvals are scoped to a shown diffstat — a changed diff voids the approval.</div>
+      <div class="earned">D-031</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INCIDENTS ================= -->
+<section id="incidents">
+  <div class="eyebrow">५ · how the rules were earned</div>
+  <h2>Four corruptions, each caught earlier than the last</h2>
+  <p class="lede">The same disease four times — an identity judgment acting as a text edit — attacked at four levels. Watch the catch-point move upstream. That movement <em>is</em> the pipeline maturing.</p>
+
+  <div class="rail" style="margin-top:8px">
+    <div class="incident">
+      <div class="caught">caught AFTER<br>application, by the<br>reader's accuracy pass</div>
+      <div>
+        <h3>1 · Class rules corrupt prose <span class="chip">D-021/D-022</span></h3>
+        <p>Glyph-class rulings applied as substitutions produced bare-virama fragments and reph-loss doublings (<span class="deva-ex" lang="mr">सर्वत्र → सव्वत्र</span>). Session B measured the flag-corrected stratum at 1/15 faithful. Response: the entire gb-signal category retired to telemetry — not a patched guard tuned to the sampled failures.</p>
+      </div>
+    </div>
+    <div class="incident">
+      <div class="caught">caught BEFORE the batch,<br>by the change-rate guard<br>in the D4 template run</div>
+      <div>
+        <h3>2 · Names injected into scripture <span class="chip">D-024/D-025</span></h3>
+        <p>A reader's identity <em>label</em> was promoted to a book-wide substitution: the literal string "Anusvara ◌ं" written inside Marathi words, and a sentinel that would have replaced a vowel-sign with a consonant 122 times. The guard aborted the dashak. Response: all naming/sentinel application retired; label-vs-derived input validation added.</p>
+      </div>
+    </div>
+    <div class="incident">
+      <div class="caught">caught BEFORE the tag,<br>by the adjudication's own<br>ground-truth build</div>
+      <div>
+        <h3>3 · Byte constants — the v1.0 corruption <span class="chip">D-030/D-032</span></h3>
+        <p>The last surviving category: byte-wide constants. 442 of 638 substitutions overwrote a genuine reph (<span class="deva-ex" lang="mr">धर्म → धम्म</span>) — valid-looking, fully traceable, deterministic, wrong. v1.0 was rebuilt as v1.0.1 with <strong>zero substitutions</strong>; all 637 sites verified restored to baseline. The doctrine line completed: class, name, <em>and byte</em>.</p>
+      </div>
+    </div>
+    <div class="incident">
+      <div class="caught">caught BEFORE it touched<br>a single unit, by a<br>pre-committed gate — $15</div>
+      <div>
+        <h3>4 · The LLM oracle fails its exam <span class="chip">D-035</span></h3>
+        <p>Sentence-level LLM arbitration of flags — the most sophisticated corrector yet — was calibrated against 643 known answers behind a ≥99% gate written before the run. It scored 98.76%, and 7 of its 8 errors were the same reph class. Rejected for v1.x, permanently, no tuning. The flags ship as flags.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow-note"><strong>The trajectory to validate:</strong> shipped-then-reverted → blocked at the batch → blocked at the tag → blocked at a $15 calibration. Each guard added after an incident caught the <em>next</em> incident earlier. The pipeline's safety is not a claim; it is this recorded sequence.</div>
+</section>
+
+<!-- ================= BOOK ================= -->
+<section id="book">
+  <div class="eyebrow">६ · the book as shipped — anuvad_dasbodh_v1.0.1</div>
+  <h2>Anatomy of 16,170 units</h2>
+
+  <div class="anatomy">
+    <div class="bar" role="img" aria-label="Proportional composition of the 16,170 units">
+      <div class="seg seg-canon"></div><div class="seg seg-vflag"></div><div class="seg seg-mat"></div><div class="seg seg-base"></div><div class="seg seg-label"></div>
+    </div>
+    <div class="legend">
+      <div><span class="sw" style="background:var(--ink)"></span><b>7,711</b> · canonical verse — gold text from the canonical edition, untouchable</div>
+      <div><span class="sw" style="background:var(--turmeric)"></span><b>186</b> · verse without a confident canonical match — OCR + unit flag, never guessed</div>
+      <div><span class="sw" style="background:var(--paper-deep)"></span><b>6,973</b> · materialized commentary — OCR consensus, zero substitutions, flags placed</div>
+      <div><span class="sw" style="background:var(--indigo-wash)"></span><b>762</b> · D2 + D17 baseline — verse-skip guard tripped; shipped honest, not debugged</div>
+      <div><span class="sw" style="background:var(--rule)"></span><b>538</b> · labels (headings, prayers; 7 with the accepted A2 defect)</div>
+    </div>
+
+    <div class="numbers">
+      <div class="num-cell green"><span class="n">0</span><span class="l">text substitutions in the entire book</span></div>
+      <div class="num-cell green"><span class="n">0</span><span class="l">cardinal-sin violations found by any probe</span></div>
+      <div class="num-cell"><span class="n">99.78%</span><span class="l">verse confidently canonical (7,726 / 7,743 ovīs)</span></div>
+      <div class="num-cell"><span class="n">3,005</span><span class="l">visible ⟦?⟧ flags: 2,805 glyph + 7 label-audit + 186 verse + 7 A2</span></div>
+      <div class="num-cell"><span class="n">0.90–0.93</span><span class="l">measured unit-faithfulness of the commentary baseline (reader-sampled)</span></div>
+      <div class="num-cell red"><span class="n">N / 30</span><span class="l">final QA — silent corruption on the assembled release, in flight</span></div>
+    </div>
+  </div>
+
+  <p style="margin-top:26px">The fidelity statement, in one sentence: <strong>every unmarked word is either canonical verse or engine-consensus OCR that survived every guard; every uncertainty is visible; nothing was invented.</strong> The load-bearing metric is silent corruption — measured 0/6 on the D4 ride-along, now being measured on the release itself. Visible flag density is a polish property, counted and tracked, never a fidelity failure.</p>
+</section>
+
+<!-- ================= OPEN ================= -->
+<section id="open">
+  <div class="eyebrow">७ · what is open — and what is deliberately closed</div>
+  <h2>The honest remainder</h2>
+  <div class="open-list">
+    <div class="open-item"><span class="st now">in flight</span><div><strong>Final QA session</strong> — 30 stratified units under Vidya's eye (seed 20260705). The one number: silent corruption N/30. Any hit is a STOP and a director decision, never a reflexive fix.</div></div>
+    <div class="open-item"><span class="st later">at the Phase-2 gate</span><div><strong>Flag consumption</strong> — how the translator sees ⟦?⟧ sites: read through, abstain, or consult candidates from the audit layer. Decides whether two text-invariant input improvements (placing D2/D17's inventoried flags; snapping mid-cluster markers to akshara boundaries) earn a build.</div></div>
+    <div class="open-item"><span class="st later">at the Phase-2 gate</span><div><strong>Sentence verification, redesigned</strong> — the measured 98.76% oracle plus hard mechanical guards (reph-loss is deterministically detectable) plus fresh ground truth it has never seen. Reserved by D-035 for translation-era stakes, where a wrong pick costs an English nuance, not a sacred word.</div></div>
+    <div class="open-item"><span class="st later">parked</span><div><strong>Batch-API wiring &amp; honest cost</strong> — ≈$2.8k at current settings, halvable; confirmed before any translation run.</div></div>
+    <div class="open-item"><span class="st later">documented debt</span><div><strong>60 migration-gated tests</strong> — skip cleanly with reasons; suite is green-or-skipped, red means something. Real-fixture migration tracked, not urgent.</div></div>
+    <div class="open-item"><span class="st later">closed by doctrine</span><div><strong>Everything else.</strong> The 2,805 glyph flags, the 186 unmatched ovīs, the 7 A2 units: each sits exactly where the evidence left it. Reopening any of them without new evidence is the loop, refused by design.</div></div>
+  </div>
+</section>
+
+<footer>
+  ANUVAD · pipeline reference · rendered 2026-07-06 · synthesized from PROJECT_REGISTER.md (D-001…D-035), BUILD_JOURNAL.md (Sessions 1–27), docs/ANUVAD_State_of_Play.md<br>
+  Where this document and the register disagree, the register wins. Self-contained; no external resources.
+</footer>
+
+</div>
+</body>
+</html>
