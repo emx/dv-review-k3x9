@@ -255,7 +255,7 @@
 <section id="problem">
   <div class="eyebrow">२ · why this is hard</div>
   <h2>The dangerous errors are invisible</h2>
-  <p>The source PDF is born-digital, but its text layer is mojibake from a broken legacy font — unusable. So the pages are treated as <em>images</em>: rasterized and read by OCR. That opens the real problem:</p>
+  <p>The source PDF is born-digital, but its text layer is mojibake from a broken legacy font — unusable <em>as text</em>, though its byte stream survives as the glyphbreak evidence axis (stage ३). For the words themselves, the pages are treated as <em>images</em>: rasterized and read by OCR. That opens the real problem:</p>
   <p style="margin-top:14px">An OCR mistake in Devanāgarī usually produces <strong>valid-looking Devanāgarī</strong>. <span class="deva-ex" lang="mr" style="font-family:var(--deva)">धम्म</span> is a perfectly renderable word — it's simply not the word on the page. No mechanical check can catch it, no non-reader can see it, and in a revered religious text a plausible-but-wrong "correction" is <strong>worse than the error it replaced</strong>. The project calls this the cardinal sin: silent corruption.</p>
   <p style="margin-top:14px">Every design choice below is downstream of that one fact. The pipeline is not built to fix everything; it is built so that <strong>everything it cannot prove, it marks</strong> — <span class="flagmark">⟦?⟧</span> — and everything it ships unmarked, it can defend with evidence.</p>
 </section>
@@ -272,7 +272,7 @@
       <div class="stage-num" lang="mr">०<small>SOURCE</small></div>
       <div>
         <h3>Rasterize <span class="chip green">stable</span></h3>
-        <p>The mojibake text layer is discarded entirely. Pages become images at <strong>192 DPI</strong> — measured as the sweet spot for VLM OCR on this font. Higher resolution <em>hurts</em> (the model downsamples to a fixed token budget). Classical "300 DPI" folklore does not apply and was tested, not assumed.</p>
+        <p>The mojibake text layer is <strong>demoted, not discarded</strong>: it is never used as text, but its byte stream is mined as the glyphbreak evidence axis (stage ३) — measured per-byte purities of ~0.50–0.97, good enough to point suspicion, structurally short of the 100% that writing text demands. The shipped text comes instead from reading the pages as images: rasterized at <strong>192 DPI</strong> — measured as the sweet spot for VLM OCR on this font. Higher resolution <em>hurts</em> (the model downsamples to a fixed token budget). Classical "300 DPI" folklore does not apply and was tested, not assumed.</p>
         <div class="io"><b>in</b> Dāsbodh PDF, 796 pp &nbsp;·&nbsp; <b>out</b> page rasters @192</div>
         <div class="dids"><span class="chip">D-007</span></div>
       </div>
@@ -304,7 +304,7 @@
       <div>
         <h3>Engines vote, per occurrence <span class="chip green">stable</span></h3>
         <p>Every reading site lands in one of three buckets. <strong>Unanimous</strong> — engines agree: the text stands. <strong>Flag</strong> — genuine uncertainty: the site gets <span class="flagmark">⟦?⟧</span> candidates. <strong>ocr-split</strong> — engines disagree at input level: the <strong>Surya baseline stands</strong> (policy decided on evidence: the reader sided with Surya 9–1 in a blind probe; Vision's failure mode named).</p>
-        <p>Alongside runs the <strong>glyphbreak axis</strong> — forensics on the broken legacy font's glyph shapes. It informs <em>which sites are suspicious</em>. It is telemetry.</p>
+        <p>Alongside runs the <strong>glyphbreak axis</strong> — forensics on the legacy font's byte stream. It works well as evidence (many bytes map to one glyph at 0.86–0.97 purity) and that is exactly why its role is bounded: a 0.95-pure byte across hundreds of occurrences still means dozens of valid-looking wrong words if allowed to write. So it informs <em>which sites are suspicious</em> and corroborates identities. It never writes text. It is telemetry.</p>
         <div class="io"><b>in</b> two readings &nbsp;·&nbsp; <b>out</b> unanimous text + flagged sites + split log</div>
         <div class="dids"><span class="chip">D-013</span> <span class="chip">D-023 R-C</span></div>
       </div>
