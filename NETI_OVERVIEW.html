@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NETI — The Archive, Explained</title>
+<style>
+  :root{
+    --paper:#faf6ee; --card:#ffffff; --ink:#2b2620; --soft:#6b6259;
+    --saffron:#c05621; --ochre:#b7791f; --sage:#3d5a4c; --sky:#40618a;
+    --line:#e6ddcf; --shadow:0 1px 3px rgba(43,38,32,.08), 0 8px 24px rgba(43,38,32,.06);
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{background:var(--paper); color:var(--ink);
+       font:17px/1.65 Georgia, 'Times New Roman', serif; padding-bottom:6rem}
+  .wrap{max-width:880px; margin:0 auto; padding:0 24px}
+  header{padding:5rem 0 3rem; text-align:center; border-bottom:1px solid var(--line)}
+  header h1{font-size:3.2rem; letter-spacing:.4rem; color:var(--saffron); font-weight:normal}
+  header .sub{font-style:italic; color:var(--soft); margin-top:.6rem; font-size:1.15rem}
+  header .date{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.8rem;
+       letter-spacing:.15em; text-transform:uppercase; color:var(--soft); margin-top:1.4rem}
+  section{padding:3.2rem 0 0}
+  h2{font-size:1.7rem; font-weight:normal; color:var(--saffron); margin-bottom:1rem}
+  h2 .num{color:var(--line); margin-right:.5rem}
+  h3{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.82rem; letter-spacing:.14em;
+     text-transform:uppercase; color:var(--soft); margin:1.8rem 0 .6rem}
+  p{margin-bottom:1rem; max-width:72ch}
+  p.lead{font-size:1.18rem; color:#463f36}
+  em.term{color:var(--saffron); font-style:normal; font-weight:bold}
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+         gap:14px; margin:1.6rem 0}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:10px;
+        padding:1.1rem 1.2rem; box-shadow:var(--shadow)}
+  .stat b{display:block; font-size:1.7rem; color:var(--saffron); font-weight:normal}
+  .stat span{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.78rem;
+             letter-spacing:.06em; text-transform:uppercase; color:var(--soft)}
+  /* layer diagram */
+  .layers{margin:1.8rem 0}
+  .layer{display:flex; gap:1.1rem; align-items:flex-start; background:var(--card);
+         border:1px solid var(--line); border-left:6px solid var(--accent,#ccc);
+         border-radius:10px; padding:1.1rem 1.3rem; margin-bottom:10px; box-shadow:var(--shadow)}
+  .layer .tag{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.72rem; font-weight:700;
+         letter-spacing:.12em; text-transform:uppercase; color:#fff; background:var(--accent);
+         border-radius:999px; padding:.35rem .8rem; white-space:nowrap; margin-top:.15rem}
+  .layer p{margin:0; font-size:.98rem}
+  .layer b.t{display:block; font-size:1.05rem; margin-bottom:.2rem}
+  .arrowdown{ text-align:center; color:var(--soft); font-size:1.1rem; margin:-4px 0 6px}
+  /* pipeline */
+  .pipe{display:flex; flex-wrap:wrap; gap:8px; align-items:stretch; margin:1.6rem 0;
+        font-family:ui-sans-serif,system-ui,sans-serif}
+  .step{flex:1 1 130px; background:var(--card); border:1px solid var(--line); border-radius:10px;
+        padding:.9rem .9rem; box-shadow:var(--shadow); position:relative}
+  .step b{display:block; font-size:.85rem; letter-spacing:.05em; text-transform:uppercase;
+          color:var(--sky); margin-bottom:.3rem}
+  .step small{font-size:.82rem; color:var(--soft); line-height:1.45; display:block}
+  .flow-note{font-family:ui-sans-serif,system-ui,sans-serif; font-size:.82rem; color:var(--soft);
+             font-style:italic; margin-top:.4rem}
+  /* principle cards */
+  .grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; margin:1.4rem 0}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:10px;
+        padding:1.2rem 1.3rem; box-shadow:var(--shadow)}
+  .card b.t{display:block; margin-bottom:.35rem; color:var(--sage)}
+  .card p{margin:0; font-size:.95rem; color:#4a433a}
+  /* dossier walk */
+  ol.walk{margin:1.2rem 0 1.2rem 1.4rem}
+  ol.walk li{margin-bottom:.7rem; max-width:70ch}
+  blockquote{border-left:4px solid var(--ochre); padding:.4rem 0 .4rem 1.2rem;
+             font-style:italic; color:#54493a; margin:1.4rem 0; max-width:66ch}
+  .who{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin:1.4rem 0}
+  .who .card b.t{color:var(--sky)}
+  table.status{width:100%; border-collapse:collapse; margin:1.4rem 0;
+        font-family:ui-sans-serif,system-ui,sans-serif; font-size:.9rem; background:var(--card);
+        border-radius:10px; overflow:hidden; box-shadow:var(--shadow)}
+  table.status th{background:#efe7d8; text-align:left; padding:.65rem .9rem; font-size:.75rem;
+        letter-spacing:.1em; text-transform:uppercase; color:var(--soft)}
+  table.status td{padding:.65rem .9rem; border-top:1px solid var(--line)}
+  .done{color:var(--sage); font-weight:700} .part{color:var(--ochre); font-weight:700}
+  .next{color:var(--soft)}
+  footer{margin-top:4.5rem; padding-top:1.6rem; border-top:1px solid var(--line);
+         font-family:ui-sans-serif,system-ui,sans-serif; font-size:.8rem; color:var(--soft)}
+  @media print{body{background:#fff} .stat,.card,.layer,.step{box-shadow:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>NETI</h1>
+    <div class="sub">The teachings of Shri Ranjit Maharaj — preserved, searchable, and citable</div>
+    <div class="date">An overview for the humans of the project · July 2026</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section>
+  <h2><span class="num">1</span>What NETI is</h2>
+  <p class="lead">For thirty years, the talks of Ranjit Maharaj were recorded on tapes, typed by
+  devoted hands, scanned page by page, and collected into an archive of more than fifty thousand
+  files. NETI turns that archive into something a scholar can <em>ask questions of</em> — without
+  ever altering a single original.</p>
+  <p>The test NETI must pass is simple to say: <em class="term">for any concept — “the role of the
+  guru”, “surrender”, “the four bodies” — produce a complete, cited, deduplicated dossier of what
+  the Master said about it.</em> Every quote traceable to its exact page or tape position. Nothing
+  invented, nothing paraphrased, nothing lost.</p>
+  <div class="stats">
+    <div class="stat"><b>54,555</b><span>files preserved</span></div>
+    <div class="stat"><b>682</b><span>English talks, fully transcribed</span></div>
+    <div class="stat"><b>3.8 M</b><span>words of the Master, verified</span></div>
+    <div class="stat"><b>25,329</b><span>pages — each one checked</span></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">2</span>The four layers — how nothing is ever lost</h2>
+  <p>Everything in NETI lives in one of four layers. The rule that makes the whole system safe:
+  <em class="term">each layer can only be built from the one above it, and the top layer is
+  untouchable.</em></p>
+
+  <div class="layers">
+    <div class="layer" style="--accent:#8a4b2a">
+      <span class="tag">Sources</span>
+      <p><b class="t">The originals — sacred and sealed</b>
+      The scans, tapes, and videos exactly as they were given to us. Nothing here is ever moved,
+      renamed, edited, or deleted. The system is physically unable to write here. New material can
+      arrive; nothing can leave or change.</p>
+    </div>
+    <div class="arrowdown">▼ <i>machines read, never touch</i></div>
+    <div class="layer" style="--accent:#40618a">
+      <span class="tag">Canonical</span>
+      <p><b class="t">The readable text — machine-made, remakeable</b>
+      Every scanned page, read by text-recognition software and cut into the natural units of a
+      satsang: the question, the Master’s answer, the translator’s relay. If we ever improve the
+      software, we simply regenerate this layer overnight. It is never edited by hand.</p>
+    </div>
+    <div class="arrowdown">▼ <i>humans judge, machines remember</i></div>
+    <div class="layer" style="--accent:#3d5a4c">
+      <span class="tag">Curation</span>
+      <p><b class="t">Human scholarship — the precious layer</b>
+      Every decision a person makes — “this correction is right”, “this passage belongs in the
+      guru dossier”, “this speaker is Maharaj” — is recorded here with a name, a date, and a
+      reason. This layer survives everything. It is the project’s real treasure, because the
+      scarcest resource is not computer time: it is <em>your</em> hours of judgment.</p>
+    </div>
+    <div class="arrowdown">▼ <i>rebuilt at will</i></div>
+    <div class="layer" style="--accent:#b7791f">
+      <span class="tag">Derived</span>
+      <p><b class="t">The search machinery — completely disposable</b>
+      Indexes, search databases, reading views. If any of it breaks or a better technology
+      appears, we delete it and rebuild it from the layers above with one command. Nothing
+      irreplaceable lives here — by design.</p>
+    </div>
+  </div>
+
+  <p>This is why the corrections dilemma never bites us: when a machine re-reads a page better
+  than before, your past corrections and judgments are not overwritten — they are re-checked
+  against the new text, and anything that no longer matches is <em>flagged for your eyes</em>,
+  never silently discarded.</p>
+</section>
+
+<section>
+  <h2><span class="num">3</span>The pipeline — from a scanned page to a searchable answer</h2>
+  <div class="pipe">
+    <div class="step"><b>Inventory</b><small>Walk every file, fingerprint it, classify it.
+      Duplicates found by mathematics, not guesswork.</small></div>
+    <div class="step"><b>Assemble</b><small>Group 54,555 files into ~4,800 logical documents —
+      one talk may be eighty page-scans plus a PDF plus a tape.</small></div>
+    <div class="step"><b>Extract</b><small>Read each page (rotating it first if it was scanned
+      sideways), split the text into question-and-answer turns.</small></div>
+    <div class="step"><b>Verify</b><small>Every single page gets a verdict: readable English, or
+      an honest flag. Gibberish cannot enter — the system refuses it.</small></div>
+    <div class="step"><b>Enrich</b><small>Harvest thirty years of human indexing — dates, topics,
+      tables of contents — into proposals for a person to confirm.</small></div>
+    <div class="step"><b>Search</b><small>Build the indexes that answer questions — by exact
+      words today, by meaning next.</small></div>
+  </div>
+  <p class="flow-note">Every stage can be re-run safely at any time; every stage leaves an
+  evidence report; no stage ever writes into the sources.</p>
+
+  <h3>The quality story, in one anecdote</h3>
+  <p>Three talks from February 1998 were scanned sideways decades ago, and no one could read what
+  the software made of them — pages of alphabet soup. The system’s own census <em>found</em> the
+  problem, the fix was tested on those exact pages before touching anything, every one of the
+  corpus’s 25,329 pages was then re-verified individually — and three lost Mumbai talks came back
+  to the archive, word by word. That is the working standard: <em class="term">no result is
+  trusted until the evidence is on the table.</em></p>
+</section>
+
+<section>
+  <h2><span class="num">4</span>Concept dossiers — the reason it all exists</h2>
+  <p>A <em class="term">dossier</em> is a living answer to one research question. It is how the
+  archive becomes scholarship — and eventually, how translations get their foundation.</p>
+  <ol class="walk">
+    <li><b>A question is asked.</b> “What did the Master say about the role of the guru?” —
+    typed by you, or seeded automatically from the topic indexes Sachin hand-made for every
+    month of talks.</li>
+    <li><b>The machine hunts.</b> It rephrases the question many ways, searches the whole corpus,
+    reads the candidates, and gathers passages — each one <em>mechanically verified,
+    letter-for-letter, against the canonical text</em>. A misquoted or “improved” quotation is
+    structurally impossible.</li>
+    <li><b>A human judges.</b> You keep, discard, annotate, and group. This is the only work that
+    requires a person — and the system is built so it is the <em>only</em> work a person does.
+    No commands, no file wrangling, no syntax. Judgment only.</li>
+    <li><b>The dossier renders itself.</b> A readable document — every passage cited to its page
+    or tape second — regenerated on every change. When new material enters the archive, the
+    question re-runs itself and shows you only what is new.</li>
+  </ol>
+  <blockquote>John’s method for translating the Dasbodh — first study everything the masters said
+  about a concept, then translate with that understanding — is the method NETI industrialises.
+  The dossier is that study, made cheap, durable, and findable.</blockquote>
+</section>
+
+<section>
+  <h2><span class="num">5</span>The working principles — in plain words</h2>
+  <div class="grid2">
+    <div class="card"><b class="t">The Master’s voice is the source</b>
+      <p>His broken, forceful, hammering English is never “improved”, normalised, or modernised —
+      not by software, not by AI, not by us. Even his transcriber’s reverent capitals
+      (“you are HE”) are protected by explicit rules.</p></div>
+    <div class="card"><b class="t">Machines propose, humans decide</b>
+      <p>Every automated suggestion — a speaker’s identity, a topic, a duplicate, a correction —
+      is a <em>candidate</em> until a named person confirms it. The machine is never the judge
+      of record.</p></div>
+    <div class="card"><b class="t">Evidence over assertion</b>
+      <p>“It works” is not a sentence this project accepts. Every claim traces to a report from a
+      real run; every review re-derives the numbers independently before believing them.</p></div>
+    <div class="card"><b class="t">Everything signed, everything reversible</b>
+      <p>Every human decision carries a name, a date, and a reason — forever. Every machine layer
+      can be deleted and rebuilt. The combination means mistakes are cheap and scholarship
+      is permanent.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">6</span>Who does what</h2>
+  <div class="who">
+    <div class="card"><b class="t">Emm</b><p>Owner and arbiter. Every decision of record is
+      Emm’s, spoken in plain language; the machinery translates words into files. Emm is the
+      only one who can touch the source archive.</p></div>
+    <div class="card"><b class="t">Cédric</b><p>Joins for the web era: testing, curation,
+      dossier judgment — through a friendly interface. No command line, no technical setup,
+      ever. If Cédric needs a manual, we have failed.</p></div>
+    <div class="card"><b class="t">John</b><p>The Marathi scholar. The dossiers become his
+      translation briefs; the separate Marathi track (its own careful project) prepares the
+      original-language texts for his work.</p></div>
+    <div class="card"><b class="t">The machines</b><p>Two AI collaborators — one designs and
+      reviews, one builds and runs — each confined to its own territory, each checked by the
+      other, both gated by Emm’s word at every consequential step.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">7</span>Where the project stands — July 2026</h2>
+  <table class="status">
+    <tr><th>Milestone</th><th>State</th></tr>
+    <tr><td>Archive inventoried &amp; fingerprinted (54,555 files, 669 GB)</td><td class="done">✔ Done</td></tr>
+    <tr><td>All 682 English talks &amp; texts transcribed, named, corrected, page-verified</td><td class="done">✔ Done</td></tr>
+    <tr><td>Thirty years of hand-made topic indexes harvested (12,799 topic links)</td><td class="done">✔ Done</td></tr>
+    <tr><td>First search engine measured — the hardest test on purpose: a single short
+    word-search must find <em>the one exact source talk</em> among 682. It succeeds ~6/10;
+    the full system layers meaning-search, automatic question-rephrasing, and the Master’s
+    own repetitions on top of this baseline</td><td class="done">✔ Done</td></tr>
+    <tr><td>Meaning-based search (AI embeddings) — the round in progress now</td><td class="part">◐ In progress</td></tr>
+    <tr><td>The research interface &amp; the first real dossier</td><td class="next">Next</td></tr>
+    <tr><td>Audio wave (tapes → text, aligned to the transcripts’ own timecodes)</td><td class="next">Gated, waiting</td></tr>
+    <tr><td>Marathi track (with John) &amp; the web interface (with Cédric)</td><td class="next">Their own chapters</td></tr>
+  </table>
+  <p>One quiet gift discovered along the way: the transcribers marked <em>tape positions</em>
+  throughout their typed pages. The system preserved all 34,000 of those timecodes — so when the
+  audio wave begins, the tapes and the texts will already know how to find each other.</p>
+</section>
+
+<footer>
+  NETI · Inchegiri Navnath Sampradaya archive · This overview is generated documentation — the
+  authoritative design lives in the project’s reference documents. Prepared by the Architect,
+  2026-07-05.
+</footer>
+
+</div>
+</body>
+</html>
