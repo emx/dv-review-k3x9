@@ -1,0 +1,592 @@
+<title>Maharaj on the Dasbodh — Corpus Survey</title>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", system-ui, sans-serif;
+    --serif: ui-serif, "New York", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161412;
+      --ink: #E9E5E1;
+      --muted: #A8A29E;
+      --faint: #78716C;
+      --hairline: #2E2A27;
+      --quote-bg: #1E1B19;
+      --accent: #E8A33D;
+      --accent-ink: #E8A33D;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161412;
+    --ink: #E9E5E1;
+    --muted: #A8A29E;
+    --faint: #78716C;
+    --hairline: #2E2A27;
+    --quote-bg: #1E1B19;
+    --accent: #E8A33D;
+    --accent-ink: #E8A33D;
+  }
+  :root[data-theme="light"] {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+  }
+
+  html { background: var(--bg); }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.9688rem;
+    line-height: 1.6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+  }
+  a { color: var(--accent-ink); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+  code { font-family: var(--mono); }
+
+  .app {
+    max-width: 71rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  main { max-width: 42rem; margin: 0 auto; padding-bottom: 6rem; }
+
+  /* ── Wide layout: sticky rail ─────────────── */
+  @media (min-width: 68rem) {
+    .app {
+      display: grid;
+      grid-template-columns: 14rem minmax(0, 42rem);
+      gap: 4.5rem;
+      justify-content: center;
+    }
+    nav.rail {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 4.25rem 0 2rem;
+    }
+    main { margin: 0; }
+  }
+
+  /* ── Contents rail ────────────────────────── */
+  nav.rail { font-size: 0.8125rem; }
+  nav.rail .rail-title {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 0.75rem;
+  }
+  nav.rail ol { list-style: none; margin: 0; padding: 0; }
+  nav.rail li { margin: 0; }
+  nav.rail a {
+    display: block;
+    color: var(--muted);
+    padding: 0.3rem 0 0.3rem 0.875rem;
+    border-left: 2px solid var(--hairline);
+    line-height: 1.4;
+  }
+  nav.rail a:hover { color: var(--ink); text-decoration: none; }
+  nav.rail a[aria-current="true"] {
+    color: var(--ink);
+    font-weight: 600;
+    border-left-color: var(--accent);
+  }
+  nav.rail .aux { margin-top: 1.25rem; }
+  @media (max-width: 67.99rem) {
+    nav.rail { padding: 2.5rem 0 0; }
+    nav.rail a { border-left: none; padding-left: 0; }
+    nav.rail ol { display: flex; flex-direction: column; gap: 0.1rem; }
+  }
+
+  /* ── Header ───────────────────────────────── */
+  header.masthead { padding: 4.25rem 0 0; }
+  .kicker {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.75rem;
+  }
+  header.masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 5vw, 2.375rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+  .standfirst {
+    color: var(--muted);
+    font-size: 1.0313rem;
+    line-height: 1.65;
+    margin: 0 0 2rem;
+    text-wrap: pretty;
+  }
+  .method {
+    font-size: 0.8438rem;
+    line-height: 1.65;
+    color: var(--muted);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding: 1rem 0;
+    margin: 0 0 3.5rem;
+  }
+  .method b { color: var(--ink); font-weight: 600; }
+  .method code { font-size: 0.9em; }
+
+  /* ── Passages ─────────────────────────────── */
+  section.passage { padding: 0 0 3.25rem; scroll-margin-top: 2rem; }
+  section.passage + section.passage { border-top: 1px solid var(--hairline); padding-top: 3rem; }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0;
+    align-items: baseline;
+    font-size: 0.7813rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted);
+    margin: 0 0 0.625rem;
+  }
+  .meta .no { color: var(--accent-ink); font-weight: 700; }
+  .meta .sep { margin: 0 0.55rem; color: var(--faint); }
+  section.passage h2 {
+    font-family: var(--serif);
+    font-size: 1.4375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+  .cite {
+    font-family: var(--mono);
+    font-size: 0.7188rem;
+    color: var(--faint);
+    margin: 0 0 1.375rem;
+    line-height: 1.8;
+  }
+  .passage p.note {
+    font-size: 0.875rem;
+    color: var(--muted);
+    margin: 1.125rem 0;
+  }
+  .passage p.note code { font-size: 0.85em; }
+
+  blockquote {
+    background: var(--quote-bg);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    margin: 1.125rem 0;
+    padding: 1.375rem 1.625rem;
+    font-family: var(--serif);
+    font-size: 1.0313rem;
+    line-height: 1.72;
+  }
+  blockquote p { margin: 0 0 0.9em; }
+  blockquote p:last-of-type { margin-bottom: 0; }
+  .spk {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 1.1em 0 0.35em;
+  }
+  blockquote p:first-of-type .spk, blockquote .spk:first-child { margin-top: 0; }
+  .pagemark {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-top: 1rem;
+  }
+
+  /* ── Appendices ───────────────────────────── */
+  section.appendix { border-top: 1px solid var(--hairline); padding: 3rem 0 2.5rem; scroll-margin-top: 2rem; }
+  .appendix h2 {
+    font-family: var(--serif);
+    font-size: 1.4375rem;
+    font-weight: 600;
+    margin: 0 0 0.625rem;
+  }
+  .appendix > p { color: var(--muted); font-size: 0.9063rem; margin: 0 0 1.25rem; }
+  .mentions { list-style: none; margin: 0; padding: 0; }
+  .mentions li {
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 0.9063rem;
+    line-height: 1.6;
+  }
+  .mentions li:last-child { border-bottom: none; }
+  .mentions .where {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.7188rem;
+    color: var(--faint);
+    margin-top: 0.3rem;
+  }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.875rem; line-height: 1.5; }
+  th {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--faint);
+    text-align: left;
+    padding: 0 1.25rem 0.5rem 0;
+    border-bottom: 1px solid var(--hairline);
+    white-space: nowrap;
+  }
+  td { padding: 0.5rem 1.25rem 0.5rem 0; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  td.samas {
+    font-weight: 600;
+    color: var(--accent-ink);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  td code { font-size: 0.75rem; color: var(--muted); }
+
+  footer.colophon {
+    border-top: 1px solid var(--hairline);
+    padding-top: 1.25rem;
+    font-size: 0.7813rem;
+    color: var(--faint);
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+
+<div class="app">
+
+  <nav class="rail" aria-label="Contents">
+    <p class="rail-title">Contents</p>
+    <ol>
+      <li><a href="#p1">&ldquo;The book is called Dasbodh&rdquo;</a></li>
+      <li><a href="#p2">&ldquo;Our lineage has got Dasbodh&rdquo;</a></li>
+      <li><a href="#p3">&ldquo;That scripture is Dasbodh&rdquo;</a></li>
+      <li><a href="#p4">The Dasbodh Aarti, line by line</a></li>
+      <li><a href="#p5">How Siddharameshwar taught from it</a></li>
+      <li><a href="#p6">&ldquo;Is it worth reading?&rdquo;</a></li>
+      <li><a href="#p7">&ldquo;Advice to the aspirant&rdquo;</a></li>
+      <li><a href="#p8">Reading Dasbodh in the ashram</a></li>
+      <li><a href="#p9">&ldquo;A dialogue of Oneness&rdquo;</a></li>
+      <li><a href="#p10">Dasbodh and Manache Shlok</a></li>
+    </ol>
+    <ol class="aux">
+      <li><a href="#mentions">A · Passing mentions</a></li>
+      <li><a href="#pravachans">B · The Dasbodh pravachans</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <header class="masthead">
+      <p class="kicker">NETI corpus · survey of passages</p>
+      <h1>Maharaj on the Dasbodh</h1>
+      <p class="standfirst">Every passage in the corpus where Shri Ranjit Maharaj speaks <em>about</em> the Dasbodh of Samartha Ramdas — ten principal exchanges quoted verbatim with dates, places, and page numbers, followed by the passing mentions and a register of the Dasbodh pravachans themselves.</p>
+      <div class="method">
+        <b>Method &amp; fidelity.</b> Found by six passes over the corpus — lexical searches for <code>Dasbodh</code>, <code>Dasbodha</code>, <code>Das Bodh</code>, <code>Ramdas book</code>, and <code>granth Ramdas</code>, plus one semantic (vector) pass — with each hit read in full. Quotations are the corpus <em>effective text</em> (canonical OCR plus curated corrections), reproduced exactly, OCR artifacts included. Bracketed ellipses […] mark editorial elisions; nothing inside quotation blocks has been altered.
+      </div>
+    </header>
+
+    <section class="passage" id="p1">
+      <p class="meta"><span class="no">Passage 1</span><span class="sep">·</span>July 1993<span class="sep">·</span>Lecture 2</p>
+      <h2>&ldquo;The book is called Dasbodh. Das means a servant.&rdquo;</h2>
+      <p class="cite">pp.&nbsp;1–2, 24–28 · ranjit/english-lectures/1993-07-lecture2#x0000, #x0017</p>
+      <blockquote>
+        <span class="spk">Maharaj</span>
+        <p>The book is called Dasbodh. Das means a servant. Or smaller, by thought who is smaller. By thought he's smaller. One whose mind is perturbed, rather. Or troubled mind.</p>
+        <p>Because mind has got always a trouble. So, mind is the disciple. And the Master is that Power. He says, this book is called why Dasbodh? You have to teach the mind to be the Self.</p>
+        <p>You are the Owner, you are the Owner, but you think to be a servant. No, you should not do that. That is what is there, those lessons are called Dasbodh. Lessons given to illiterate creature to be the Realized Person.</p>
+        <p>In that, mind is the greatest thing. Mind means thought. Your mind should, you should make friendship with the mind, and not the enmity.</p>
+        <p>Mind is the greatest friend also and greatest enemy also. How you use. Revolver is the greatest friend to protect you. But if you misuse it and put on you, you will die. Same way, mind should be tackled in such a way.</p>
+        <span class="pagemark">pp. 1–2</span>
+      </blockquote>
+      <p class="note">Later in the same lecture he returns to the name:</p>
+      <blockquote>
+        <span class="spk">Maharaj</span>
+        <p>So, here, what is taught in this book, He says, why the name is Dasbodh given? Das-bodh means lesson to the mind or the person who has become very, very much smaller, become so small by mind. So, you have to teach him that 'you are the Master!'</p>
+        <p>Why you become slave? Because he wants something, mind wants something. Ask the mind, "Your Self is there that can provide everything."</p>
+        <span class="pagemark">pp. 24–28</span>
+      </blockquote>
+    </section>
+
+    <section class="passage" id="p2">
+      <p class="meta"><span class="no">Passage 2</span><span class="sep">·</span>3 June 1997<span class="sep">·</span>Houston</p>
+      <h2>&ldquo;Our lineage has got Dasbodh&rdquo;</h2>
+      <p class="cite">p.&nbsp;1; the answer runs pp.&nbsp;1–23 · ranjit/english-lectures/1997-06-03-houston#x0001, #x0002</p>
+      <blockquote>
+        <span class="spk">Question</span>
+        <p>Question is, is Your main study, more in Gita? In Gita or any other philosophical literature?</p>
+        <span class="spk">Maharaj</span>
+        <p>... Our lineage has got Dasbodh, written by Ramdas Swami. So, I always speak on Dasbodh.</p>
+        <span class="spk">Question</span>
+        <p>Dasbodh?</p>
+        <span class="spk">Maharaj</span>
+        <p>Dasbodh written by Ramdas Swami. Another is Eknathi Bhagwat. […] But one who writes touching the Final Reality. Dasbodh has touched at many many places.</p>
+        <p>He has written 200 chapters. In beginning, up to 8th, He has gone up to knowledge. From 9th, 10th ahead, He has always touched Final Reality.</p>
+        <p>All these books if you read, certain times, some people, some Gujarati has translated it in Gujarati that Dasbodh. But in his preface he writes, "Up to 9th, 10th, it is okay. Afterwards Ramdas has written ...&rdquo; his words, his choice, haan, what people think, I want to say that.</p>
+        <p>Because He always went after 10 chapters, 9, 10 chapters, Final Reality He has to give. He was writing for the Final Reality. So, these people, they cannot understand, he says, "He has_ written haphazardly everywhere.&rdquo;</p>
+        <p>Haphazard in what way? &ldquo;He was Saint, no, He was going anywhere, He was keeping these books with Him, papers to write anywhere. So, He was writing anywhere."</p>
+        <p>No, it is not that way. Because when you don't understand, you may say that. Inner meaning, you should understand. […]</p>
+        <p>So, this Ramdas Dasbodh is our lineage book. And I give all sermons on that.</p>
+      </blockquote>
+      <p class="note">The full answer is a long survey of Sadachar, Yoga Vasistha, the Gita, Ramayana and Mahabharat; the Dasbodh portions are kept here.</p>
+    </section>
+
+    <section class="passage" id="p3">
+      <p class="meta"><span class="no">Passage 3</span><span class="sep">·</span>8 May 1998, morning<span class="sep">·</span>Sedona</p>
+      <h2>&ldquo;That scripture is Dasbodh&rdquo;</h2>
+      <p class="cite">pp.&nbsp;30–33 · ranjit/english-lectures/1998-05-08am-sedona#x0022</p>
+      <blockquote>
+        <span class="spk">Question</span>
+        <p>Maharaj, I was wondering if there are any particular scriptures that the Masters of this lineage are referring. And secondly, if You would allow us to know, what scriptures were Your favourites, or are Your favourites.</p>
+        <span class="spk">Maharaj</span>
+        <p>Particular scriptures followed is okay. There&rsquo;s a book followed by my Master&rsquo;s Master. And I take it granted and true, because my Master showed the meaning of it, from there. So, I give that scripture, that is called Dasbodh, written by Ramdas.</p>
+        <p>He has touched the final understanding. Up to 10th chapter, He gives all knowledge. After the 10th chapter, you feel, if you read without understanding, &lsquo;oh it's a very simple thing,&rsquo; you say. It's got the greatest meaning in it, if you understand the inner meaning, it is called.</p>
+        <p>He was not a foolish person. After understanding, again He writes the same thing, to understand that. He repeats many things, sometimes. That means that people should understand.</p>
+        <p>So, ignorant persons, they don't know. Whereas Realized Person knows the inner meaning of it. Then He says oh it's the greatest thing He has written.</p>
+        <p>So, that scripture is Dasbodh, one of the things. It is in English also available. But the meaning may be, I don't know, what meaning he has done. If he has translated only, okay. So, read that, no harm.</p>
+        <p>When I give understanding, and with that understanding if you read, you can understand the inner meaning also, no harm. Inner meaning should be understood, nothing else.</p>
+      </blockquote>
+    </section>
+
+    <section class="passage" id="p4">
+      <p class="meta"><span class="no">Passage 4</span><span class="sep">·</span>Undated<span class="sep">·</span>Morning Bhajan explanation</p>
+      <h2>The Dasbodh Aarti, line by line — &ldquo;Jaya Jaya Dasabodha&rdquo;</h2>
+      <p class="cite">pp.&nbsp;1–28 · ranjit/english-lectures/mb-13-jayjayadasbodha#x0000</p>
+      <p class="note">An entire session on the aarti sung <em>to</em> the Dasbodh. Key passages:</p>
+      <blockquote>
+        <span class="spk">Maharaj</span>
+        <p>Jaya jaya Dasabodha, yes. Hello to Dasbodh. Jay jay means say hello. […] Grantha-raja prasiddha, he is the king of the books. […] King of mythological books.</p>
+        <span class="pagemark">pp. 1–2</span>
+      </blockquote>
+      <blockquote>
+        <span class="spk">Maharaj</span>
+        <p>Dasbodh, yes. Dasbodh means He makes you the Master.</p>
+        <p>Who is a servant or aspirant, He makes you Master.</p>
+        <p>So, one who has been given this understanding, He becomes the Master. Beforehand he's an aspirant, or 'I am at the Feet of Yours'. You say to God, no, "I am at Your Feet."</p>
+        <p>This book, why it is called the king of all mythological books? Because it makes you ... Dasa means who is an aspirant or servant, He makes you understand. So, it is Das-bodh. Das means servant. bodh means understanding.</p>
+        <p>This understanding is given by this book or this mythological book, who is the King of all the books, because it makes you He.</p>
+        <span class="pagemark">pp. 2–3</span>
+      </blockquote>
+      <blockquote>
+        <span class="spk">Maharaj</span>
+        <p>Veesa-hi dashaki-cha anubhava jo paahe. There are 20 chapters, are made, and all have got 10 sub chapters. If you take that experience, then you can understand yourself everything. […] You can experience this, Dasbodh is of that type. So, it can give the experience.</p>
+        <span class="pagemark">pp. 22–23</span>
+      </blockquote>
+      <blockquote>
+        <span class="spk">Maharaj</span>
+        <p>Ka/yana means who has written this book, Kalyan. Kalyan has written Dasbodh, he was the disciple of Ramdas.</p>
+        <span class="pagemark">p. 26</span>
+      </blockquote>
+      <blockquote>
+        <span class="spk">Maharaj</span>
+        <p>Vivarita, always discuss. […] Nitya-neme, every day, you have to discuss, and go ahead and ahead inside. And then you get the rea meaning of the Dasbodha.</p>
+        <p>Otherwise, they sing, everybody sings, 'Jaya Jaya Dasabodha', but they don't know what is das and what is bodha. Means the aspirant, das means aspirant, aspirant is made Master.</p>
+        <span class="pagemark">pp. 23–24</span>
+      </blockquote>
+    </section>
+
+    <section class="passage" id="p5">
+      <p class="meta"><span class="no">Passage 5</span><span class="sep">·</span>8 June 1996<span class="sep">·</span>Brittany, interview</p>
+      <h2>How Siddharameshwar Maharaj taught from it</h2>
+      <p class="cite">pp.&nbsp;6–8 · ranjit/english-lectures/1996-06-08-brittany-interview#x0005</p>
+      <blockquote>
+        <span class="spk">Question</span>
+        <p>Did He give You a specific guidance, You personally?</p>
+        <span class="spk">Maharaj</span>
+        <p>From the books of knowledge means there is in Marathi, Dasbodh, written by Ramdas Maharaj. He was the Master of King Shivaji, before, 400 years. That is a book in our lineage.</p>
+        <p>And on that book He was giving lectures, when He was in Bombay for 1/* months, 2 months, every day in the evening, to only. And then the bhajan followed, which we do it at night, and people were going home. […]</p>
+        <p>He was speaking in very simple Marathi language. It was His motto, high bombastic words are not required, as It is beyond the reach of the human mind. So, He was giving very simple examples of life, daily life, so one can understand very easily.</p>
+        <p>This one was Dasbodh. Another was Yoga Vasistha, Ranganath Swami Yoga Vasistha. Another was Sadachar, written by original main Shankaracharya. […]</p>
+        <p>So, four books He took to teach us. Beginning was knowledge from Ramdas Swami's book.</p>
+      </blockquote>
+    </section>
+
+    <section class="passage" id="p6">
+      <p class="meta"><span class="no">Passage 6</span><span class="sep">·</span>6 March 1998</p>
+      <h2>&ldquo;Is it worth reading the Ramdas book, Dasbodh?&rdquo;</h2>
+      <p class="cite">pp.&nbsp;64–65 · ranjit/english-lectures/1998-03-06#x0031</p>
+      <blockquote>
+        <span class="spk">Question</span>
+        <p>I noticed that HE makes reference to Tukaram, Ramdas, some of the Maharashtra Saints. Are some of those worthwile reading?</p>
+        <span class="spk">Disciple</span>
+        <p>Is it worth reading the Ramdas book, Dasbod</p>
+        <span class="spk">Maharaj</span>
+        <p>Haan, Ramdas book is okay, do read. Ramdas, His own Dasbodh, He has written. That is also in English it is there. ... You can get it. We will ask them, one person with me is bringing from somewhere. He's from Kerala, he's here in Bombay, he's from Kerala. Murli, his name is Murli.</p>
+        <p>If you want, you can read that, no harm. Tukaram books are very nice. But the real meaning should understand, no?</p>
+      </blockquote>
+    </section>
+
+    <section class="passage" id="p7">
+      <p class="meta"><span class="no">Passage 7</span><span class="sep">·</span>2 May 1999<span class="sep">·</span>Brittany</p>
+      <h2>&ldquo;Advice to the aspirant&rdquo; — and the mind as thermometer</h2>
+      <p class="cite">quote at pp.&nbsp;6–7 of an answer running pp.&nbsp;1–8 · ranjit/english-lectures/1999-05-02-brittany#x0001</p>
+      <blockquote>
+        <span class="spk">Maharaj</span>
+        <p>One who understands that, Ramdas has written in His Dasbodha. Ramdas has written one book Dasbodh, means advice to the aspirant, that is the book's name.</p>
+        <p>He says when your mind says that everything is illusion, not true. Even the body or the mind, all are illusion, if you understand that way and take it granted that. Your mind is your thermometer, he makes you understand that 'I am He&rsquo;.</p>
+      </blockquote>
+    </section>
+
+    <section class="passage" id="p8">
+      <p class="meta"><span class="no">Passage 8</span><span class="sep">·</span>18 June 1999<span class="sep">·</span>Hawaii</p>
+      <h2>Reading Dasbodh in Bhausaheb Maharaj's ashram</h2>
+      <p class="cite">pp.&nbsp;13–16 · ranjit/english-lectures/1999-06-18-hawaii#x0012</p>
+      <blockquote>
+        <span class="spk">Question</span>
+        <p>Was the Sacred Book Dasbodh?</p>
+        <span class="spk">Maharaj</span>
+        <p>Dasbodh was there. There is another Bhakti Vijay. Because 4 hours to read, Dasbodh is very small. So, if you read, it will take, 4 or 5 days it will be completed.</p>
+        <p>Bhakti Vijay was another sacred book. And that of the Saints, how They lived and all these things. He was reading. So, all people can hear.</p>
+      </blockquote>
+      <p class="note">The exchange continues into the story of Siddharameshwar Maharaj catching the reader at the 12th stanza during the reading, and his nine months of meditation that followed.</p>
+    </section>
+
+    <section class="passage" id="p9">
+      <p class="meta"><span class="no">Passage 9</span><span class="sep">·</span>1 February 1998<span class="sep">·</span>Pathri, Dasbodh 1/1 saptah (translation)</p>
+      <h2>&ldquo;The entire Dasbodh is written as a dialogue of Oneness&rdquo;</h2>
+      <p class="cite">p.&nbsp;2 · ranjit/translations/pathri-d0101-01feb1998-translation-prarabhaandfaladosha#t0012</p>
+      <blockquote>
+        <p>So, what has been said in the Dasbodh? The entire Dasbodh is written as a dialogue of Oneness between Master and disciple. There are no disputes or arguments in it. Whatever the Master says, the disciple accepts, that is called samvaad or like minded dialogue. Otherwise there are many disciples who ask big big questions, "Maharaj is it like this, how can it be like this?" Means, they are always in doubt.</p>
+      </blockquote>
+      <p class="note">The talk returns to this at <code>#t0014</code>, on the Dasbodh as scripture written in the form of samvaad.</p>
+    </section>
+
+    <section class="passage" id="p10">
+      <p class="meta"><span class="no">Passage 10</span><span class="sep">·</span>Undated<span class="sep">·</span>Manache Shlok 15 (translation)</p>
+      <h2>Dasbodh and Manache Shlok</h2>
+      <p class="cite">p.&nbsp;1 · ranjit/translations/ms015-translation#t0011, #t0012</p>
+      <blockquote>
+        <p>The Saints who realized have written what They understood. The entire Dasbodh is encapsulated in Manache Shlok, which means understanding given to the mind.</p>
+        <p>Whatever knowledge is there in Dasbodh, that much He (Samartha Ramdas) has given here (in Manache Shlok).</p>
+      </blockquote>
+    </section>
+
+    <section class="appendix" id="mentions">
+      <p class="meta"><span class="no">Appendix A</span></p>
+      <h2>Passing mentions</h2>
+      <p>Found in the same sweep, but brief or tangential — listed for completeness rather than quoted at length.</p>
+      <ul class="mentions">
+        <li>&ldquo;So Saint Ramdas, He's the greatest Saint, for this Final Reality, He has written whole book, known as Dasbodh. He says at one place...&rdquo; — the quotation is cut off by a translator interjection.
+          <span class="where">7 Jun 1996, Brittany · p. 12 · ranjit/english-lectures/1996-06-07-brittany#x0023</span></li>
+        <li>A questioner: &ldquo;Dasbodh talks about almost like three attributes&rdquo;; Maharaj: &ldquo;it's okay, three gunas are there.&rdquo;
+          <span class="where">19 Jan 1998 · pp. 13–14 · ranjit/english-lectures/1998-01-19#x0009</span></li>
+        <li>A questioner asks about a word (&ldquo;san&rdquo;) found in a Dasbodh translation.
+          <span class="where">29 Sep 1998 · p. 4 · ranjit/english-lectures/1998-09-29#x0004</span></li>
+        <li>Transcript note pointing to the Marathi Dasbodh 01/01 pravachans.
+          <span class="where">5 Jun 1997, Houston · ranjit/english-lectures/1997-06-05-houston#x0000</span></li>
+        <li>Cites the Dasbodh Aarti line &ldquo;Chaturyanidhi Motha Mayachakra Ugavi&rdquo;.
+          <span class="where">Dec 1992 · ranjit/translations/d0910-1992-12-translation#t0045</span></li>
+        <li>Cites &ldquo;the 4th chapter (of the Dasbodh)&rdquo;.
+          <span class="where">18 Jul 1997, Bagewadi · ranjit/translations/gurupurnima-d0101-1997-07-18-translation#t0066</span></li>
+        <li>Mentions the Dasbodha aarti among the aaratis sung.
+          <span class="where">undated · ranjit/english-lectures/ab-01-dhanyahopradakshina#x0000</span></li>
+      </ul>
+    </section>
+
+    <section class="appendix" id="pravachans">
+      <p class="meta"><span class="no">Appendix B</span></p>
+      <h2>The Dasbodh pravachans</h2>
+      <p>Documents that <em>are</em> Dasbodh discourses — Maharaj speaking from the book rather than about it. Each expounds one samas (chapter/sub-chapter); all are translations of Marathi pravachans unless noted.</p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Samas</th><th scope="col">Occasion &amp; date</th><th scope="col">Corpus document</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="samas">1/1</td><td>Diwali Saptah 1979</td><td><code>d0101-1979-diwalitranslation</code></td></tr>
+            <tr><td class="samas">1/1</td><td>Guru Purnima 1993</td><td><code>gurupurnima1993-das1-1</code></td></tr>
+            <tr><td class="samas">1/1</td><td>Guru Purnima, 18 Jul 1997, Bagewadi</td><td><code>gurupurnima-d0101-1997-07-18-translation</code></td></tr>
+            <tr><td class="samas">1/1</td><td>SM Death Anniversary, 22 Oct 1997, Bagewadi (English transcript)</td><td><code>1997-10-22-sm-death-anniversary-d0101</code></td></tr>
+            <tr><td class="samas">1/1</td><td>Pathri, 1 Feb 1998</td><td><code>pathri-d0101-01feb1998-translation-…</code></td></tr>
+            <tr><td class="samas">1/1</td><td>Guru Purnima, 14 Jun 2000</td><td><code>gp-d0101-2000-translation</code></td></tr>
+            <tr><td class="samas">5/5</td><td>Archana Bhakti, 23 Apr 1986</td><td><code>dasbodh05-05-archanabhakti-23apr1986</code></td></tr>
+            <tr><td class="samas">5/10</td><td>undated</td><td><code>dasbodh-05-10</code></td></tr>
+            <tr><td class="samas">7/6</td><td>15 May 1988</td><td><code>d0706-1988-05-15-translation</code></td></tr>
+            <tr><td class="samas">8/8</td><td>RM Birthday, 4 Jan 1996</td><td><code>d0808-1996-01-04-rmbirthday-translation</code></td></tr>
+            <tr><td class="samas">8/10</td><td>1 Mar 1998</td><td><code>d0810-1998-03-01-translation</code></td></tr>
+            <tr><td class="samas">9/1</td><td>undated</td><td><code>dasbodh-09-01</code></td></tr>
+            <tr><td class="samas">9/10</td><td>Dec 1992</td><td><code>d0910-1992-12-translation</code></td></tr>
+            <tr><td class="samas">10/3</td><td>Guru Purnima 1994</td><td><code>gp-1003-1994-translation</code></td></tr>
+            <tr><td class="samas">10/7</td><td>11 Jun 1995, Nasik</td><td><code>d1007-1995-06-11-nasik-translation</code></td></tr>
+            <tr><td class="samas">12/5</td><td>10 Oct 1993</td><td><code>d1205-10oct1993-translation</code></td></tr>
+            <tr><td class="samas">17/7</td><td>Guru Purnima 1993</td><td><code>gurupurnima1993-das17-7</code></td></tr>
+            <tr><td class="samas">19/10</td><td>3 Aug 1997 (English transcript)</td><td><code>1997-08-03-d1910</code></td></tr>
+            <tr><td class="samas">20/4</td><td>Guru Purnima</td><td><code>d2004-gurupurnima-translation</code></td></tr>
+            <tr><td class="samas">20/10</td><td>Guru Purnima</td><td><code>gurupurnima-das20-10</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="colophon">
+      Compiled from the NETI corpus of Shri Ranjit Maharaj's lectures and translations · 8 July 2026.<br>
+      The Master's voice is quoted verbatim throughout; page numbers refer to the printed transcripts.
+    </footer>
+
+  </main>
+
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.rail a[href^="#"]'));
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+    if (!('IntersectionObserver' in window) || sections.length === 0) return;
+    var current = null;
+    function setCurrent(id) {
+      if (current === id) return;
+      links.forEach(function (a) { a.removeAttribute('aria-current'); });
+      if (byId[id]) { byId[id].setAttribute('aria-current', 'true'); current = id; }
+    }
+    var visible = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      for (var i = 0; i < sections.length; i++) {
+        if (visible[sections[i].id]) { setCurrent(sections[i].id); return; }
+      }
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+</script>
