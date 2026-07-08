@@ -1,0 +1,412 @@
+<title>Translated in Words Only — Corpus Survey</title>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", system-ui, sans-serif;
+    --serif: ui-serif, "New York", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161412;
+      --ink: #E9E5E1;
+      --muted: #A8A29E;
+      --faint: #78716C;
+      --hairline: #2E2A27;
+      --quote-bg: #1E1B19;
+      --accent: #E8A33D;
+      --accent-ink: #E8A33D;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161412;
+    --ink: #E9E5E1;
+    --muted: #A8A29E;
+    --faint: #78716C;
+    --hairline: #2E2A27;
+    --quote-bg: #1E1B19;
+    --accent: #E8A33D;
+    --accent-ink: #E8A33D;
+  }
+  :root[data-theme="light"] {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+  }
+
+  html { background: var(--bg); }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.9688rem;
+    line-height: 1.6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+  }
+  a { color: var(--accent-ink); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+  code { font-family: var(--mono); }
+
+  .app { max-width: 71rem; margin: 0 auto; padding: 0 1.5rem; }
+  main { max-width: 42rem; margin: 0 auto; padding-bottom: 6rem; }
+
+  @media (min-width: 68rem) {
+    .app {
+      display: grid;
+      grid-template-columns: 14rem minmax(0, 42rem);
+      gap: 4.5rem;
+      justify-content: center;
+    }
+    nav.rail {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 4.25rem 0 2rem;
+    }
+    main { margin: 0; }
+  }
+
+  nav.rail { font-size: 0.8125rem; }
+  nav.rail .rail-title {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 0.75rem;
+  }
+  nav.rail ol { list-style: none; margin: 0; padding: 0; }
+  nav.rail a {
+    display: block;
+    color: var(--muted);
+    padding: 0.3rem 0 0.3rem 0.875rem;
+    border-left: 2px solid var(--hairline);
+    line-height: 1.4;
+  }
+  nav.rail a:hover { color: var(--ink); text-decoration: none; }
+  nav.rail a[aria-current="true"] {
+    color: var(--ink);
+    font-weight: 600;
+    border-left-color: var(--accent);
+  }
+  @media (max-width: 67.99rem) {
+    nav.rail { padding: 2.5rem 0 0; }
+    nav.rail a { border-left: none; padding-left: 0; }
+  }
+
+  header.masthead {
+    border-bottom: 1px solid var(--hairline);
+    padding: 4.25rem 0 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .kicker {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.75rem;
+  }
+  header.masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 5vw, 2.375rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+  .standfirst {
+    color: var(--muted);
+    font-size: 1.0313rem;
+    line-height: 1.65;
+    margin: 0 0 1.5rem;
+    text-wrap: pretty;
+  }
+  .method {
+    font-size: 0.8438rem;
+    line-height: 1.65;
+    color: var(--muted);
+    border-top: 1px solid var(--hairline);
+    padding: 1rem 0 0;
+    margin: 0;
+  }
+  .method b { color: var(--ink); font-weight: 600; }
+  .method code { font-size: 0.9em; }
+
+  section.theme { padding: 0 0 3rem; scroll-margin-top: 2rem; }
+  section.theme + section.theme { border-top: 1px solid var(--hairline); padding-top: 2.75rem; }
+  .theme-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.45rem;
+  }
+  section.theme > h2 {
+    font-family: var(--serif);
+    font-size: 1.4375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+  section.theme > p.lede {
+    color: var(--muted);
+    font-size: 0.9375rem;
+    margin: 0 0 1.25rem;
+  }
+
+  ul.refs { list-style: none; margin: 1.25rem 0 0; padding: 0; }
+  ul.refs > li { padding: 1.125rem 0; border-top: 1px solid var(--hairline); }
+  ul.refs > li:first-child { border-top: none; padding-top: 0; }
+  .ref-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 0.3rem;
+    line-height: 1.4;
+  }
+  .ref-body { margin: 0 0 0.5rem; color: var(--ink); }
+  .frag { font-family: var(--serif); font-style: italic; }
+  .where {
+    font-family: var(--mono);
+    font-size: 0.7188rem;
+    color: var(--faint);
+    line-height: 1.7;
+    display: block;
+  }
+
+  blockquote {
+    background: var(--quote-bg);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    margin: 0.875rem 0;
+    padding: 1.125rem 1.375rem;
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  blockquote p { margin: 0 0 0.85em; }
+  blockquote p:last-of-type { margin-bottom: 0; }
+  .spk {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 1.1em 0 0.35em;
+  }
+  blockquote .spk:first-child { margin-top: 0; }
+  .ed { font-family: var(--sans); font-size: 0.85em; color: var(--muted); font-style: normal; }
+
+  .footnote {
+    background: var(--quote-bg);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    margin: 1.25rem 0 0;
+  }
+  .footnote code { font-size: 0.85em; }
+
+  footer.colophon {
+    border-top: 1px solid var(--hairline);
+    padding-top: 1.25rem;
+    margin-top: 3rem;
+    font-size: 0.7813rem;
+    color: var(--faint);
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+
+<div class="app">
+
+  <nav class="rail" aria-label="Contents">
+    <p class="rail-title">Contents</p>
+    <ol>
+      <li><a href="#doctrine">1 · The doctrine</a></li>
+      <li><a href="#books">2 · Translated books, in his hands</a></li>
+      <li><a href="#room">3 · The translator in the room</a></li>
+      <li><a href="#corpus">A corpus footnote</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <header class="masthead">
+      <p class="kicker">NETI corpus · thematic survey</p>
+      <h1>&ldquo;Translated in words only&rdquo;</h1>
+      <p class="standfirst">Everything the corpus holds on <em>translation</em> — Shri Ranjit Maharaj taught foreigners through interpreters, from translated books, in his second language; here is what he said about the act itself, in three movements: the doctrine, the books, and the translator sitting beside him.</p>
+      <div class="method">
+        <b>Method.</b> Lexical passes on <code>translation</code> and <code>translator translated</code> (50 ranked hits) plus a semantic pass; most hits are stage directions — the substantive exchanges below were read in full. Quotation panels are verbatim effective text; italic fragments in running text likewise.
+      </div>
+    </header>
+
+    <section class="theme" id="doctrine">
+      <p class="theme-label">Movement 1</p>
+      <h2>The doctrine: translation cannot carry the thing itself</h2>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">&ldquo;By translating, you can't know&rdquo;</p>
+          <p class="ref-body">Speaking of a man who had made his living translating the books of the Saints:</p>
+          <blockquote>
+            <span class="spk">Maharaj</span>
+            <p>Translating. He was a translator. By translating, you can't know.</p>
+          </blockquote>
+          <span class="where">Mumbai, 30 Jan 1997 · p. 30 · ranjit/english-lectures/1997-01-30#x0028</span>
+        </li>
+        <li>
+          <p class="ref-title">&ldquo;They have translated in words only&rdquo;</p>
+          <p class="ref-body">A questioner observes how difficult it is to translate between languages; the answer is about every translator of the Saints:</p>
+          <blockquote>
+            <span class="spk">Maharaj</span>
+            <p>His heart, they didn't know. One who has translated, he doesn't know His heart, no, what He wants to say. They have translated in words only.</p>
+            <span class="spk">Disciple</span>
+            <p>... ... it doesn't give the meaning.</p>
+            <span class="spk">Maharaj</span>
+            <p>Meaning, yes. So, it is told, no, half knowledge is dangerous. Half knowledge is dangerous. Have the full knowledge, complete, and then do it, it's okay.</p>
+          </blockquote>
+          <span class="where">19 Dec 1996 · pp. 7–8 · ranjit/english-lectures/1996-12-19-lecture1#x0007</span>
+        </li>
+        <li>
+          <p class="ref-title">&ldquo;Translation loses a lot of substance&rdquo; — &ldquo;Exactly!&rdquo;</p>
+          <p class="ref-body">The context is the Gujarati translator of the Dasbodh, whose preface dismissed everything after the 10th chapter as written &ldquo;haphazardly&rdquo; — precisely the chapters Maharaj holds highest:</p>
+          <blockquote>
+            <span class="spk">Question</span>
+            <p>Translation loses a lot of substance.</p>
+            <span class="spk">Maharaj</span>
+            <p>Exactly! But translator, he also said in a different way. Translation may be wrong, I don't say nay. He may not be of that category. <span class="ed">[…]</span></p>
+            <p>Translate it, but translation, at least something should be there, no. Because he didn't know. So, reading of books also, so much trouble is there. Always differs. Every mind differs.</p>
+            <p>So better to read with the help of the Master. Then you can understand.</p>
+          </blockquote>
+          <span class="where">Houston, 3 Jun 1997 · pp. 46–47 · ranjit/english-lectures/1997-06-03-houston#x0011</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="books">
+      <p class="theme-label">Movement 2</p>
+      <h2>Translated books, in his hands</h2>
+      <p class="lede">He handled translations constantly — checking them, endorsing them with reservations, and honoring the rare ones made by translators who knew.</p>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">The French <em>Master Key</em>, caught diverging</p>
+          <p class="ref-body">Mid-session in Brittany, comparing Siddharameshwar's book in English against its French translation:</p>
+          <blockquote>
+            <span class="spk">Maharaj</span>
+            <p>Translation, something wrong in the translation. I wanted to check. There is some mistake in writing. This differs always. You follow me?</p>
+            <p>It's alright, nothing is wrong, but it's here quite different (in English Master Key book), and quite different is here (in French translation). When they make the translation, something always happens. Because the writer, his mind, is not the mind of the trans…</p>
+          </blockquote>
+          <span class="where">Brittany, 28 Jun 1997 · ranjit/english-lectures/1997-06-28-brittany#x0003 (OCR cuts the final word)</span>
+        </li>
+        <li>
+          <p class="ref-title">The English Dasbodh, endorsed with a shrug</p>
+          <p class="ref-body"><span class="frag">&ldquo;It is in English also available. But the meaning may be, I don't know, what meaning he has done. If he has translated only, okay. So, read that, no harm. When I give understanding, and with that understanding if you read, you can understand the inner meaning also.&rdquo;</span> Same stance a month earlier: <span class="frag">&ldquo;Haan, Ramdas book is okay, do read&hellip; That is also in English it is there.&rdquo;</span></p>
+          <span class="where">Sedona, 8 May 1998 · pp. 30–33 · 1998-05-08am-sedona#x0022 · 6 Mar 1998 · pp. 64–65 · 1998-03-06#x0031</span>
+        </li>
+        <li>
+          <p class="ref-title">Checking a translation live</p>
+          <p class="ref-body"><span class="frag">&ldquo;One stanza has been explained in Marathi. Now they have translated into English, I don't know what is written. I wanted to read.&rdquo;</span></p>
+          <span class="where">7 Aug 1998 · p. 87 · ranjit/english-lectures/1998-08-07#x0023</span>
+        </li>
+        <li>
+          <p class="ref-title">The translations he honors</p>
+          <p class="ref-body">The judgment is not that translation is worthless — it is that only a translator who <em>knows</em> can translate the heart and not just the words. Three he praises in one Houston answer: the anonymous Marathi translator of Shankaracharya's Sadachar — <span class="frag">&ldquo;he has translated so nicely, you can understand the real meaning of that 54 stanzas. He has not given his name also. Up to now nobody knows&rdquo;</span> — Ranganath Swami's Yoga Vasistha, and Saint Jnaneshwar, <span class="frag">&ldquo;who has translated Bhagwad Gita into Marathi.&rdquo;</span></p>
+          <span class="where">Houston, 3 Jun 1997 · pp. 1–23 · ranjit/english-lectures/1997-06-03-houston#x0002</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="room">
+      <p class="theme-label">Movement 3</p>
+      <h2>The translator in the room</h2>
+      <p class="lede">Every European talk ran through an interpreter — and the transcripts record what that cost, and how lightly he carried it.</p>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">The translator's confession</p>
+          <p class="ref-body">At Krahberg, the German translator admits that the teaching itself is interfering with his translating:</p>
+          <blockquote>
+            <span class="spk">Translator</span>
+            <p>I just said that, while I listen to You, I begin to rethink somethings. So, you know, translation isn&rsquo;t an easy thing, because I also may have had other thoughts about something and some teachings. You understand?</p>
+            <p>So, I may have some difficulties because of just the fact that You are opening, you know, some ... thoughts in me.</p>
+            <span class="spk">Maharaj</span>
+            <p>If you don&rsquo;t understand something, and some thoughts may be there, so you can forget something, and say anything else, what harm is there! <span class="ed">[…]</span> You had some thoughts in your mind, so you cannot explain, give my words to them. Nothing more, no harm. Why should I worry. <span class="ed">[…]</span></p>
+            <p>So, nothing, no harm about, don&rsquo;t worry. What is there. They are in illusion, so illusion will be more in them. And that can be rectified afterwards.</p>
+          </blockquote>
+          <span class="where">Krahberg, 6 May 1997 · pp. 44–48 · ranjit/english-lectures/1997-05-06-krahberg#x0029</span>
+        </li>
+        <li>
+          <p class="ref-title">Twice removed</p>
+          <p class="ref-body">The chain questioner → translator → Maharaj, breaking in both directions: <span class="frag">&ldquo;You don't follow. She doesn't follow. I could not understand your language, no, that's the difficulty to understand. And she translates, but she also cannot understand, what to do?&rdquo;</span> (Brittany) · <span class="frag">&ldquo;I don't know French language. What you say, I can't understand. Ask him again.&rdquo;</span> (Paris) · <span class="frag">&ldquo;Without translation it's very difficult ... I can't follow his words, what to do?&rdquo;</span> (Mumbai)</p>
+          <span class="where">1997-06-28-brittany#x0015 · 1998-05-20-paris#x0017 · 1998-08-19#x0011</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="corpus">
+      <p class="theme-label">Coda</p>
+      <h2>A corpus footnote</h2>
+      <div class="footnote">
+        <p>There is a structural echo worth noticing: a whole document kind in NETI is <code>translation</code> — the English renderings of Maharaj's Marathi pravachans (the Dasbodh talks, Manache Shlok, and the rest). The corpus itself does the thing he kept warning about.</p>
+        <p>Which is presumably why its ground rule exists: the Master's voice is served as <em>effective text</em> — canonical plus curated corrections — and never editorially &ldquo;improved.&rdquo; His own resolution of the tension is the Sedona line: the translation is fine, <em>provided the understanding comes from elsewhere</em>. The words are the address, not the place.</p>
+      </div>
+    </section>
+
+    <footer class="colophon">
+      Compiled from the NETI corpus of Shri Ranjit Maharaj's lectures and translations · 8 July 2026.<br>
+      Sixth in the series, after the Dasbodh, Siddharameshwar, French-attendees, interview-shelf, and Brittany surveys. Page numbers refer to the printed transcripts.
+    </footer>
+
+  </main>
+
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.rail a[href^="#"]'));
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+    if (!('IntersectionObserver' in window) || sections.length === 0) return;
+    var current = null;
+    function setCurrent(id) {
+      if (current === id) return;
+      links.forEach(function (a) { a.removeAttribute('aria-current'); });
+      if (byId[id]) { byId[id].setAttribute('aria-current', 'true'); current = id; }
+    }
+    var visible = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      for (var i = 0; i < sections.length; i++) {
+        if (visible[sections[i].id]) { setCurrent(sections[i].id); return; }
+      }
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+</script>
