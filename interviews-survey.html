@@ -1,0 +1,410 @@
+<title>The Interview Shelf — Corpus Survey</title>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", system-ui, sans-serif;
+    --serif: ui-serif, "New York", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161412;
+      --ink: #E9E5E1;
+      --muted: #A8A29E;
+      --faint: #78716C;
+      --hairline: #2E2A27;
+      --quote-bg: #1E1B19;
+      --accent: #E8A33D;
+      --accent-ink: #E8A33D;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161412;
+    --ink: #E9E5E1;
+    --muted: #A8A29E;
+    --faint: #78716C;
+    --hairline: #2E2A27;
+    --quote-bg: #1E1B19;
+    --accent: #E8A33D;
+    --accent-ink: #E8A33D;
+  }
+  :root[data-theme="light"] {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+  }
+
+  html { background: var(--bg); }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.9688rem;
+    line-height: 1.6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+  }
+  a { color: var(--accent-ink); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+  code { font-family: var(--mono); }
+
+  .app { max-width: 71rem; margin: 0 auto; padding: 0 1.5rem; }
+  main { max-width: 42rem; margin: 0 auto; padding-bottom: 6rem; }
+
+  @media (min-width: 68rem) {
+    .app {
+      display: grid;
+      grid-template-columns: 14rem minmax(0, 42rem);
+      gap: 4.5rem;
+      justify-content: center;
+    }
+    nav.rail {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 4.25rem 0 2rem;
+    }
+    main { margin: 0; }
+  }
+
+  nav.rail { font-size: 0.8125rem; }
+  nav.rail .rail-title {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 0.75rem;
+  }
+  nav.rail ol { list-style: none; margin: 0; padding: 0; }
+  nav.rail a {
+    display: block;
+    color: var(--muted);
+    padding: 0.3rem 0 0.3rem 0.875rem;
+    border-left: 2px solid var(--hairline);
+    line-height: 1.4;
+  }
+  nav.rail a:hover { color: var(--ink); text-decoration: none; }
+  nav.rail a[aria-current="true"] {
+    color: var(--ink);
+    font-weight: 600;
+    border-left-color: var(--accent);
+  }
+  @media (max-width: 67.99rem) {
+    nav.rail { padding: 2.5rem 0 0; }
+    nav.rail a { border-left: none; padding-left: 0; }
+  }
+
+  header.masthead {
+    border-bottom: 1px solid var(--hairline);
+    padding: 4.25rem 0 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .kicker {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.75rem;
+  }
+  header.masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 5vw, 2.375rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+  .standfirst {
+    color: var(--muted);
+    font-size: 1.0313rem;
+    line-height: 1.65;
+    margin: 0 0 1.5rem;
+    text-wrap: pretty;
+  }
+  .querybox {
+    background: var(--quote-bg);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--ink);
+    overflow-x: auto;
+  }
+  .querybox .cmt { color: var(--faint); }
+
+  section.theme { padding: 0 0 3rem; scroll-margin-top: 2rem; }
+  section.theme + section.theme { border-top: 1px solid var(--hairline); padding-top: 2.75rem; }
+  .theme-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.45rem;
+  }
+  section.theme > h2 {
+    font-family: var(--serif);
+    font-size: 1.4375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+  section.theme > p.lede {
+    color: var(--muted);
+    font-size: 0.9375rem;
+    margin: 0 0 1.25rem;
+  }
+
+  ul.refs { list-style: none; margin: 1.25rem 0 0; padding: 0; }
+  ul.refs > li { padding: 1.125rem 0; border-top: 1px solid var(--hairline); }
+  ul.refs > li:first-child { border-top: none; padding-top: 0; }
+  .ref-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 0.3rem;
+    line-height: 1.4;
+  }
+  .ref-title .tag {
+    display: inline-block;
+    font-size: 0.6563rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    border: 1px solid var(--hairline);
+    border-radius: 99px;
+    padding: 0.1rem 0.55rem;
+    margin-left: 0.5rem;
+    vertical-align: 0.1em;
+  }
+  .ref-body { margin: 0 0 0.5rem; color: var(--ink); }
+  .frag { font-family: var(--serif); font-style: italic; }
+  .where {
+    font-family: var(--mono);
+    font-size: 0.7188rem;
+    color: var(--faint);
+    line-height: 1.7;
+    display: block;
+  }
+
+  blockquote {
+    background: var(--quote-bg);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    margin: 0.875rem 0;
+    padding: 1.125rem 1.375rem;
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  blockquote p { margin: 0 0 0.85em; }
+  blockquote p:last-of-type { margin-bottom: 0; }
+
+  ul.facts { list-style: none; margin: 1.25rem 0 0; padding: 0; }
+  ul.facts li {
+    padding: 0.7rem 0 0.7rem 1.1rem;
+    border-top: 1px solid var(--hairline);
+    position: relative;
+  }
+  ul.facts li:first-child { border-top: none; padding-top: 0; }
+  ul.facts li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  ul.facts li:first-child::before { top: -0.1rem; }
+  ul.facts .src { font-family: var(--mono); font-size: 0.7188rem; color: var(--faint); }
+
+  footer.colophon {
+    border-top: 1px solid var(--hairline);
+    padding-top: 1.25rem;
+    margin-top: 3rem;
+    font-size: 0.7813rem;
+    color: var(--faint);
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+
+<div class="app">
+
+  <nav class="rail" aria-label="Contents">
+    <p class="rail-title">Contents</p>
+    <ol>
+      <li><a href="#query">The query</a></li>
+      <li><a href="#shelf">The shelf — five documents</a></li>
+      <li><a href="#facts">What only the interviews record</a></li>
+      <li><a href="#passages">Four passages</a></li>
+      <li><a href="#curator">Notes for the curator</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <header class="masthead" id="query">
+      <p class="kicker">NETI corpus · survey of a document kind</p>
+      <h1>The interview shelf</h1>
+      <p class="standfirst">What the <code>doc_kinds=["interview"]</code> filter isolates: five publication-style documents — edited for print, unlike the raw lecture transcripts — holding biographical facts recorded nowhere else in the corpus.</p>
+      <div class="querybox">
+        search(query="daily life work family marriage",<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;doc_kinds=["interview"], k=20)<br>
+        <span class="cmt">→ 5 hits — the entire interview collection; each document is one long exchange, read in full for this survey.</span>
+      </div>
+    </header>
+
+    <section class="theme" id="shelf">
+      <p class="theme-label">Inventory</p>
+      <h2>The shelf — five documents</h2>
+      <p class="lede">All from <code>SOURCES-Dubai/…/ENGLISH TEXTS/INTERVIEWS/</code>, all PDF-derived, each a single exchange spanning the whole piece.</p>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">&ldquo;My Master's Teaching — I Am Only the Speaker&rdquo; <span class="tag">richest</span></p>
+          <p class="ref-body">A long Bombay sitting with the interviewer Madhukar (before a France trip — <span class="frag">&ldquo;Why don't you accompany me to France next week?&rdquo;</span>). Doctrine (free will inside dreams, brahma vs. Parabrahma via the cinema screen) plus the corpus's most concentrated run of biographical fact: mastership in 1983, the mantra story, Siddharameshwar's daily discourses and death. OCR is rough — speaker labels garbled throughout.</p>
+          <span class="where">ranjit/interviews/iamonlythespeaker#x0000 · pp. 1–13 · IamOnlyTheSpeaker.pdf</span>
+        </li>
+        <li>
+          <p class="ref-title">Interview by Madhukar, Germany 1996 <span class="tag">edited</span></p>
+          <p class="ref-body">A polished, print-ready edit of Madhukar interview material: may a disciple declare enlightenment, can a guru give it, the &ldquo;dry leaf in the wind&rdquo;, and a three-way conversation with Sunderam, the attendant of the recently deceased Annamalai Swami — Maharaj interviews <em>him</em>.</p>
+          <span class="where">ranjit/interviews/rminterview-germany1996-from-manfred#x0000 · pp. 1–10 · RMInterview-Germany1996-from-Manfred.pdf</span>
+        </li>
+        <li>
+          <p class="ref-title">&ldquo;The Realized-One: He Was Never Born — How Can He Die?&rdquo; <span class="tag">variant</span></p>
+          <p class="ref-body">A rawer variant of the same Madhukar session — same questions, same Sunderam conversation, different editing. Useful for seeing what the polished version smoothed over.</p>
+          <span class="where">ranjit/interviews/neverborn#x0000 · pp. 1–6 · NeverBorn.pdf</span>
+        </li>
+        <li>
+          <p class="ref-title">&ldquo;Meeting Ranjit Maharaj&rdquo; — Inner Directions Journal <span class="tag">compiled</span></p>
+          <p class="ref-body">Compiled by Anne Maroger and Darrell Newberg from three days in Brittany, June 1996. Thematic selections (Reality &amp; methods, knowledge &amp; ignorance, the Master, death &amp; fear) with the only editorial framing of the lineage in the corpus: the Navnath Sampradaya introduction placing Ranjit beside Nisargadatta.</p>
+          <span class="where">ranjit/interviews/meetingranjitmaharaj#x0000 · pp. 1–3 · MeetingRanjitMaharaj.pdf</span>
+        </li>
+        <li>
+          <p class="ref-title">Germany 1998 — the Krahberg interview <span class="tag">duplicate</span></p>
+          <p class="ref-body">Ottfried's Schloss Krahberg interview: the fullest Siddharameshwar biography plus the creativity / vidya-maya question series. The same text is filed in the corpus twice — here and as the lecture transcript <code>1998-06-krahberg-interview</code>.</p>
+          <span class="where">ranjit/interviews/rminterview-germany-1998#x0000 · RMInterview-Germany-1998.pdf</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="facts">
+      <p class="theme-label">Findings</p>
+      <h2>What only the interviews record</h2>
+      <p class="lede">Biographical facts that the lecture transcripts touch only glancingly, if at all.</p>
+      <ul class="facts">
+        <li>His mastership began in <b>1983</b> — forty-seven years after Siddharameshwar's death — and he never sought it: <span class="frag">&ldquo;I never wanted to become a master.&rdquo;</span> <span class="src">iamonlythespeaker</span></li>
+        <li>Between 1936 and 1983 he <span class="frag">&ldquo;was living my own life&rdquo;</span> — no discourses, no disciples — though he lectured at his Master's birthday and mahasamadhi anniversaries <b>together with Nisargadatta</b>. <span class="src">iamonlythespeaker</span></li>
+        <li>Siddharameshwar gave <b>one discourse a day to 200–300 people</b>, spoke at no other time, and taught for ten years before dying at 48. <span class="src">iamonlythespeaker</span></li>
+        <li>The cause and date of Siddharameshwar's death: untreated chronic <b>diabetes</b>, boils, a proposed operation — <b>14 November 1936</b>, two and a half months after the boils appeared. <span class="src">iamonlythespeaker</span></li>
+        <li>Siddharameshwar had <b>a wife and children</b> and renounced the world at 28. <span class="src">iamonlythespeaker</span></li>
+        <li>The teaching's provenance, in one line: <span class="frag">&ldquo;His knowledge I am conveying to you. It is not my knowledge. I am just the speaker.&rdquo;</span> <span class="src">iamonlythespeaker</span></li>
+        <li>The reversal of tradition that defines the lineage's pedagogy: Siddharameshwar gave <b>knowledge first</b>, holding that renunciation without knowledge is <span class="frag">&ldquo;a bondage of the mind&rdquo;</span> — the poisoned-meal example. <span class="src">meetingranjitmaharaj</span></li>
+      </ul>
+    </section>
+
+    <section class="theme" id="passages">
+      <p class="theme-label">Verbatim</p>
+      <h2>Four passages</h2>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">How the mastership began — the mantra story</p>
+          <blockquote>
+            <p>My guruji&rsquo;s grandson&rsquo;s wife came to me in 1983 and asked me to give her a mantra. I had to give it to her. Because if | wouldn&rsquo;t have given it to her, I would have been fatalistic towards my master. With that incident my mastership started. From then on I started to have disciples.</p>
+            <p>At that time it was a really great question for me whether to give her the mantra or not. The question was to accept mastership or not. But I didn&rsquo;t have any other choice really because I felt I couldn&rsquo;t refuse the mantra to my guru&rsquo;s grandson&rsquo;s wife. That occasion converted my life info a life of mastership.</p>
+          </blockquote>
+          <span class="where">ranjit/interviews/iamonlythespeaker#x0000 (OCR artifacts preserved)</span>
+        </li>
+        <li>
+          <p class="ref-title">Siddharameshwar's own words — the twenty-three hours</p>
+          <blockquote>
+            <p>My teacher used to tell me, &ldquo;There is only One. Every day I step down from my Self for one hour to give a discourse. During this time, I take you as my disciples and I am your guru. I am your teacher and I teach you. The other twenty-three hours of my daily life, | am in my Self.&rdquo;</p>
+          </blockquote>
+          <span class="where">ranjit/interviews/rminterview-germany1996-from-manfred#x0000</span>
+        </li>
+        <li>
+          <p class="ref-title">The test of a real master</p>
+          <blockquote>
+            <p>The master should be alive. The real master initiates an immediate change in a seeker&rsquo;s life. If there is no change, the master is not real. The change must be obvious and noticeable.</p>
+          </blockquote>
+          <span class="where">ranjit/interviews/rminterview-germany1996-from-manfred#x0000</span>
+        </li>
+        <li>
+          <p class="ref-title">The dry leaf</p>
+          <blockquote>
+            <p>Everything is part of the dream including the seeker and his practice. By hearing the facts, the seeker will realize that he is part of the dream—nothing else. Practice is only necessary up to that realization. Once that realization occurs, nothing remains to be done. An understanding person goes on to simply live his life. He lives like a dry leaf in the wind. Without desire or volition, the leaf is carried by the wind in all directions. Such a person has nothing to worry about.</p>
+          </blockquote>
+          <span class="where">ranjit/interviews/rminterview-germany1996-from-manfred#x0000</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="curator">
+      <p class="theme-label">Notes</p>
+      <h2>Notes for the curator</h2>
+      <ul class="facts">
+        <li><b>Two variants of one session.</b> <code>neverborn</code> and <code>rminterview-germany1996-from-manfred</code> carry the same Madhukar interview material (identical question sequence and the Sunderam conversation) in raw and edited form — worth flagging if the corpus later wants a canonical-version policy for published pieces.</li>
+        <li><b>One cross-kind duplicate.</b> <code>rminterview-germany-1998</code> (interview) and <code>1998-06-krahberg-interview</code> (transcript) are the same text under two doc kinds; searches ranking both will double-count it.</li>
+        <li><b>Garbled speaker labels.</b> The <code>iamonlythespeaker</code> OCR interleaves runs of &ldquo;V(M): RM: V(M):&rdquo; detached from their turns — the words are readable but turn attribution needs care when quoting dialogue from it.</li>
+        <li><b>Weak titles.</b> Extracted titles for three of the five (&ldquo;RM:&rdquo;, &ldquo;—&rdquo;, &ldquo;Ranjit Maharaj&rdquo;) come from OCR headers, not the pieces' actual names.</li>
+        <li><b>The interviewer matters.</b> These are the only corpus documents where the questioner is a writer working toward publication (Madhukar; Inner Directions Journal) — the prose is polished, and editorial framing (the Navnath Sampradaya introduction) is mixed with the Master's words. The effective-text discipline of the transcripts applies, but here the editor's hand predates the corpus.</li>
+      </ul>
+    </section>
+
+    <footer class="colophon">
+      Compiled from the NETI corpus, interviews collection · 8 July 2026.<br>
+      Fourth in the series, after <em>Maharaj on the Dasbodh</em>, <em>Maharaj on Siddharameshwar</em>, and <em>The teaching that wouldn't land</em>. Quotation panels are verbatim effective text, OCR artifacts included.
+    </footer>
+
+  </main>
+
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.rail a[href^="#"]'));
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('section[id], header[id]'));
+    if (!('IntersectionObserver' in window) || sections.length === 0) return;
+    var current = null;
+    function setCurrent(id) {
+      if (current === id) return;
+      links.forEach(function (a) { a.removeAttribute('aria-current'); });
+      if (byId[id]) { byId[id].setAttribute('aria-current', 'true'); current = id; }
+    }
+    var visible = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      for (var i = 0; i < sections.length; i++) {
+        if (visible[sections[i].id]) { setCurrent(sections[i].id); return; }
+      }
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+</script>

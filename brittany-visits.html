@@ -1,0 +1,450 @@
+<title>Maharaj in Brittany — Five Visits, 1996–2000</title>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+    --chip-bg: #F5F0E8;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", system-ui, sans-serif;
+    --serif: ui-serif, "New York", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161412;
+      --ink: #E9E5E1;
+      --muted: #A8A29E;
+      --faint: #78716C;
+      --hairline: #2E2A27;
+      --quote-bg: #1E1B19;
+      --accent: #E8A33D;
+      --accent-ink: #E8A33D;
+      --chip-bg: #2A2420;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161412;
+    --ink: #E9E5E1;
+    --muted: #A8A29E;
+    --faint: #78716C;
+    --hairline: #2E2A27;
+    --quote-bg: #1E1B19;
+    --accent: #E8A33D;
+    --accent-ink: #E8A33D;
+    --chip-bg: #2A2420;
+  }
+  :root[data-theme="light"] {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+    --chip-bg: #F5F0E8;
+  }
+
+  html { background: var(--bg); }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.9688rem;
+    line-height: 1.6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+  }
+  a { color: var(--accent-ink); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+  code { font-family: var(--mono); }
+
+  .app { max-width: 71rem; margin: 0 auto; padding: 0 1.5rem; }
+  main { max-width: 42rem; margin: 0 auto; padding-bottom: 6rem; }
+
+  @media (min-width: 68rem) {
+    .app {
+      display: grid;
+      grid-template-columns: 14rem minmax(0, 42rem);
+      gap: 4.5rem;
+      justify-content: center;
+    }
+    nav.rail {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 4.25rem 0 2rem;
+    }
+    main { margin: 0; }
+  }
+
+  nav.rail { font-size: 0.8125rem; }
+  nav.rail .rail-title {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 0.75rem;
+  }
+  nav.rail ol { list-style: none; margin: 0; padding: 0; }
+  nav.rail a {
+    display: block;
+    color: var(--muted);
+    padding: 0.3rem 0 0.3rem 0.875rem;
+    border-left: 2px solid var(--hairline);
+    line-height: 1.4;
+  }
+  nav.rail a:hover { color: var(--ink); text-decoration: none; }
+  nav.rail a[aria-current="true"] {
+    color: var(--ink);
+    font-weight: 600;
+    border-left-color: var(--accent);
+  }
+  @media (max-width: 67.99rem) {
+    nav.rail { padding: 2.5rem 0 0; }
+    nav.rail a { border-left: none; padding-left: 0; }
+  }
+
+  header.masthead {
+    border-bottom: 1px solid var(--hairline);
+    padding: 4.25rem 0 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .kicker {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.75rem;
+  }
+  header.masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 5vw, 2.375rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+  .standfirst {
+    color: var(--muted);
+    font-size: 1.0313rem;
+    line-height: 1.65;
+    margin: 0 0 1.5rem;
+    text-wrap: pretty;
+  }
+  .method {
+    font-size: 0.8438rem;
+    line-height: 1.65;
+    color: var(--muted);
+    border-top: 1px solid var(--hairline);
+    padding: 1rem 0 0;
+    margin: 0;
+  }
+  .method b { color: var(--ink); font-weight: 600; }
+  .method code { font-size: 0.9em; }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin: 1.25rem 0 0;
+    font-size: 0.7813rem;
+    color: var(--muted);
+    align-items: center;
+  }
+  .legend .item { display: inline-flex; align-items: center; gap: 0.45rem; }
+
+  /* Date chips */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 1.7rem;
+    padding: 0 0.45rem;
+    border-radius: 7px;
+    background: var(--chip-bg);
+    border: 1px solid var(--hairline);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .chip.gap {
+    background: transparent;
+    border-style: dashed;
+    color: var(--faint);
+    font-weight: 400;
+  }
+  .chip.special { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .legend .chip { min-width: 1.7rem; height: 1.45rem; font-size: 0.72rem; }
+
+  .months { display: flex; flex-direction: column; gap: 0.6rem; margin: 1.25rem 0 0; }
+  .month-row { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .month-label {
+    flex: 0 0 3.4rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+    padding-top: 0.35rem;
+    text-align: right;
+  }
+  .month-days { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+  /* Visits */
+  section.visit { padding: 0 0 3rem; scroll-margin-top: 2rem; }
+  section.visit + section.visit, section.notes { border-top: 1px solid var(--hairline); padding-top: 2.75rem; }
+  .visit-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.45rem;
+  }
+  section.visit > h2 {
+    font-family: var(--serif);
+    font-size: 1.4375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0 0 0.35rem;
+    text-wrap: balance;
+  }
+  .visit-stat {
+    font-size: 0.8125rem;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+  section.visit > p.context {
+    margin: 0;
+    font-size: 0.9688rem;
+    text-wrap: pretty;
+  }
+  .frag { font-family: var(--serif); font-style: italic; }
+  ul.highlights { list-style: none; margin: 1.1rem 0 0; padding: 0; }
+  ul.highlights li {
+    padding: 0.55rem 0 0.55rem 1.1rem;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.8875rem;
+    color: var(--muted);
+    position: relative;
+  }
+  ul.highlights li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  ul.highlights .d { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  ul.highlights code { font-size: 0.78em; color: var(--faint); }
+
+  section.notes { padding-bottom: 3rem; scroll-margin-top: 2rem; }
+  section.notes h2 {
+    font-family: var(--serif);
+    font-size: 1.4375rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+  section.notes p { color: var(--muted); font-size: 0.9063rem; }
+  section.notes code { font-size: 0.82em; }
+
+  footer.colophon {
+    border-top: 1px solid var(--hairline);
+    padding-top: 1.25rem;
+    font-size: 0.7813rem;
+    color: var(--faint);
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+
+<div class="app">
+
+  <nav class="rail" aria-label="Contents">
+    <p class="rail-title">Visits</p>
+    <ol>
+      <li><a href="#v1996">1996 · 24 May – 16 Jun</a></li>
+      <li><a href="#v1997">1997 · 16 – 29 Jun</a></li>
+      <li><a href="#v1998">1998 · 26 May – 6 Jun</a></li>
+      <li><a href="#v1999">1999 · 30 Apr – 9 May</a></li>
+      <li><a href="#v2000">2000 · 8 – 21 Jun</a></li>
+      <li><a href="#notes">Method &amp; notes</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <header class="masthead">
+      <p class="kicker">NETI corpus · itinerary survey</p>
+      <h1>Maharaj in Brittany</h1>
+      <p class="standfirst">Shri Ranjit Maharaj came to the French Atlantic coast five times, every year from 1996 to 2000 — about 55 recorded days of talks in all. Each visit below carries its dates, one line of context, and the exchanges worth remembering.</p>
+      <div class="method">
+        <b>Sources.</b> Visit ranges come from the five finding-aid Tables of Contents (e.g. <code>1997-06-16-06-29-brittany-toc</code>); every individual date was then confirmed by a header search of the transcripts, including four days a capped first search had hidden. &ldquo;Dates&rdquo; means dates with a transcript — he was presumably present on the three gap days inside visit ranges, but no talk was recorded.
+      </div>
+      <div class="legend" aria-hidden="true">
+        <span class="item"><span class="chip">12</span> talk transcribed</span>
+        <span class="item"><span class="chip special">8</span> interview</span>
+        <span class="item"><span class="chip gap">1</span> no transcript</span>
+      </div>
+    </header>
+
+    <section class="visit" id="v1996">
+      <p class="visit-label">Visit 1 · First retreat</p>
+      <h2>24 May – 16 June 1996</h2>
+      <p class="visit-stat">24 days · a talk transcribed every single day · the longest visit</p>
+      <p class="context">The first documented Brittany retreat, and the one the outside world saw: the Inner Directions Journal editors compiled &ldquo;Meeting Ranjit Maharaj&rdquo; from three days of it, and a long sit-down interview recorded how Siddharameshwar taught from four books.</p>
+      <div class="months">
+        <div class="month-row">
+          <span class="month-label">May</span>
+          <span class="month-days"><span class="chip">24</span><span class="chip">25</span><span class="chip">26</span><span class="chip">27</span><span class="chip">28</span><span class="chip">29</span><span class="chip">30</span><span class="chip">31</span></span>
+        </div>
+        <div class="month-row">
+          <span class="month-label">June</span>
+          <span class="month-days"><span class="chip">1</span><span class="chip">2</span><span class="chip">3</span><span class="chip">4</span><span class="chip">5</span><span class="chip">6</span><span class="chip">7</span><span class="chip special">8</span><span class="chip">9</span><span class="chip">10</span><span class="chip">11</span><span class="chip">12</span><span class="chip">13</span><span class="chip">14</span><span class="chip">15</span><span class="chip">16</span></span>
+        </div>
+      </div>
+      <ul class="highlights">
+        <li><span class="d">7 Jun</span> — &ldquo;Saint Ramdas&hellip; for this Final Reality, He has written whole book, known as Dasbodh.&rdquo; <code>1996-06-07-brittany#x0023</code></li>
+        <li><span class="d">8 Jun</span> — the interview: Siddharameshwar's lectures on Dasbodh in Bombay, and the four books he taught from. <code>1996-06-08-brittany-interview#x0005</code></li>
+        <li><span class="d">12–13 Jun</span> — &ldquo;meditate on the void?&rdquo; and the space between two thoughts, answered with <span class="frag">&ldquo;you people hear the words and then you use the words, but don't know.&rdquo;</span> <code>1996-06-12-brittany#x0001 · 1996-06-13-brittany#x0008</code></li>
+      </ul>
+    </section>
+
+    <section class="visit" id="v1997">
+      <p class="visit-label">Visit 2 · The illusion retreat</p>
+      <h2>16 – 29 June 1997</h2>
+      <p class="visit-stat">14 days · unbroken</p>
+      <p class="context">The retreat where the French audience's struggle with &ldquo;everything is illusion&rdquo; is most visible — objects, purposes, and translations all pushed back within ten days.</p>
+      <div class="months">
+        <div class="month-row">
+          <span class="month-label">June</span>
+          <span class="month-days"><span class="chip">16</span><span class="chip">17</span><span class="chip">18</span><span class="chip">19</span><span class="chip">20</span><span class="chip">21</span><span class="chip">22</span><span class="chip">23</span><span class="chip">24</span><span class="chip">25</span><span class="chip">26</span><span class="chip">27</span><span class="chip">28</span><span class="chip">29</span></span>
+        </div>
+      </div>
+      <ul class="highlights">
+        <li><span class="d">19 Jun</span> — the carpet objection: <span class="frag">&ldquo;When You say everything is illusion, I have trouble&hellip; this is a carpet.&rdquo;</span> <code>1997-06-19-brittany#x0001</code></li>
+        <li><span class="d">21 Jun</span> — illusion given a purpose; the exchange stalls: <span class="frag">&ldquo;But why you say again illusion?&rdquo;</span> <code>1997-06-21-brittany#x0011</code></li>
+        <li><span class="d">28 Jun</span> — comparing the English and French <em>Master Key</em>: <span class="frag">&ldquo;When they make the translation, something always happens.&rdquo;</span> <code>1997-06-28-brittany#x0003</code></li>
+      </ul>
+    </section>
+
+    <section class="visit" id="v1998">
+      <p class="visit-label">Visit 3 · Shortest stay</p>
+      <h2>26 May – 6 June 1998</h2>
+      <p class="visit-stat">11 recorded days · one gap (1 June)</p>
+      <p class="context">A compact late-spring retreat dominated by practice-seeking questions — what to read, what to practise, how long to concentrate — answered with the books of the lineage and the death of the mind.</p>
+      <div class="months">
+        <div class="month-row">
+          <span class="month-label">May</span>
+          <span class="month-days"><span class="chip">26</span><span class="chip">27</span><span class="chip">28</span><span class="chip">29</span><span class="chip">30</span><span class="chip">31</span></span>
+        </div>
+        <div class="month-row">
+          <span class="month-label">June</span>
+          <span class="month-days"><span class="chip gap">1</span><span class="chip">2</span><span class="chip">3</span><span class="chip">4</span><span class="chip">5</span><span class="chip">6</span></span>
+        </div>
+      </div>
+      <ul class="highlights">
+        <li><span class="d">27 May</span> — points seekers to &ldquo;the books of Siddharameshwar Maharaj's teaching,&rdquo; <em>Master Key</em> among them. <code>1998-05-27-brittany#x0000</code></li>
+        <li><span class="d">31 May</span> — <span class="frag">&ldquo;Practise like a mad person&hellip; Death of the mind is practising.&rdquo;</span> <code>1998-05-31-brittany#x0013</code></li>
+        <li><span class="d">3–4 Jun</span> — &ldquo;should we concentrate totally on Reality&hellip; or do something in the world?&rdquo; and &ldquo;till what point&hellip; when should we surrender?&rdquo; <code>1998-06-03-brittany#x0020 · 1998-06-04-brittany#x0002</code></li>
+      </ul>
+    </section>
+
+    <section class="visit" id="v1999">
+      <p class="visit-label">Visit 4 · Spring visit</p>
+      <h2>30 April – 9 May 1999</h2>
+      <p class="visit-stat">8 recorded days · two gaps (3 and 6 May)</p>
+      <p class="context">The visit where mortality enters the questions — a disciple asks what to do if the Master leaves the body, and the answer runs thirteen pages on faith, the correct address, and the Dasbodh as &ldquo;advice to the aspirant.&rdquo;</p>
+      <div class="months">
+        <div class="month-row">
+          <span class="month-label">April</span>
+          <span class="month-days"><span class="chip">30</span></span>
+        </div>
+        <div class="month-row">
+          <span class="month-label">May</span>
+          <span class="month-days"><span class="chip">1</span><span class="chip">2</span><span class="chip gap">3</span><span class="chip">4</span><span class="chip">5</span><span class="chip gap">6</span><span class="chip">7</span><span class="chip">8</span><span class="chip">9</span></span>
+        </div>
+      </div>
+      <ul class="highlights">
+        <li><span class="d">2 May</span> — &ldquo;what should I do as I am Your disciple, if ever You leave the body?&rdquo; — the correct-address answer, the mind as thermometer, and Siddharameshwar's easier way. <code>1999-05-02-brittany#x0001, #x0011</code></li>
+      </ul>
+    </section>
+
+    <section class="visit" id="v2000">
+      <p class="visit-label">Visit 5 · The last visit</p>
+      <h2>8 – 21 June 2000</h2>
+      <p class="visit-stat">14 days · unbroken · the final Brittany visit in the corpus</p>
+      <p class="context">The farewell retreat — it opens with someone asking how long he will stay, and closes on the final day with the answer about his relationship with Siddharameshwar since He left the body: <span class="frag">&ldquo;you and He become One.&rdquo;</span></p>
+      <div class="months">
+        <div class="month-row">
+          <span class="month-label">June</span>
+          <span class="month-days"><span class="chip">8</span><span class="chip">9</span><span class="chip">10</span><span class="chip">11</span><span class="chip">12</span><span class="chip">13</span><span class="chip">14</span><span class="chip">15</span><span class="chip">16</span><span class="chip">17</span><span class="chip">18</span><span class="chip">19</span><span class="chip">20</span><span class="chip">21</span></span>
+        </div>
+      </div>
+      <ul class="highlights">
+        <li><span class="d">8 Jun</span> — &ldquo;till when You are in Brittany, Maharaj.&rdquo; <code>2000-06-08-brittany#x0000</code></li>
+        <li><span class="d">17 Jun</span> — &ldquo;isn't it a contradiction to use the mind to reach Reality?&rdquo; <code>2000-06-17-brittany#x0001</code></li>
+        <li><span class="d">21 Jun</span> — the last recorded Brittany answer: the 1935 transmission of the Power, and the warning against the &ldquo;oldest disciple&rdquo; ego. <code>2000-06-21-brittany#x0001, #x0005</code></li>
+      </ul>
+    </section>
+
+    <section class="notes" id="notes">
+      <h2>Method &amp; notes</h2>
+      <p><b>Two-way verification.</b> The visit ranges come from the finding-aid Tables of Contents and Indexes of Topics that accompany each Brittany folder in the archive; the per-day roster was then confirmed by searching each date's transcript header. Four days (2 Jun 1996, 17 Jun 1997, 26–27 Jun 1997) were initially hidden by a capped search and recovered by targeted checks — as was 16 Jun 2000.</p>
+      <p><b>Gap days.</b> 1 June 1998 and 3 &amp; 6 May 1999 fall inside visit ranges but have no transcript — rest days or unrecorded sessions, not absences.</p>
+      <p><b>One archive quirk.</b> The 1998 TOC is titled &ldquo;26th May to 5th June&rdquo; but the folder is named <code>…-06-06</code> and a 6 June transcript exists.</p>
+      <p><b>Going deeper.</b> Each visit's finding aids (e.g. <code>1999-04-30-05-09-brittany-toc</code> and <code>…-topics</code>) hold a per-day table of contents and topic index for the full retreat.</p>
+    </section>
+
+    <footer class="colophon">
+      Compiled from the NETI corpus of Shri Ranjit Maharaj's lectures · 8 July 2026.<br>
+      Fifth in the series, after the Dasbodh, Siddharameshwar, French-attendees, and interview-shelf surveys.
+    </footer>
+
+  </main>
+
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.rail a[href^="#"]'));
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+    if (!('IntersectionObserver' in window) || sections.length === 0) return;
+    var current = null;
+    function setCurrent(id) {
+      if (current === id) return;
+      links.forEach(function (a) { a.removeAttribute('aria-current'); });
+      if (byId[id]) { byId[id].setAttribute('aria-current', 'true'); current = id; }
+    }
+    var visible = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      for (var i = 0; i < sections.length; i++) {
+        if (visible[sections[i].id]) { setCurrent(sections[i].id); return; }
+      }
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+</script>

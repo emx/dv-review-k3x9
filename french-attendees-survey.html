@@ -1,0 +1,394 @@
+<title>The Teaching That Wouldn't Land — Corpus Survey</title>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", system-ui, sans-serif;
+    --serif: ui-serif, "New York", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161412;
+      --ink: #E9E5E1;
+      --muted: #A8A29E;
+      --faint: #78716C;
+      --hairline: #2E2A27;
+      --quote-bg: #1E1B19;
+      --accent: #E8A33D;
+      --accent-ink: #E8A33D;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161412;
+    --ink: #E9E5E1;
+    --muted: #A8A29E;
+    --faint: #78716C;
+    --hairline: #2E2A27;
+    --quote-bg: #1E1B19;
+    --accent: #E8A33D;
+    --accent-ink: #E8A33D;
+  }
+  :root[data-theme="light"] {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+  }
+
+  html { background: var(--bg); }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.9688rem;
+    line-height: 1.6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+  }
+  a { color: var(--accent-ink); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+  code { font-family: var(--mono); }
+
+  .app { max-width: 71rem; margin: 0 auto; padding: 0 1.5rem; }
+  main { max-width: 42rem; margin: 0 auto; padding-bottom: 6rem; }
+
+  @media (min-width: 68rem) {
+    .app {
+      display: grid;
+      grid-template-columns: 14rem minmax(0, 42rem);
+      gap: 4.5rem;
+      justify-content: center;
+    }
+    nav.rail {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 4.25rem 0 2rem;
+    }
+    main { margin: 0; }
+  }
+
+  nav.rail { font-size: 0.8125rem; }
+  nav.rail .rail-title {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 0.75rem;
+  }
+  nav.rail ol { list-style: none; margin: 0; padding: 0; }
+  nav.rail a {
+    display: block;
+    color: var(--muted);
+    padding: 0.3rem 0 0.3rem 0.875rem;
+    border-left: 2px solid var(--hairline);
+    line-height: 1.4;
+  }
+  nav.rail a:hover { color: var(--ink); text-decoration: none; }
+  nav.rail a[aria-current="true"] {
+    color: var(--ink);
+    font-weight: 600;
+    border-left-color: var(--accent);
+  }
+  @media (max-width: 67.99rem) {
+    nav.rail { padding: 2.5rem 0 0; }
+    nav.rail a { border-left: none; padding-left: 0; }
+  }
+
+  header.masthead {
+    border-bottom: 1px solid var(--hairline);
+    padding: 4.25rem 0 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .kicker {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.75rem;
+  }
+  header.masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 5vw, 2.375rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+  .standfirst {
+    color: var(--muted);
+    font-size: 1.0313rem;
+    line-height: 1.65;
+    margin: 0 0 1.5rem;
+    text-wrap: pretty;
+  }
+  .thesis {
+    background: var(--quote-bg);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+  .thesis b { font-weight: 650; }
+
+  section.theme { padding: 0 0 3rem; scroll-margin-top: 2rem; }
+  section.theme + section.theme { border-top: 1px solid var(--hairline); padding-top: 2.75rem; }
+  .theme-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.45rem;
+  }
+  section.theme > h2 {
+    font-family: var(--serif);
+    font-size: 1.4375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+  section.theme > p.lede {
+    color: var(--muted);
+    font-size: 0.9375rem;
+    margin: 0 0 1.25rem;
+  }
+
+  ul.refs { list-style: none; margin: 1.25rem 0 0; padding: 0; }
+  ul.refs > li { padding: 1.125rem 0; border-top: 1px solid var(--hairline); }
+  ul.refs > li:first-child { border-top: none; padding-top: 0; }
+  .ref-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 0.3rem;
+    line-height: 1.4;
+  }
+  .ref-body { margin: 0 0 0.5rem; color: var(--ink); }
+  .frag { font-family: var(--serif); font-style: italic; }
+  .where {
+    font-family: var(--mono);
+    font-size: 0.7188rem;
+    color: var(--faint);
+    line-height: 1.7;
+    display: block;
+  }
+
+  blockquote {
+    background: var(--quote-bg);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    margin: 0.875rem 0;
+    padding: 1.125rem 1.375rem;
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  blockquote p { margin: 0 0 0.85em; }
+  blockquote p:last-of-type { margin-bottom: 0; }
+  .spk {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 1.1em 0 0.35em;
+  }
+  blockquote .spk:first-child { margin-top: 0; }
+
+  .caveat {
+    border-top: 1px solid var(--hairline);
+    padding-top: 2.75rem;
+    scroll-margin-top: 2rem;
+  }
+  .caveat .method-note {
+    font-size: 0.8875rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  .caveat .method-note b { color: var(--ink); font-weight: 600; }
+
+  footer.colophon {
+    border-top: 1px solid var(--hairline);
+    padding-top: 1.25rem;
+    margin-top: 3rem;
+    font-size: 0.7813rem;
+    color: var(--faint);
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+
+<div class="app">
+
+  <nav class="rail" aria-label="Contents">
+    <p class="rail-title">Contents</p>
+    <ol>
+      <li><a href="#finding">The finding</a></li>
+      <li><a href="#form1">Form 1 · Illusion, resisted</a></li>
+      <li><a href="#form2">Form 2 · No-method, made a method</a></li>
+      <li><a href="#language">The language gap</a></li>
+      <li><a href="#caveat">Method &amp; caveat</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <header class="masthead" id="finding">
+      <p class="kicker">NETI corpus · analytical survey · French venues 1996–2000</p>
+      <h1>The teaching that wouldn't land</h1>
+      <p class="standfirst">What teaching of Shri Ranjit Maharaj is poorly understood by his French attendees? Read across the Brittany and Paris talks, the answer is consistent — and he addresses the misunderstanding himself, repeatedly.</p>
+      <p class="thesis"><b>&ldquo;Everything is illusion&rdquo; — and its corollary, that there is therefore nothing to <em>do</em>, only understand — is the teaching the French audiences persistently fail to absorb.</b> The misunderstanding resurfaces in two characteristic forms across five seasons of talks: resisting &ldquo;illusion&rdquo; as if it were a claim about physics, and converting the no-method teaching back into a method. A translation gap that Maharaj himself names compounds both.</p>
+    </header>
+
+    <section class="theme" id="form1">
+      <p class="theme-label">Form 1</p>
+      <h2>Taking &ldquo;illusion&rdquo; as a claim about physics — and resisting it</h2>
+      <p class="lede">The questioners hear &ldquo;the world is illusion&rdquo; as a statement that contradicts the evidence of their senses, and push back with objects, values, and purposes.</p>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">The carpet objection</p>
+          <blockquote>
+            <span class="spk">Question</span>
+            <p>I would like to ask You about the illusion. When You say everything is illusion, I have trouble. I can accept it, what You are saying. But to me, for example, this is a carpet. And it exists as a carpet.</p>
+          </blockquote>
+          <p class="ref-body">Maharaj dissolves the carpet step by step — wool, earth, ashes, water, H₂O, wind, space — to show <span class="frag">&ldquo;Illusion means which is not. You see that, but still, it is not.&rdquo;</span> And the counterweight often missed: <span class="frag">&ldquo;But still, you should not destroy it, no need to destroy.&rdquo;</span></p>
+          <span class="where">Brittany, 19 Jun 1997 · pp. 1–2 · ranjit/english-lectures/1997-06-19-brittany#x0001</span>
+        </li>
+        <li>
+          <p class="ref-title">After a full week: &ldquo;but what about love?&rdquo;</p>
+          <blockquote>
+            <span class="spk">Question</span>
+            <p>She said, all week You talked of the illusion, what is illusion, the world is illusion. But You didn&rsquo;t say anything about the aspect of Reality, which is love, according to her.</p>
+          </blockquote>
+          <p class="ref-body">Seven days of talks, and the point still hasn't landed — the clearest single piece of evidence in the corpus. His answer explains the pedagogy itself: <span class="frag">&ldquo;There is always nothing to say about the Reality, because It is there&hellip; Everybody is in illusion, so we have to talk more for illusion. If illusion goes off, what remains.&rdquo;</span></p>
+          <span class="where">Paris, 3 Jun 2000 · pp. 1–12 · ranjit/english-lectures/2000-06-03-paris#x0001</span>
+        </li>
+        <li>
+          <p class="ref-title">Giving illusion a purpose</p>
+          <p class="ref-body">A questioner tries to make illusion instrumental — <span class="frag">&ldquo;can it have a purpose to bring us back to Reality?&rdquo;</span> — a category error under the teaching (which is <em>not</em>, is not <em>for</em> anything), and the exchange stalls: <span class="frag">&ldquo;But why you say again illusion?&hellip; She says in a different way. And I cannot understand her, that's the difficulty.&rdquo;</span></p>
+          <span class="where">Brittany, 21 Jun 1997 · pp. 34–35 · ranjit/english-lectures/1997-06-21-brittany#x0011</span>
+        </li>
+        <li>
+          <p class="ref-title">Mind, feeling, or another way?</p>
+          <p class="ref-body">Still circling the same point in 2000: <span class="frag">&ldquo;this understanding that the world is illusion, does this understanding come through the mind, or we feel it, or is there another way?&rdquo;</span></p>
+          <span class="where">Paris, 6 Jun 2000 · ranjit/english-lectures/2000-06-06-paris#x0001</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="form2">
+      <p class="theme-label">Form 2</p>
+      <h2>Converting the no-method teaching back into a method</h2>
+      <p class="lede">The teaching is that understanding alone suffices — there is nothing to practice. The French questioners repeatedly ask for something to practice, which inverts the point.</p>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">Meditating on the void</p>
+          <p class="ref-body">Two consecutive days in 1996: <span class="frag">&ldquo;Is to meditate on the void, on the nothingness, a good approach to Reality, or is it not?&rdquo;</span> — and the next day, concentrating on &ldquo;the space between two thoughts.&rdquo; His rebuke names the failure mode exactly:</p>
+          <blockquote>
+            <span class="spk">Maharaj</span>
+            <p>What do you say, what you mean to say, at least say in simple words, don&rsquo;t use big big words, &lsquo;void&rsquo;, and all these things. What do you feel in your mind?</p>
+            <p>You people hear the words and then you use the words, but don&rsquo;t know. You hear from me and you use the words now, that &lsquo;void&rsquo; and all these things.</p>
+          </blockquote>
+          <span class="where">Brittany, 12–13 Jun 1996 · pp. 24–26 · ranjit/english-lectures/1996-06-12-brittany#x0001 · 1996-06-13-brittany#x0008</span>
+        </li>
+        <li>
+          <p class="ref-title">Asking for the practice</p>
+          <p class="ref-body">The same request keeps returning across the seasons: <span class="frag">&ldquo;Is it necessary to practise that in order to understand Reality?&rdquo;</span> (1997) · <span class="frag">&ldquo;should we concentrate totally on Reality&hellip; Or do we have something to do in the world?&rdquo;</span> (1998) · <span class="frag">&ldquo;Till what point we should concentrate on Reality? And when should we surrender?&rdquo;</span> (1998).</p>
+          <span class="where">Brittany · 1997-06-28-brittany#x0004 · 1998-06-03-brittany#x0020 · 1998-06-04-brittany#x0002</span>
+        </li>
+        <li>
+          <p class="ref-title">The contradiction question</p>
+          <p class="ref-body">By 2000 the practice-seeking has sharpened into paradox-hunting: <span class="frag">&ldquo;To reach Reality, do we have to use the mind? And if yes&hellip; isn&rsquo;t it a contradiction to use the mind to reach Reality?&rdquo;</span> — the question his Master's <em>vihangam maarga</em> (realization by thinking) answers, but which keeps being asked as a trap rather than understood as the way.</p>
+          <span class="where">Brittany, 17 Jun 2000 · ranjit/english-lectures/2000-06-17-brittany#x0001</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="language">
+      <p class="theme-label">Compounding factor</p>
+      <h2>The language gap — named by Maharaj himself</h2>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">Through the translator, twice removed</p>
+          <p class="ref-body"><span class="frag">&ldquo;You don't follow. She doesn't follow. I could not understand your language, no, that's the difficulty to understand. And she translates, but she also cannot understand, what to do?&rdquo;</span></p>
+          <span class="where">Brittany, 28 Jun 1997 · ranjit/english-lectures/1997-06-28-brittany#x0015</span>
+        </li>
+        <li>
+          <p class="ref-title">The French Master Key</p>
+          <p class="ref-body">Comparing the English <em>Master Key to Self Realization</em> with its French translation: <span class="frag">&ldquo;When they make the translation, something always happens. Because the writer, his mind, is not the mind of the translator.&rdquo;</span></p>
+          <span class="where">Brittany, 28 Jun 1997 · ranjit/english-lectures/1997-06-28-brittany#x0003</span>
+        </li>
+        <li>
+          <p class="ref-title">Mid-answer interruptions</p>
+          <p class="ref-body">The Brittany transcripts show answers cut off by translation — e.g. the 1996 exchange where his introduction of Ramdas's Dasbodh (<span class="frag">&ldquo;He says at one place...&rdquo;</span>) is interrupted by the translator relaying a different question, and the thread is lost.</p>
+          <span class="where">Brittany, 7 Jun 1996 · p. 12 · ranjit/english-lectures/1996-06-07-brittany#x0023</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme caveat" id="caveat">
+      <p class="theme-label">Method</p>
+      <h2>How this was established — and its limits</h2>
+      <p class="method-note"><b>Sources.</b> Lexical and semantic passes over the corpus: explicit mentions of <code>French</code>; semantic searches for incomprehension (&ldquo;people do not understand what I say&rdquo;), translation loss, practice-seeking (&ldquo;what should I practice, give me a method&rdquo;), and illusion-resistance (&ldquo;you say everything is illusion but the world feels real&rdquo;); ~10 French-venue exchanges read in full.</p>
+      <p class="method-note"><b>Caveat.</b> This is a synthesis, not a claim Maharaj makes explicitly — the corpus never has him say &ldquo;the French don't understand X.&rdquo; American audiences raise the illusion objection too (Sedona: <span class="frag">&ldquo;My mind is screaming at the idea that the mountains&hellip; are all illusion&rdquo;</span>; San Diego 1999). What distinguishes the French corpus is the <em>practice-seeking</em> variant — void-meditation, concentration schedules, surrender timing — and the week-long persistence of the illusion question in Paris, June 2000. Italic fragments throughout are verbatim effective text; everything else is editorial summary.</p>
+    </section>
+
+    <footer class="colophon">
+      Compiled from the NETI corpus of Shri Ranjit Maharaj's lectures and translations · 8 July 2026.<br>
+      Companion to the <em>Maharaj on the Dasbodh</em> and <em>Maharaj on Siddharameshwar</em> surveys. Page numbers refer to the printed transcripts.
+    </footer>
+
+  </main>
+
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.rail a[href^="#"]'));
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('section[id], header[id]'));
+    if (!('IntersectionObserver' in window) || sections.length === 0) return;
+    var current = null;
+    function setCurrent(id) {
+      if (current === id) return;
+      links.forEach(function (a) { a.removeAttribute('aria-current'); });
+      if (byId[id]) { byId[id].setAttribute('aria-current', 'true'); current = id; }
+    }
+    var visible = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      for (var i = 0; i < sections.length; i++) {
+        if (visible[sections[i].id]) { setCurrent(sections[i].id); return; }
+      }
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+</script>

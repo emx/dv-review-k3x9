@@ -1,0 +1,346 @@
+{
+  "schema": "nayan.pages_deploy_cure.pre_inventory/v1",
+  "packet": "NW-003",
+  "when": "2026-08-06T20:46:16Z",
+  "clone": "/Users/emx/projects/dv-review",
+  "remote": "https://github.com/emx/dv-review-k3x9.git",
+  "head": "ref: refs/heads/main",
+  "n_files": 54,
+  "total_bytes": 411140924,
+  "live_bytes": 273367,
+  "historical_session_bytes": 410428736,
+  "non_session_bytes": 438821,
+  "live": [
+    {
+      "name": "vidya_m2_wording.html",
+      "bytes": 273367,
+      "sha256": "b79e4ab812e18c0b2af15a8967d3c7ab794344a32a99f6f056898a762380dc21",
+      "class": "live_m2_deck"
+    }
+  ],
+  "historical_session": [
+    {
+      "name": "review_cap_dryrun.html",
+      "bytes": 86548,
+      "sha256": "5971deb3e3c7b0e3dda39b0d34a72bec8ba99f3c01b3e9548a27aa825957fa01",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cal_s1.html",
+      "bytes": 22974281,
+      "sha256": "e46f78b5a4250542624259aea9cbad70212e5bc1e76815767e359345c09503ef",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cal_s2.html",
+      "bytes": 22082561,
+      "sha256": "38eb22ceb8b8d718f1fa674a1923994bab9685251b43a43779953e3922941123",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cal_s3.html",
+      "bytes": 21150364,
+      "sha256": "fd00cbf8a33038232f2d51af400ff93df15203934396261039eb9b47e21f7a29",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cal_s4.html",
+      "bytes": 21889056,
+      "sha256": "8d0a9974154ec00daffb18cb14f9f69128945a4d041085429ff2c8e4c2bf2688",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cal_s5.html",
+      "bytes": 9405350,
+      "sha256": "3f373fdf9e8c4ff6396ceb0eb083135f81580215d6b0485a38898505fa8c1ffc",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cap_f1.html",
+      "bytes": 1864297,
+      "sha256": "89a33602e4b86ce0a756833c8f88a0f3b74cb6c291b25cd33c3afe2d197c6515",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cap_f3a.html",
+      "bytes": 9176807,
+      "sha256": "81d680cddf02c84405db3cc0d9fbd1133b10439a5d8c9ac9a61302390d5ec5fb",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cap_f3a2.html",
+      "bytes": 8857155,
+      "sha256": "6ff45adbe1b5152a06ea9ea5494893b28dddfe90a0723eb8ba1a7224ad8f1d34",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cap_f3b1.html",
+      "bytes": 5187865,
+      "sha256": "83a273d63ced5ac899d57610200eae75ca357d527998ae4037ae57d69459c887",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cap_f3b2.html",
+      "bytes": 5002186,
+      "sha256": "3c0dd6857f5c1c3e810941acbdda277c1f3908f399b7d0be6bdaac7c30fe7094",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cap_f5a.html",
+      "bytes": 4308256,
+      "sha256": "9047dc8e76b651d97f720928544b12a672458df2075d2e90dd2a7c32d2dfa5aa",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cap_f5b.html",
+      "bytes": 5388838,
+      "sha256": "469afd40e0d239b2ce4119757505d029d92dee6653e9db6594a8128deecd1f34",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cns_c1.html",
+      "bytes": 5927032,
+      "sha256": "623a9cfc2d185d3d2d94adcb00a2921f37335cfd62d2d9dd6ed4f0e6de42d680",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cns_c2.html",
+      "bytes": 5974744,
+      "sha256": "f5f3d1c68ef2853e24ca61e0e2d9db08e970baef5a203246faec7e72c0bc915a",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cns_c2b.html",
+      "bytes": 5885062,
+      "sha256": "dc1bb209e8cd9bb72e78922a3d211e7ee153f2ab8528a7d64a8e5f1ac4b1a8bd",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cns_c3.html",
+      "bytes": 8040217,
+      "sha256": "4b1bd4ffc4b832470df3e0627aa9ccf87a72d7debcfa7960df9d6565351e208a",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cns_c4.html",
+      "bytes": 8697535,
+      "sha256": "bc7471bea932578d968e2ec691e9af037aa22e0df704a36a03b99060013dfd0c",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cns_x1a.html",
+      "bytes": 14523749,
+      "sha256": "2945722452621d48a8ddb8fe9816a59f744266bfa951e8cd8c175c8414a38e2c",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_cns_x1b.html",
+      "bytes": 8991717,
+      "sha256": "14992653c15d351f384ea45f417babf7d79a71b84a3c2ce534fa4e5d7abf1593",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_d4.html",
+      "bytes": 770621,
+      "sha256": "900a7ffaf722318efcaf8cee0aacb7bb9a962818537411ba34d99ae7f55505ef",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_deck_m.html",
+      "bytes": 800634,
+      "sha256": "f8adf34d45078aa61b5edcbded10ee403635d1d6486a585759f953cea4118edb",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_g1.html",
+      "bytes": 17368154,
+      "sha256": "3fec8c1a032de204b94f85e5cb1f10298cbcdf7ee3f15bd37e7e6794f834e726",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_g2_v14.html",
+      "bytes": 14098920,
+      "sha256": "c1531bf006d690c35d6f54149d1b7d9035d90324b0b8fb75a85acfee1a5dd2e9",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_pw.html",
+      "bytes": 3684808,
+      "sha256": "b447073d037c76d5c6de522a3e301dec67f302069312b733624a6c63ea4b9d1f",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_pw2.html",
+      "bytes": 216875,
+      "sha256": "06b0547a126d8191f1f7799a1aa735bb76678c6aedeb7e414d7e3d912cf69cd1",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_pw3.html",
+      "bytes": 1304623,
+      "sha256": "903b5b8491b31bb7de2eb74634a2ffbed5e136b33b744df22092afde75d98d99",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_qa_v101.html",
+      "bytes": 16069594,
+      "sha256": "4ad69afd68985d8da32a60c5b66e5a593559ca24a554cbb2b18e8db2a1ae8c90",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_res_r1.html",
+      "bytes": 22703952,
+      "sha256": "68efa1c43c82edd32bedda8fc9e3966249c4e1ecbf016e255471a64c1afa2e2d",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_res_r2.html",
+      "bytes": 14356403,
+      "sha256": "dc122aafc85258465bf7ee3c63caef7fea627e9ba7d2cad5cb0e182c4ba20cc2",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_res_r3.html",
+      "bytes": 12107128,
+      "sha256": "1e5d97d78886c48467316218e90df17079c6bfe9a33914f80480e96aeda78879",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_res_r4.html",
+      "bytes": 11466478,
+      "sha256": "751c4b8b4a64bf92d5b4394e98549190863897555ce816a313e7fd4e56084983",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_res_r5.html",
+      "bytes": 1697255,
+      "sha256": "525109c7440e15f7eb0fa6fd0355cd217fb17e06c4429a8c13ee617aa4b19552",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_review.html",
+      "bytes": 4430797,
+      "sha256": "fd987da8fb4a82dce3a2061e223573f5f32d32ddbff5952678e850d50c508c8a",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_session2.html",
+      "bytes": 18583446,
+      "sha256": "90703fb8ae6c5c9b7592474dec10d8b31aad3476f0a9dca35ea0f63dc1b50a18",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_session3.html",
+      "bytes": 16773167,
+      "sha256": "f8fdeeb26baca16097a7e42bb5c263c496e41e1093bda6348ca900661522a8af",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_session4.html",
+      "bytes": 14589945,
+      "sha256": "fae802fc8885083832db30d870e8e587de618be9e183a3e37f7ea085128dda09",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_session5.html",
+      "bytes": 2065255,
+      "sha256": "456e45ad453cff6f06b72716a1261b613061ec445c83419fe039538ae8c1c149",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_session6.html",
+      "bytes": 7791769,
+      "sha256": "1f6e2e79ec5dd8190fc4eef04fa2f637ea6a685acff3846ee788af6ba095f546",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_session6b.html",
+      "bytes": 2096942,
+      "sha256": "1fc2c374bb41e4bcfff60d75fec65fffb6a9bde10a2d32f7c817c3527024350c",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_sessionA.html",
+      "bytes": 2931552,
+      "sha256": "d843852cf58bf63ea699b03eae43c388fa98fc0a44d1827399eb9b11d3a1dbc1",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_sessionB.html",
+      "bytes": 3629350,
+      "sha256": "10c72bbdc268cc115ff7ecb53208dd78bb87c49e544d9a51cf6592090151de64",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_swp_w1.html",
+      "bytes": 13551703,
+      "sha256": "3424e37eb9f2eb85dfe17df3a345bfc0f53f27f277e85956b8313d62347fc02f",
+      "class": "session_html"
+    },
+    {
+      "name": "vidya_swp_w2.html",
+      "bytes": 11925745,
+      "sha256": "d2d0109089edbbea96f0bf427f95eed099ad1b5b508dfc548c7ce9252ac76c2e",
+      "class": "session_html"
+    }
+  ],
+  "non_session": [
+    {
+      "name": "NETI_OVERVIEW.html",
+      "bytes": 17263,
+      "sha256": "28f04ba14887314d65edd4c7b29d5cd89b5dbbfab31d9b1568511908a02ea225",
+      "class": "non_session"
+    },
+    {
+      "name": "anuvad_pipeline.html",
+      "bytes": 38095,
+      "sha256": "403df895ce68b472acffff6e5a0ff61cfc535801248edf8e5ac9d7833a728aa7",
+      "class": "non_session"
+    },
+    {
+      "name": "brittany-visits.html",
+      "bytes": 20341,
+      "sha256": "b5479b6b2a4f4f729ea8e91690e7a88908223141083c9ec68e51482ef7ec2a52",
+      "class": "non_session"
+    },
+    {
+      "name": "dasbodh-survey.html",
+      "bytes": 32155,
+      "sha256": "c6210f075c160e1d279aba14a7abb8ba19139bf5292d30a57e19de337ca10b82",
+      "class": "non_session"
+    },
+    {
+      "name": "edition_specimen.html",
+      "bytes": 250330,
+      "sha256": "7757579fbd46998107319bcebc5b3a6f1607b1002bcae3433c67223df9245309",
+      "class": "non_session"
+    },
+    {
+      "name": "french-attendees-survey.html",
+      "bytes": 18297,
+      "sha256": "e7f517d8dcc71184b09037fc1afb267903447cb51e17473a2e489301adfa5a8e",
+      "class": "non_session"
+    },
+    {
+      "name": "interviews-survey.html",
+      "bytes": 19124,
+      "sha256": "a194e209e97e7757a3e655f59aee130f90ceea0f1d74bf5196161a8c73b794b9",
+      "class": "non_session"
+    },
+    {
+      "name": "siddharameshwar-survey.html",
+      "bytes": 24692,
+      "sha256": "6ed9970e16bf86414a935eaf176b9e4e20404c92644d4c711850d8daac1b4b2a",
+      "class": "non_session"
+    },
+    {
+      "name": "translation-survey.html",
+      "bytes": 18524,
+      "sha256": "a7d6fd6ae02321d299b38dc608bec17e0b9ea7fd27585290c90d960407a14faf",
+      "class": "non_session"
+    }
+  ],
+  "m2_want_sha256": "b79e4ab812e18c0b2af15a8967d3c7ab794344a32a99f6f056898a762380dc21",
+  "official_url": "https://emx.github.io/dv-review-k3x9/vidya_m2_wording.html",
+  "official_pre_status": "404 (SP3_publish_live_verify TIMEOUT_OR_MISMATCH)"
+}

@@ -1,0 +1,459 @@
+<title>Maharaj on Siddharameshwar — Corpus Survey</title>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", system-ui, sans-serif;
+    --serif: ui-serif, "New York", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161412;
+      --ink: #E9E5E1;
+      --muted: #A8A29E;
+      --faint: #78716C;
+      --hairline: #2E2A27;
+      --quote-bg: #1E1B19;
+      --accent: #E8A33D;
+      --accent-ink: #E8A33D;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #161412;
+    --ink: #E9E5E1;
+    --muted: #A8A29E;
+    --faint: #78716C;
+    --hairline: #2E2A27;
+    --quote-bg: #1E1B19;
+    --accent: #E8A33D;
+    --accent-ink: #E8A33D;
+  }
+  :root[data-theme="light"] {
+    --bg: #FFFFFF;
+    --ink: #1C1917;
+    --muted: #78716C;
+    --faint: #A8A29E;
+    --hairline: #E7E5E4;
+    --quote-bg: #FAFAF9;
+    --accent: #B45309;
+    --accent-ink: #92400E;
+  }
+
+  html { background: var(--bg); }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.9688rem;
+    line-height: 1.6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+  }
+  a { color: var(--accent-ink); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+  code { font-family: var(--mono); }
+
+  .app { max-width: 71rem; margin: 0 auto; padding: 0 1.5rem; }
+  main { max-width: 42rem; margin: 0 auto; padding-bottom: 6rem; }
+
+  @media (min-width: 68rem) {
+    .app {
+      display: grid;
+      grid-template-columns: 14rem minmax(0, 42rem);
+      gap: 4.5rem;
+      justify-content: center;
+    }
+    nav.rail {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      max-height: 100vh;
+      overflow-y: auto;
+      padding: 4.25rem 0 2rem;
+    }
+    main { margin: 0; }
+  }
+
+  nav.rail { font-size: 0.8125rem; }
+  nav.rail .rail-title {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin: 0 0 0.75rem;
+  }
+  nav.rail ol { list-style: none; margin: 0; padding: 0; }
+  nav.rail a {
+    display: block;
+    color: var(--muted);
+    padding: 0.3rem 0 0.3rem 0.875rem;
+    border-left: 2px solid var(--hairline);
+    line-height: 1.4;
+  }
+  nav.rail a:hover { color: var(--ink); text-decoration: none; }
+  nav.rail a[aria-current="true"] {
+    color: var(--ink);
+    font-weight: 600;
+    border-left-color: var(--accent);
+  }
+  @media (max-width: 67.99rem) {
+    nav.rail { padding: 2.5rem 0 0; }
+    nav.rail a { border-left: none; padding-left: 0; }
+  }
+
+  header.masthead {
+    border-bottom: 1px solid var(--hairline);
+    padding: 4.25rem 0 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .kicker {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.75rem;
+  }
+  header.masthead h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 5vw, 2.375rem);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+  .standfirst {
+    color: var(--muted);
+    font-size: 1.0313rem;
+    line-height: 1.65;
+    margin: 0 0 2rem;
+    text-wrap: pretty;
+  }
+  .method {
+    font-size: 0.8438rem;
+    line-height: 1.65;
+    color: var(--muted);
+    border-top: 1px solid var(--hairline);
+    padding: 1rem 0 0;
+    margin: 0;
+  }
+  .method b { color: var(--ink); font-weight: 600; }
+  .method code { font-size: 0.9em; }
+
+  section.theme { padding: 0 0 3rem; scroll-margin-top: 2rem; }
+  section.theme + section.theme { border-top: 1px solid var(--hairline); padding-top: 2.75rem; }
+  .theme-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin: 0 0 0.45rem;
+  }
+  section.theme > h2 {
+    font-family: var(--serif);
+    font-size: 1.4375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+  section.theme > p.lede {
+    color: var(--muted);
+    font-size: 0.9063rem;
+    margin: 0 0 1.5rem;
+  }
+
+  ul.refs { list-style: none; margin: 1.25rem 0 0; padding: 0; }
+  ul.refs > li { padding: 1.125rem 0; border-top: 1px solid var(--hairline); }
+  ul.refs > li:first-child { border-top: none; padding-top: 0; }
+  .ref-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 0.3rem;
+    line-height: 1.4;
+  }
+  .ref-body { margin: 0 0 0.5rem; color: var(--ink); }
+  .ref-body .frag { font-family: var(--serif); font-style: italic; }
+  .where {
+    font-family: var(--mono);
+    font-size: 0.7188rem;
+    color: var(--faint);
+    line-height: 1.7;
+    display: block;
+  }
+
+  ul.minor { list-style: none; margin: 1.25rem 0 0; padding: 0; }
+  ul.minor li {
+    padding: 0.55rem 0;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.8875rem;
+    color: var(--muted);
+  }
+  ul.minor li:first-child { border-top: none; padding-top: 0; }
+  ul.minor code { font-size: 0.78rem; color: var(--faint); }
+
+  footer.colophon {
+    border-top: 1px solid var(--hairline);
+    padding-top: 1.25rem;
+    font-size: 0.7813rem;
+    color: var(--faint);
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+</style>
+
+<div class="app">
+
+  <nav class="rail" aria-label="Contents">
+    <p class="rail-title">Contents</p>
+    <ol>
+      <li><a href="#biography">Biography &amp; lineage</a></li>
+      <li><a href="#teaching">How He taught</a></li>
+      <li><a href="#meditation">Beyond meditation</a></li>
+      <li><a href="#passing">After His passing</a></li>
+      <li><a href="#stories">Stories about Him</a></li>
+      <li><a href="#books">His books, invoked</a></li>
+      <li><a href="#incidental">Incidental mentions</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <header class="masthead">
+      <p class="kicker">NETI corpus · survey of references</p>
+      <h1>Maharaj on Siddharameshwar</h1>
+      <p class="standfirst">Every reference in the corpus where Shri Ranjit Maharaj speaks of his Master, Shri Siddharameshwar Maharaj — summarized in context with dates, places, and citations, grouped by theme. Companion to the <em>Maharaj on the Dasbodh</em> survey.</p>
+      <div class="method">
+        <b>Method &amp; scope.</b> Found by three passes — a lexical search for <code>Siddharameshwar</code> (curated variant expansion also matched <em>Siddharameshvar</em>, <em>Siddharameswar</em>), a semantic pass, and a lexical pass on <code>my Master said</code> — with the eight most substantive exchanges read in full. Entries are context summaries, not transcriptions; the short fragments in italics are verbatim. Ritual invocations opening the translated pravachans are noted once under incidental mentions.
+      </div>
+    </header>
+
+    <section class="theme" id="biography">
+      <p class="theme-label">Theme 1</p>
+      <h2>Biography &amp; lineage</h2>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">The fullest account of His life</p>
+          <p class="ref-body">Asked to introduce his Master, Maharaj gives the whole arc: <span class="frag">&ldquo;the Greatest Saint of the time&hellip; unknown, because He never wanted fame or name&rdquo;</span> — initiated by Bhausaheb Maharaj in 1906; Bhausaheb dies 1914; Siddharameshwar takes the Mastership in 1918 and tours India teaching meditation; asks his co-disciples to go <em>beyond</em> meditation and they refuse; withdraws to Bijapur and meditates nine months without stopping; discovers the <em>vihangam maarga</em> (the bird's way — realization by thinking rather than long meditation); teaches from 1924, gives the complete understanding within twelve years, leaves the body at 48. Ends: <span class="frag">&ldquo;At the age of 12, I was initiated by Him, in 1925.&rdquo;</span></p>
+          <span class="where">Krahberg interview, Jun 1998 · pp. 1–6 · ranjit/english-lectures/1998-06-krahberg-interview#x0000 (same text filed as ranjit/interviews/rminterview-germany-1998#x0000)</span>
+        </li>
+        <li>
+          <p class="ref-title">Lineage recitation</p>
+          <p class="ref-body"><span class="frag">&ldquo;My Master's name was Siddharameshwar Maharaj. His Master was Bhausaheb Maharaj. His Master was Guru-linga-jangam. They were from Karnataka, both.&rdquo;</span></p>
+          <span class="where">Hawaii, 18 Jun 1999 · ranjit/english-lectures/1999-06-18-hawaii#x0002, #x0005</span>
+        </li>
+        <li>
+          <p class="ref-title">The ashram story — counting the stanzas</p>
+          <p class="ref-body">Accused of sleeping during the sacred-book reading in Bhausaheb Maharaj's ashram, Siddharameshwar retorts that the reader is on the 12th stanza; rebuked by Bhausaheb for refusing the order, He leaves for Karnataka and sits nine months <span class="frag">&ldquo;to find out the easiest way.&rdquo;</span></p>
+          <span class="where">Hawaii, 18 Jun 1999 · pp. 13–16 · ranjit/english-lectures/1999-06-18-hawaii#x0012</span>
+        </li>
+        <li>
+          <p class="ref-title">His age</p>
+          <p class="ref-body">Asked how long Siddharameshwar Maharaj lived: <span class="frag">&ldquo;49 only. 48 ...&rdquo;</span></p>
+          <span class="where">7 Sep 1998 · ranjit/english-lectures/1998-09-07#x0087</span>
+        </li>
+        <li>
+          <p class="ref-title">&ldquo;I got Him at the age of 12&rdquo;</p>
+          <p class="ref-body">A rare personal aside — three brothers and one sister, all married into worldly life, <span class="frag">&ldquo;I got Him (Siddharameshwar Maharaj) at the age of 12, when I was 12 years old.&rdquo;</span></p>
+          <span class="where">23 Feb 1998 · p. 60 · ranjit/english-lectures/1998-02-23#x0050</span>
+        </li>
+        <li>
+          <p class="ref-title">The Nisargadatta connection</p>
+          <p class="ref-body">Confirms Siddharameshwar is <span class="frag">&ldquo;also Master of Nisargadatta&rdquo;</span> and explains that Maharaj is a title, the name is Siddharameshwar; again in 1998, answering &ldquo;HE's the same Master from Nisargadatta?&rdquo;; and pointing to the photo: <span class="frag">&ldquo;He was my co-disciple&hellip; our Master was He.&rdquo;</span></p>
+          <span class="where">14 Jan 1997 · ranjit/english-lectures/1997-01-14#x0072–73 · 5 Mar 1998 · 1998-03-05#x0075–76 · San Francisco, 20 Apr 1998 · 1998-04-20pm-sanfrancisco#x0016</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="teaching">
+      <p class="theme-label">Theme 2</p>
+      <h2>How He taught</h2>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">Simplicity as method</p>
+          <p class="ref-body"><span class="frag">&ldquo;Greatest Saint of the age. But He was unknown.&rdquo;</span> Spoke only Marathi, Gujarati, and Kannada — no English; taught women and children against the orthodox bar of the day; Maharaj's own illiterate mother came daily to hear Him; and He <span class="frag">&ldquo;had the greatest understanding of breaking the words&rdquo;</span> — the <em>vrutti / varti</em> wordplay as an example of how He opened meanings.</p>
+          <span class="where">San Francisco, 24 May 1997 · pp. 1–5 · ranjit/english-lectures/1997-05-24pm-sanfrancisco#x0001</span>
+        </li>
+        <li>
+          <p class="ref-title">&ldquo;Be out of the circle&rdquo;</p>
+          <p class="ref-body">He taught in a very simple way, unlike the masters who keep you moving inside the circle; <span class="frag">&ldquo;One who says you are Perfect, nothing to do, he's the Real Master.&rdquo;</span></p>
+          <span class="where">19 Dec 1996 · pp. 57–58 · ranjit/english-lectures/1996-12-19-lecture2#x0097</span>
+        </li>
+        <li>
+          <p class="ref-title">The four books</p>
+          <p class="ref-body">Evening lectures on the Dasbodh in Bombay for 1½–2 months at a stretch (likewise Solapur), bhajan following at night; also taught from Yoga Vasistha, Sadachar, and Eknathi Bhagwat — <span class="frag">&ldquo;four books He took to teach us&rdquo;</span>; His motto that <span class="frag">&ldquo;high bombastic words are not required.&rdquo;</span></p>
+          <span class="where">Brittany interview, 8 Jun 1996 · pp. 6–8 · ranjit/english-lectures/1996-06-08-brittany-interview#x0005</span>
+        </li>
+        <li>
+          <p class="ref-title">&ldquo;He gave out the real thing&rdquo;</p>
+          <p class="ref-body">Contrasted with the many saints who put aspirants on the wrong things: <span class="frag">&ldquo;my Master, Siddharameshwar Maharaj, He gave out that, the real thing. And He was so competent in His mind, that He can teach anybody at any time.&rdquo;</span></p>
+          <span class="where">Krahberg, 10 Jun 1998 · ranjit/english-lectures/1998-06-10-krahberg#x0000</span>
+        </li>
+        <li>
+          <p class="ref-title">The Dasbodh inheritance</p>
+          <p class="ref-body">The lineage scripture was <span class="frag">&ldquo;a book followed by my Master's Master. And I take it granted and true, because my Master showed the meaning of it, from there.&rdquo;</span></p>
+          <span class="where">Sedona, 8 May 1998 · pp. 30–33 · ranjit/english-lectures/1998-05-08am-sedona#x0022</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="meditation">
+      <p class="theme-label">Theme 3</p>
+      <h2>Beyond meditation</h2>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">The easier way</p>
+          <p class="ref-body">His Master gave the understanding of meditation, but He said <span class="frag">&ldquo;No, something can be, we have to go by the easier way&rdquo;</span> — and found, from meditation itself, that by thinking alone one can be He.</p>
+          <span class="where">Brittany, 2 May 1999 · ranjit/english-lectures/1999-05-02-brittany#x0011</span>
+        </li>
+        <li>
+          <p class="ref-title">Personal guidance</p>
+          <p class="ref-body">Asked how he knew it was time to discontinue his own meditation: <span class="frag">&ldquo;My Master told me. He always guides&hellip;&rdquo;</span></p>
+          <span class="where">San Francisco, 21 May 1997 · ranjit/english-lectures/1997-05-21am-sanfrancisco#x0022</span>
+        </li>
+        <li>
+          <p class="ref-title">&ldquo;Either I die or I achieve my goal&rdquo;</p>
+          <p class="ref-body">The 1979 Marathi account (translated) of His resolve after the co-disciples refused to go beyond Bhausaheb's instruction: He put in tremendous effort, His body <span class="frag">&ldquo;became like a stick for the sake of that knowledge.&rdquo;</span></p>
+          <span class="where">Bhausaheb Maharaj utsav talk, 1979 (translation) · ranjit/translations/bmju-1979-translation#t0021–22</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="passing">
+      <p class="theme-label">Theme 4</p>
+      <h2>After His passing, and the Power</h2>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">&ldquo;You and He become One&rdquo;</p>
+          <p class="ref-body">Asked about his relationship with Siddharameshwar since He left the body: <span class="frag">&ldquo;After death, relationship doesn't remain&hellip; he and He, means Master, they become One.&rdquo;</span> Recounts that in 1935 He said <span class="frag">&ldquo;I give my Power to you. One who will understand and use that Power&hellip; He will be the Greatest of the Greatest!&rdquo;</span> — followed by the Akbar-and-Birbal gallows story and the warning against the ego of the &ldquo;oldest disciple&rdquo; (<em>patta-shishya</em>).</p>
+          <span class="where">Brittany, 21 Jun 2000 · pp. 1–7 · ranjit/english-lectures/2000-06-21-brittany#x0001</span>
+        </li>
+        <li>
+          <p class="ref-title">When He disappeared</p>
+          <p class="ref-body">A questioner asks whether the picture — the Power appearing spontaneously — stopped when Siddharameshwar disappeared; taken up in the following exchange.</p>
+          <span class="where">22 Sep 1998 · p. 39 · ranjit/english-lectures/1998-09-22#x0039–40</span>
+        </li>
+        <li>
+          <p class="ref-title">Sixty years on — and His memorials</p>
+          <p class="ref-body">A 1997 Guru Purnima pravachan (translated) opens by noting sixty years since (Siddharameshwar) Maharaj left the body. The Pathri 1998 saptah opens remembering His son, Motiram Maharaj, and a note records the Bagewadi linga replaced by Siddharameshwar's statue.</p>
+          <span class="where">ranjit/translations/gurupurnima-d0101-1997-07-18-translation#t0002 · ranjit/translations/pathri-d0101-01feb1998-translation-…#t0002, #t0009</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="stories">
+      <p class="theme-label">Theme 5</p>
+      <h2>Stories he tells about Him</h2>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">&ldquo;God is first or space is first?&rdquo;</p>
+          <p class="ref-body">Visiting another saint with eighteen fellow disciples (the host orders eighteen teas), Siddharameshwar asks whether God or space is first; when the saint answers &ldquo;God is first,&rdquo; He corrects him from Sadachar — whoever makes the space is not true either.</p>
+          <span class="where">17 Mar 1998 · pp. 66–68 · ranjit/english-lectures/1998-03-17#x0061–65</span>
+        </li>
+        <li>
+          <p class="ref-title">&ldquo;Your Shankaracharya&hellip;&rdquo;</p>
+          <p class="ref-body">His Master overrules an appeal to Shankaracharya's authority in an exchange about who or what is God.</p>
+          <span class="where">19 Feb 1997 · ranjit/english-lectures/1997-02-19#x0099</span>
+        </li>
+        <li>
+          <p class="ref-title">A disciple's plea</p>
+          <p class="ref-body"><span class="frag">&ldquo;Siddharameshwar Maharaj gave this example. A disciple came, &lsquo;Maharaj I have come&hellip;&rsquo;&rdquo;</span> — an example He used, retold in a 1999 guruseva talk.</p>
+          <span class="where">Guruseva talk, 1999 (translation) · ranjit/translations/guruseva-s-15-1999-translation#t0032</span>
+        </li>
+        <li>
+          <p class="ref-title">The Diwali Saptah</p>
+          <p class="ref-body">He conducted the Saptah after Bhausaheb Maharaj's departure — the 1979 Diwali talk notes the programme celebrated by Him since 1918; the 1994 Guru Purnima talk recalls where He used to conduct it.</p>
+          <span class="where">ranjit/translations/d0101-1979-diwalitranslation#t0002, #t0117 · ranjit/translations/gp-1003-1994-translation#t0029</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="books">
+      <p class="theme-label">Theme 6</p>
+      <h2>His books, invoked in answers</h2>
+      <ul class="refs">
+        <li>
+          <p class="ref-title">Amrut Laya</p>
+          <p class="ref-body">Quoted back and forth across the talks: <span class="frag">&ldquo;Siddharameshwar says, in Amrut Laya He said, only swimmers can cross&rdquo;</span> (Brittany 2000); a questioner cites it in Paris the same year; and <span class="frag">&ldquo;That is the sermons of Siddharameshwar Maharaj&rdquo;</span> identifying the book's contents.</p>
+          <span class="where">Brittany, 21 Jun 2000 · 2000-06-21-brittany#x0005 · Paris, 31 May 2000 · 2000-05-31-paris#x0004 · 23 Sep 1998 · 1998-09-23#x0002</span>
+        </li>
+        <li>
+          <p class="ref-title">Master Key to Self Realization</p>
+          <p class="ref-body">Recommended among <span class="frag">&ldquo;the books of Siddharameshwar Maharaj's teaching&rdquo;</span>; a disciple mentions having read and typed it.</p>
+          <span class="where">Brittany, 27 May 1998 · 1998-05-27-brittany#x0000 · Jan 1996 · 1996-01-lecture2#x0012</span>
+        </li>
+        <li>
+          <p class="ref-title">&ldquo;Stateless State&rdquo;</p>
+          <p class="ref-body">A questioner names it as the state <span class="frag">&ldquo;that Your Master, Siddharameshwar Maharaj, talks about&rdquo;</span>; Maharaj: <span class="frag">&ldquo;Correct.&rdquo;</span> Elsewhere: <span class="frag">&ldquo;Siddharameshwar Maharaj also is talking in the pravachan&hellip;&rdquo;</span></p>
+          <span class="where">Paris, 30 May 2000 · 2000-05-30-paris#x0002 · 1994 · 1994-lecture2#x0020</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="theme" id="incidental">
+      <p class="theme-label">Appendix</p>
+      <h2>Incidental mentions</h2>
+      <p class="lede">Brief identifications, prompts, and ritual formulae — listed for completeness.</p>
+      <ul class="minor">
+        <li>&ldquo;And Siddharameshwar, my Master.&rdquo; — naming his Master in a lineage question. <code>1997-01-27#x0013</code></li>
+        <li>Identifying the Master on a photograph: &ldquo;It is Siddharameshwar Maharaj, it's the Master of Maharaj.&rdquo; <code>1997-05-07-krahberg#x0020–21</code></li>
+        <li>A questioner opens with &ldquo;I was reading Siddharameshwar Maharaj.&rdquo; <code>1998-05-17am-paris#x0004</code></li>
+        <li>A disciple says he now feels more devotion to Siddharameshwar Maharaj than to Maharaj himself; Maharaj answers only: &ldquo;Okay!&rdquo; <code>1999-06-27am-switzerland#x0002</code> (p. 13)</li>
+        <li>&ldquo;What helped You the best to understand Siddharameshwar's Teaching?&rdquo; — questioner's framing. <code>1998-09-23#x0008</code></li>
+        <li>&ldquo;Even after Siddharameshwar Maharaj, only Maharaj and Nisargadatta Maharaj have given it&hellip;&rdquo; — conversational aside. <code>1997-01-16#x0086</code></li>
+        <li>&ldquo;His Master was Siddharameshwar Maharaj, no? He must have&hellip;&rdquo; — on whether a co-disciple was realized. <code>1997-01-28#x0021</code>; the lineage-throne story continues at <code>1997-01-28#x0011</code></li>
+        <li>&ldquo;So, as we were disciples of Siddharameshwar Maharaj, we bowed down to&hellip;&rdquo; — opening of the visit story. <code>1998-03-17#x0061</code></li>
+        <li>&ldquo;This Shri Siddharameshwar Maharaj has told. Even the Vedas and Shruti have&hellip;&rdquo; — attribution inside a Dasbodh pravachan. <code>gurupurnima-das20-10#t0024</code></li>
+        <li>Bhausaheb Maharaj's words when Siddharameshwar met Him, recalled in the 1979 utsav talk. <code>bmju-1979-translation#t0021</code></li>
+        <li>Ritual invocation opening most translated pravachans: &ldquo;Rajadhiraj Sadgurunath Shri Siddharameshwar Maharaj Ki Jai.&rdquo; <code>e.g. dasbodh05-05-…#t0002, dasbodh-09-01#t0001</code></li>
+      </ul>
+    </section>
+
+    <footer class="colophon">
+      Compiled from the NETI corpus of Shri Ranjit Maharaj's lectures, interviews, and translations · 8 July 2026.<br>
+      Entries are context summaries; italic fragments are the Master's words verbatim. Page numbers, where given, refer to the printed transcripts.
+    </footer>
+
+  </main>
+
+</div>
+
+<script>
+  (function () {
+    var links = Array.prototype.slice.call(document.querySelectorAll('nav.rail a[href^="#"]'));
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+    if (!('IntersectionObserver' in window) || sections.length === 0) return;
+    var current = null;
+    function setCurrent(id) {
+      if (current === id) return;
+      links.forEach(function (a) { a.removeAttribute('aria-current'); });
+      if (byId[id]) { byId[id].setAttribute('aria-current', 'true'); current = id; }
+    }
+    var visible = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { visible[e.target.id] = e.isIntersecting; });
+      for (var i = 0; i < sections.length; i++) {
+        if (visible[sections[i].id]) { setCurrent(sections[i].id); return; }
+      }
+    }, { rootMargin: '-10% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+</script>
