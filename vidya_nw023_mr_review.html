@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>नयन · Marathi review</title>
+<style>
+@font-face{font-family:Tiro;src:url("file:///Users/emx/projects/nayan/assets/edition_fonts/TiroDevanagariMarathi-Regular.woff2") format("woff2");font-weight:400}
+@font-face{font-family:Shobhika;src:url("file:///Users/emx/projects/nayan/assets/edition_fonts/Shobhika-Regular.otf") format("opentype");font-weight:400}
+body{font-family:Shobhika,Tiro,serif;margin:0;background:#f5f2ea;color:#222}
+header{position:sticky;top:0;background:#3d2b1f;color:#fff;padding:10px 16px;z-index:5;font-family:Shobhika,serif;box-shadow:0 2px 6px rgba(0,0,0,.25);display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+#prog{font-weight:700;white-space:nowrap}
+.wrap{max-width:900px;margin:0 auto;padding:12px}
+h1{font-size:1.2em;margin:0;font-weight:700}
+.sub{font-size:.9em;opacity:.85}
+.instr{background:#fff8e1;border:2px solid #c9a227;border-radius:8px;padding:12px 16px;margin:12px 0;line-height:1.55;font-size:1.05em}
+.card{background:#fff;border:1px solid #ccc;border-radius:10px;margin:14px 0;padding:12px}
+.chead{font-weight:700;margin-bottom:8px;color:#3d2b1f}
+.panel{background:#fbfaf6;border:1px solid #e2dcc8;border-radius:8px;padding:10px 12px;margin:8px 0}
+.panel.prop{background:#f3f7f0;border-color:#cfe0c8}
+.lbl{font-weight:700;color:#5d4a36;margin-bottom:6px;font-size:.92em}
+.entext{font-size:1.0em;line-height:1.6;color:#333}
+.mrtext{font-size:1.28em;line-height:2.0;font-family:Tiro,serif}
+.pair{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0}
+.pair .panel{flex:1 1 280px}
+.ask{margin:8px 0;font-weight:600;line-height:1.45;color:#333}
+.verd{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.vb{padding:12px 18px;border-radius:8px;border:2px solid #888;background:#fafafa;cursor:pointer;font-family:Shobhika,serif;font-size:1.05em;transition:background .12s ease,border-color .12s ease,transform .12s ease}
+.vb:hover{background:#f0ede3;border-color:#555}.vb:active{transform:scale(0.97)}
+.vb.ok{border-color:#7aa87a}
+.vb.ok.sel{border-color:#1a7a2e;background:#e7f6ea;font-weight:700}
+.vb.chg{border-color:#c08768}
+.vb.chg.sel{border-color:#9c4a31;background:#f6e0d8;font-weight:700}
+.note{width:100%;min-height:120px;border:1px solid #bbb;border-radius:6px;padding:10px;box-sizing:border-box;font-size:1.18em;font-family:Tiro,serif;line-height:1.95}
+input.note{min-height:0;height:auto}
+.exp{background:#3d2b1f;color:#fff;border:none;padding:14px 26px;border-radius:8px;font-size:1.1em;cursor:pointer;font-family:Shobhika,serif}
+.exp:disabled{background:#a89b8c;cursor:default}
+.exp.copied{background:#1a7a2e}
+#hint{margin:8px 0;color:#6b5d4a}
+#done{display:none;margin:10px 0;font-weight:700;color:#1a7a2e;font-size:1.1em}
+#xwrap{display:none;margin-top:10px}
+#xout{width:100%;min-height:140px;border:1px solid #bbb;border-radius:6px;padding:10px;box-sizing:border-box;font-family:Tiro,serif;font-size:1.0em;line-height:1.7}
+.meta{font-size:.9em;color:#666;margin-top:8px}
+footer{color:#8a7c68;text-align:center;font-size:.85em;padding:18px 0}
+@media (prefers-reduced-motion: reduce){.vb{transition:none}.vb:active{transform:none}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>नयन · Marathi of the book pages — your ruling</h1><div class="sub">Seven items · the last Marathi in the book</div></div>
+  <div id="prog">ruled ०/७</div>
+</header>
+<div class="wrap">
+
+<div class="instr">
+  These are the last Marathi lines in the book that you have not yet reviewed — from the
+  credits page and the closing page. Please rule each one:<br>
+  press <b>योग्य आहे ✓</b> if it is right, or <b>बदल हवा</b> and correct the text right there —
+  it is already typed in for you, just fix what is wrong.<br>
+  When all seven are ruled, press <b>कॉपी करा</b> at the bottom and send me what it copies. That's all.
+</div>
+
+
+<div class="card" data-k="b1">
+  <div class="chead">Credits — the team sentence</div>
+  <div class="panel prop"><div class="lbl">सध्या छापलेलं · as printed</div><div class="mrtext">लुसी हे संघाचे नाव आहे (फेबल, ओपस, ग्रोक, जीपीटी, व्हिस्पर आणि इतर), जे नयनच्या पुरावा-आधारित प्रक्रियेद्वारे कार्य करते.</div></div>
+  <div class="verd">
+    <button class="vb ok" data-k="b1">योग्य आहे ✓</button>
+    <button class="vb chg" data-k="b1">बदल हवा</button>
+  </div>
+  <div class="fix" id="fix_b1" style="display:none">
+    <div class="ask">तुमचं रूप — इथेच दुरुस्त करा:</div>
+    <textarea class="note" id="txt_b1">लुसी हे संघाचे नाव आहे (फेबल, ओपस, ग्रोक, जीपीटी, व्हिस्पर आणि इतर), जे नयनच्या पुरावा-आधारित प्रक्रियेद्वारे कार्य करते.</textarea>
+  </div>
+</div>
+<div class="card" data-k="b2">
+  <div class="chead">Credits — the review-status line</div>
+  <div class="panel prop"><div class="lbl">सध्या छापलेलं · as printed</div><div class="mrtext">मानव-परीक्षणानंतरचा मराठी मजकूर.</div></div>
+  <div class="verd">
+    <button class="vb ok" data-k="b2">योग्य आहे ✓</button>
+    <button class="vb chg" data-k="b2">बदल हवा</button>
+  </div>
+  <div class="fix" id="fix_b2" style="display:none">
+    <div class="ask">तुमचं रूप — इथेच दुरुस्त करा:</div>
+    <textarea class="note" id="txt_b2">मानव-परीक्षणानंतरचा मराठी मजकूर.</textarea>
+  </div>
+</div>
+<div class="card" data-k="b3">
+  <div class="chead">Credits — the labels (all on one card)</div>
+  <div class="panel prop"><div class="lbl">सध्या छापलेलं · as printed</div><div class="mrtext">लेखक · ही आवृत्ती तयार केली · सहकार्य · कार्यसंचालक · वाचक · समीक्षक · पुराव्याचा आधार · मूळ खंड</div></div>
+  <div class="verd">
+    <button class="vb ok" data-k="b3">योग्य आहे ✓</button>
+    <button class="vb chg" data-k="b3">बदल हवा</button>
+  </div>
+  <div class="fix" id="fix_b3" style="display:none">
+    <div class="ask">तुमचं रूप — इथेच दुरुस्त करा:</div>
+    <textarea class="note" id="txt_b3">लेखक · ही आवृत्ती तयार केली · सहकार्य · कार्यसंचालक · वाचक · समीक्षक · पुराव्याचा आधार · मूळ खंड</textarea>
+  </div>
+</div>
+<div class="card" data-k="b4">
+  <div class="chead">Colophon — the rights line</div>
+  <div class="panel prop"><div class="lbl">सध्या छापलेलं · as printed</div><div class="mrtext">दासबोधाचा मूळ मजकूर सार्वजनिक मालकीत आहे. या आवृत्तीची मांडणी, पाठ-समीक्षा साधने, प्रस्तावना आणि अभिकल्प © NETI Foundation 2026.</div></div>
+  <div class="verd">
+    <button class="vb ok" data-k="b4">योग्य आहे ✓</button>
+    <button class="vb chg" data-k="b4">बदल हवा</button>
+  </div>
+  <div class="fix" id="fix_b4" style="display:none">
+    <div class="ask">तुमचं रूप — इथेच दुरुस्त करा:</div>
+    <textarea class="note" id="txt_b4">दासबोधाचा मूळ मजकूर सार्वजनिक मालकीत आहे. या आवृत्तीची मांडणी, पाठ-समीक्षा साधने, प्रस्तावना आणि अभिकल्प © NETI Foundation 2026.</textarea>
+  </div>
+</div>
+<div class="card" data-k="b5">
+  <div class="chead">Colophon — the typeface line (English part stays)</div>
+  <div class="panel prop"><div class="lbl">सध्या छापलेलं · as printed</div><div class="mrtext">टिरो देवनागरी मराठी टाइपफेसमध्ये अक्षरजुळणी.</div></div>
+  <div class="verd">
+    <button class="vb ok" data-k="b5">योग्य आहे ✓</button>
+    <button class="vb chg" data-k="b5">बदल हवा</button>
+  </div>
+  <div class="fix" id="fix_b5" style="display:none">
+    <div class="ask">तुमचं रूप — इथेच दुरुस्त करा:</div>
+    <textarea class="note" id="txt_b5">टिरो देवनागरी मराठी टाइपफेसमध्ये अक्षरजुळणी.</textarea>
+  </div>
+</div>
+<div class="card" data-k="b6">
+  <div class="chead">Colophon — the evidence line</div>
+  <div class="panel prop"><div class="lbl">सध्या छापलेलं · as printed</div><div class="mrtext">पुराव्याचा आधार: श्रेय पानावर नमूद केलेला मूळ खंड आणि W1–W7 या समीक्षित प्रती.</div></div>
+  <div class="verd">
+    <button class="vb ok" data-k="b6">योग्य आहे ✓</button>
+    <button class="vb chg" data-k="b6">बदल हवा</button>
+  </div>
+  <div class="fix" id="fix_b6" style="display:none">
+    <div class="ask">तुमचं रूप — इथेच दुरुस्त करा:</div>
+    <textarea class="note" id="txt_b6">पुराव्याचा आधार: श्रेय पानावर नमूद केलेला मूळ खंड आणि W1–W7 या समीक्षित प्रती.</textarea>
+  </div>
+</div>
+<div class="card" data-k="b7">
+  <div class="chead">Section headings (all on one card)</div>
+  <div class="panel prop"><div class="lbl">सध्या छापलेलं · as printed</div><div class="mrtext">प्रस्तावना · अनुक्रम · पुष्पिका</div></div>
+  <div class="verd">
+    <button class="vb ok" data-k="b7">योग्य आहे ✓</button>
+    <button class="vb chg" data-k="b7">बदल हवा</button>
+  </div>
+  <div class="fix" id="fix_b7" style="display:none">
+    <div class="ask">तुमचं रूप — इथेच दुरुस्त करा:</div>
+    <input class="note" id="txt_b7" value="प्रस्तावना · अनुक्रम · पुष्पिका">
+  </div>
+</div>
+
+<div class="card">
+  <button class="exp" id="copybtn" disabled>कॉपी करा</button>
+  <div id="hint">Rule all seven items first — the button will wake up.</div>
+  <div id="done">कॉपी झालं ✓ — now send it to me.</div>
+  <div id="xwrap">
+    <div class="meta">If copying did not work: press and hold in the box below, select all, copy, and send.</div>
+    <textarea id="xout" readonly></textarea>
+  </div>
+</div>
+
+<footer>नयन · Marathi review · book pages</footer>
+</div>
+<script>
+(function(){
+  var PROPS={"b1": "लुसी हे संघाचे नाव आहे (फेबल, ओपस, ग्रोक, जीपीटी, व्हिस्पर आणि इतर), जे नयनच्या पुरावा-आधारित प्रक्रियेद्वारे कार्य करते.", "b2": "मानव-परीक्षणानंतरचा मराठी मजकूर.", "b3": "लेखक · ही आवृत्ती तयार केली · सहकार्य · कार्यसंचालक · वाचक · समीक्षक · पुराव्याचा आधार · मूळ खंड", "b4": "दासबोधाचा मूळ मजकूर सार्वजनिक मालकीत आहे. या आवृत्तीची मांडणी, पाठ-समीक्षा साधने, प्रस्तावना आणि अभिकल्प © NETI Foundation 2026.", "b5": "टिरो देवनागरी मराठी टाइपफेसमध्ये अक्षरजुळणी.", "b6": "पुराव्याचा आधार: श्रेय पानावर नमूद केलेला मूळ खंड आणि W1–W7 या समीक्षित प्रती.", "b7": "प्रस्तावना · अनुक्रम · पुष्पिका"};
+  var ids=["b1","b2","b3","b4","b5","b6","b7"];
+  var state={};
+  var btn=document.getElementById("copybtn");
+  var prog=document.getElementById("prog");
+  var mr=["०","१","२","३","४","५","६","७"];
+  function ruled(){return ids.filter(function(k){return state[k];}).length;}
+  function refresh(){
+    var n=ruled();
+    prog.textContent="ruled "+mr[n]+"/७";
+    btn.disabled=(n<7);
+    document.getElementById("hint").style.display=(n<7)?"block":"none";
+  }
+  document.querySelectorAll(".vb").forEach(function(b){
+    b.addEventListener("click",function(){
+      var k=b.getAttribute("data-k");
+      var card=b.closest(".card");
+      card.querySelectorAll(".vb").forEach(function(x){x.classList.remove("sel");});
+      b.classList.add("sel");
+      var fix=document.getElementById("fix_"+k);
+      if(b.classList.contains("chg")){fix.style.display="block";state[k]="edited";}
+      else{fix.style.display="none";state[k]="accepted";}
+      refresh();
+    });
+  });
+  function finalText(k){
+    if(state[k]==="edited"){return document.getElementById("txt_"+k).value.trim();}
+    return PROPS[k];
+  }
+  function assemble(){
+    var out="# nw023_mr_review\n";
+    for(var i=0;i<ids.length;i++){var k=ids[i];out+="## "+k+" "+state[k]+"\n"+finalText(k)+"\n\n";}
+    return out;
+  }
+  btn.addEventListener("click",function(){
+    var text=assemble();
+    var xw=document.getElementById("xwrap"),xo=document.getElementById("xout"),dn=document.getElementById("done");
+    function ok(){btn.classList.add("copied");btn.textContent="कॉपी झालं ✓";dn.style.display="block";xo.value=text;xw.style.display="block";}
+    function fallback(){xo.value=text;xw.style.display="block";xo.focus();xo.select();dn.style.display="none";}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(ok,fallback);
+    }else{fallback();}
+  });
+  refresh();
+})();
+</script>
+</body>
+</html>
