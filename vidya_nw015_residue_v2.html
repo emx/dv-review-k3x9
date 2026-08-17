@@ -6,21 +6,28 @@
 @font-face{font-family:Tiro;src:url("file:///Users/emx/projects/nayan/assets/edition_fonts/TiroDevanagariMarathi-Regular.woff2") format("woff2");font-weight:400}
 @font-face{font-family:Shobhika;src:url("file:///Users/emx/projects/nayan/assets/edition_fonts/Shobhika-Regular.otf") format("opentype");font-weight:400}
 body{font-family:Shobhika,Tiro,serif;margin:0;background:#f5f2ea;color:#222}
-header{position:sticky;top:0;background:#3d2b1f;color:#fff;padding:10px 16px;z-index:5;font-family:Shobhika,serif}
+header{position:sticky;top:0;background:#3d2b1f;color:#fff;padding:10px 16px;z-index:5;font-family:Shobhika,serif;box-shadow:0 2px 6px rgba(0,0,0,.25)}
 #prog{font-weight:700} .wrap{max-width:900px;margin:0 auto;padding:12px}
-.instr{background:#fff8e1;border:2px solid #c9a227;border-radius:8px;padding:12px 16px;margin:12px 0;line-height:1.55}
-.card{background:#fff;border:1px solid #ccc;border-radius:10px;margin:16px 0;padding:14px}
-.chead{font-weight:700;margin-bottom:10px;color:#3d2b1f}
-.pair{display:flex;gap:12px;flex-wrap:wrap}
+.instr{background:#fff8e1;border:2px solid #c9a227;border-radius:8px;padding:12px 16px;margin:12px 0;line-height:1.55;font-size:1.05em}
+.card{background:#fff;border:1px solid #ccc;border-radius:10px;margin:14px 0;padding:12px}
+.chead{font-weight:700;margin-bottom:8px;color:#3d2b1f}
+.pair{display:flex;gap:14px;flex-wrap:wrap}
 .panel{flex:1 1 280px;background:#fbfaf6;border:1px solid #e2dcc8;border-radius:8px;padding:10px}
 .lbl{font-weight:700;color:#5d4a36;margin-bottom:6px}
-.rtext{font-size:1.25em;line-height:1.9;font-family:Tiro,serif;white-space:pre-wrap}
-.rtext .hl{background:#ffe082;border-radius:2px;padding:0 1px}
-.ask{margin:12px 0 8px;font-weight:600;line-height:1.5}
-.verd{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
-.vb{padding:10px 14px;border-radius:8px;border:2px solid #888;background:#fafafa;cursor:pointer;font-family:Shobhika,serif}
-.vb:hover{background:#f0ede3} .vb.sel{font-weight:700;border-color:#3d2b1f;background:#efe6d6}
-.vb.illust{border-color:#1a7a2e;background:#e8f5e9;font-weight:700}
+.rtext{font-size:1.35em;line-height:2.0;font-family:Tiro,serif;white-space:pre-wrap}
+.rtext .hl{background:rgba(255,213,79,0.35);border-bottom:2px dotted #b8860b;border-radius:2px;padding:0 1px}
+.ask{margin:8px 0;font-weight:600;line-height:1.45;color:#333}
+.verd{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.vb{padding:10px 14px;border-radius:8px;border:2px solid #888;background:#fafafa;cursor:pointer;font-family:Shobhika,serif;font-size:1em;transition:background .12s ease,border-color .12s ease,transform .12s ease}
+.vb:hover{background:#f0ede3;border-color:#555} .vb:active{background:#e6e1d2;border-color:#3d2b1f;transform:scale(0.97)}
+.vb.sel{font-weight:700}
+.vb[data-v="A"],.vb[data-v="B"]{border-color:#7aa87a}
+.vb[data-v="A"].sel,.vb[data-v="B"].sel,.vb.illust{border-color:#1a7a2e;background:#e7f6ea;font-weight:700}
+.vb[data-v="neither"]{border-color:#c08768}
+.vb[data-v="neither"].sel{border-color:#9c4a31;background:#f6e0d8}
+.vb[data-v="cannot_tell"]{border-color:#9a9a9a}
+.vb[data-v="cannot_tell"].sel{border-color:#5f5f5f;background:#ececec}
+@media (prefers-reduced-motion: reduce){.vb{transition:none} .vb:active{transform:none}}
 .note{width:100%;min-height:56px;border:1px solid #bbb;border-radius:6px;padding:8px;box-sizing:border-box;font-size:1.05em;font-family:Tiro,serif}
 .exp{background:#3d2b1f;color:#fff;border:none;padding:12px 22px;border-radius:8px;font-size:1.05em;cursor:pointer}
 .exp.copied{background:#1a7a2e} #xout{width:100%;min-height:90px;display:none}
