@@ -12,44 +12,55 @@
 :root{--paper:#FBF5E9;--ink:#2A2118;--rubric:#A03526;--gold:#C98A2D;--quiet:#755F46;--header:#3d2b1f;--card:#fffdf7;--rule:#e4d4b4}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:Tiro,Shobhika,serif}
-header{background:var(--header);color:#fff;padding:18px 22px 16px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+header{position:sticky;top:0;z-index:5;background:var(--header);color:#fff;padding:14px 22px 12px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
 header .kicker{font-family:Shobhika,serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;opacity:.78}
-header h1{margin:6px 0 4px;font-size:28px;font-weight:400;letter-spacing:-.01em}
+header h1{margin:6px 0 4px;font-size:26px;font-weight:400;letter-spacing:-.01em}
 header .sub{font-family:Shobhika,serif;font-size:15px;opacity:.9}
-main{max-width:42rem;margin:0 auto;padding:28px 22px 64px}
+#prog{font-weight:700}
+.banner{background:#c62828;color:#fff;padding:10px 16px;display:none;font-family:Shobhika,serif}
+main{max-width:44rem;margin:0 auto;padding:28px 22px 80px}
 h2{color:var(--rubric);font-weight:400;font-size:22px;margin:2.2rem 0 .35rem;text-align:center}
 h2::after{content:"";display:block;width:18mm;margin:8px auto 0;border-bottom:1.4px solid var(--gold)}
-h3{color:var(--rubric);font-weight:400;font-size:17px;margin:1.6rem 0 .4rem}
 p,li{line-height:1.65;font-size:17px}
 .pair{display:grid;gap:10px;margin:12px 0 18px}
 .pair .en,.pair .mr{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:12px 14px}
-.pair .lbl{font-family:Shobhika,serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--quiet);margin:0 0 6px}
+.pair .lbl,.ilbl,.compare .lbl{font-family:Shobhika,serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--quiet);margin:0 0 6px}
+.ilbl{display:block;margin:10px 0 6px;text-transform:none;letter-spacing:.02em;font-size:15px;color:var(--rubric)}
 .pair p{margin:0}
 .ret{background:#3d2b1f;color:#fff;border-radius:8px;padding:16px 18px;margin:18px 0}
-.ret code,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px}
-.ret h3{color:#f3e6c8;margin:0 0 8px;text-align:left}
-.ret h3::after{display:none}
+.ret code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px}
+.ret h3{color:#f3e6c8;margin:0 0 8px;font-weight:400;font-size:18px}
 .ret p{margin:8px 0;font-size:16px}
-.ret .path{font-size:20px;letter-spacing:.01em}
-.source{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:8px 20px 16px;margin:14px 0 22px}
-.source p{margin:14px 0;font-size:17.5px;line-height:1.7}
-.source .n{color:var(--quiet);font-family:Shobhika,serif;font-size:13px;margin-right:6px}
-.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.ret .path{font-size:20px}
+.how{background:#fff8e1;border:2px solid #c9a227;border-radius:8px;padding:12px 16px;margin:12px 0;line-height:1.55}
+.block{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:12px 16px 16px;margin:14px 0}
+.en-src{margin:0 0 8px;font-size:17.5px;line-height:1.7}
+.en-src .n{color:var(--quiet);font-family:Shobhika,serif;font-size:13px;margin-right:6px}
+.field{width:100%;border:1px solid #bbb;border-radius:6px;padding:10px;font-family:Tiro,serif;font-size:17px;line-height:1.6;background:#fff;color:var(--ink)}
+textarea.field{min-height:5.5rem;resize:vertical}
+.compare{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:14px 0;align-items:stretch}
 .compare .cell{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:14px}
 .compare .now{border-color:#c4a090}
 .compare .need{border-color:#c9b070}
+.compare .write{border-color:var(--rubric)}
 .compare .big{font-size:20px;line-height:1.45;margin:8px 0 0}
 .note{font-size:15px;color:var(--quiet)}
-footer{max-width:42rem;margin:0 auto;padding:0 22px 40px;color:var(--quiet);font-size:13px;text-align:center}
-@media (max-width:640px){.compare{grid-template-columns:1fr}}
+.exp{background:#3d2b1f;color:#fff;border:none;padding:12px 22px;border-radius:8px;font-size:1.05em;cursor:pointer;font-family:Shobhika,serif}
+.exp:disabled{background:#b5aaa0;color:#f3eee8;cursor:not-allowed}
+.exp.copied{background:#1a7a2e}
+.gate-note{margin:10px 0 0;font-size:16px;color:var(--quiet);min-height:1.4em}
+.shape{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:12px 18px;margin:14px 0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;line-height:1.55;white-space:pre-wrap}
+footer{max-width:44rem;margin:0 auto;padding:0 22px 40px;color:var(--quiet);font-size:13px;text-align:center}
+@media (max-width:720px){.compare{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
-  <div class="kicker">नयन · लेखन विनंती · writing request</div>
+  <div class="kicker">नयन · लेखन विनंती · writing request · <span id="prog">0/7</span></div>
   <h1>प्रस्तावना आणि पुष्पिका</h1>
   <div class="sub">A Marathi rendering of the ruled English preface, and one heading line.</div>
 </header>
+<div class="banner" id="storBanner">Storage unavailable — do NOT close this tab before exporting.</div>
 <main>
 
 <h2>ही विनंती काय आहे · What this is</h2>
@@ -62,33 +73,61 @@ footer{max-width:42rem;margin:0 auto;padding:0 22px 40px;color:var(--quiet);font
   </div>
 </div>
 
+<div class="how" lang="mr">
+  <p><b>काय करायचे:</b> पेटी भरा. बटण दाबा. उतरलेली फाइल पाठवा.</p>
+  <p lang="en"><b>What to do:</b> Type in the boxes. Press the button. Send the saved file.</p>
+  <p>ही टॅब निर्यात होईपर्यंत उघडी ठेवा. Storage उपलब्ध नसेल तर बटण दाबेपर्यंत टॅब बंद करू नका.</p>
+  <p lang="en">Keep this tab open until you have exported. If storage is unavailable, do not close the tab before exporting.</p>
+</div>
+
 <div class="ret" id="return">
   <h3>परत पाठवा · Return file</h3>
-  <p>कृपया एकच UTF-8 मजकूर फाइल या नावाने ठेवा:</p>
-  <p class="path"><code>work/nw022_mr_render.txt</code></p>
-  <p>Please return a single UTF-8 text file with exactly that name, on the machine you already use for Nayan returns. On landing we first bank a timestamped copy, then read the original.</p>
-  <p>आत फक्त हे दोन विभाग असावेत:</p>
-  <p><code>## preface_mr</code> — सहा परिच्छेद, इंग्रजीच्या क्रमाने.<br>
-     <code>## colophon_heading_mr</code> — एक ओळ.</p>
+  <p>बटण ही फाइल उतरवते. तीच पाठवा. तिचे नाव असेच राहील:</p>
+  <p class="path"><code>nw022_mr_render.txt</code></p>
+  <p>Please send the file the button saves. On landing it belongs at <code>work/nw022_mr_render.txt</code>. We first bank a timestamped copy, then read the original.</p>
 </div>
 
 <h2>१ · प्रस्तावना · Preface</h2>
 <div class="pair">
   <div class="mr"><p class="lbl">काय करायचे</p>
-    <p>खालील इंग्रजी हा स्रोत आहे. त्याचे मराठी रूप लिहा — गंभीर, संक्षिप्त, अलंकाराशिवाय. इंग्रजीत जे नाही ते मराठीत आणू नका. कुलकर्णी किंवा W8 यांचा उल्लेख करू नका. जुनी सत्र-२ मराठी प्रस्तावना बदलायची नाही; हे नवीन रूपांतरण आहे.</p>
+    <p>खालील इंग्रजी हा स्रोत आहे. प्रत्येक परिच्छेदाखाली त्याचे मराठी रूप लिहा — गंभीर, संक्षिप्त, अलंकाराशिवाय. इंग्रजीत जे नाही ते मराठीत आणू नका. कुलकर्णी किंवा W8 यांचा उल्लेख करू नका. जुनी सत्र-२ मराठी प्रस्तावना बदलायची नाही; हे नवीन रूपांतरण आहे.</p>
   </div>
   <div class="en"><p class="lbl">The task</p>
-    <p>The English below is the source of record (v2). Write a Marathi rendering in the same register: grave, short, without flourish. Do not add a claim the English does not make. Do not mention Kulkarni or W8. Do not edit the old Session-2 Marathi still in the book — this is a new rendering from this source.</p>
+    <p>The English below is the source of record (v2). Write a Marathi rendering under each paragraph, in the same register: grave, short, without flourish. Do not add a claim the English does not make. Do not mention Kulkarni or W8. Do not edit the old Session-2 Marathi still in the book — this is a new rendering from this source.</p>
   </div>
 </div>
 <p class="note">Source of record · <code>docs/packets/PREFACE_EN_sartha_ruled_v2.txt</code> · sha256 <code>cef49a60dee8a412f0fdc5cd85e9480c91235cbe78817f65824496a23eff9f4f</code></p>
-<div class="source" id="preface">
-<p><span class="n">1.</span> This volume sets out the verse text of the Dāsbodh of Samarth Ramdas — twenty dashaks, two hundred samāsa — as it stands in the Shridhar Sārtha print, freed of everything that is not the poem.</p>
-<p><span class="n">2.</span> The print is a sārtha: verse carried inside commentary. Here the commentary of Shri Shridhar Swami is set aside by selection and only the mūla — the ovī text itself — is kept. Nothing else is altered. The working rule of this edition admits no exception: the book is never changed to fit the instrument.</p>
-<p><span class="n">3.</span> The text was not retyped. The print&#x27;s own digital layer, damaged by the encoding it was born with, was recovered whole — each broken glyph traced back to the character it stood for through a fixed table: deterministic, repeatable, checkable.</p>
-<p><span class="n">4.</span> Recovery invites doubt, so the recovered text was made to earn trust. It was read against independent witnesses of the Dāsbodh — the Wikisource lineage and other digital editions — and where the witnesses parted ways, the disputed sites were put to a bilingual reader against the printed page itself, in measured sessions with planted controls, so that even the checking was checked.</p>
-<p><span class="n">5.</span> Every verse printed here is tied, byte for byte, to a pinned master text recorded in the colophon; presentation is never allowed to rewrite the pāṭha. Where sources agree, the reading stands silently; every remaining doubt is kept visible in the apparatus.</p>
-<p><span class="n">6.</span> This edition does not claim perfection. It claims a traceable reading: what was printed, why, and what remains open can each be checked — the full accounting stands in the colophon at the end of this volume.</p>
+<div id="preface">
+<article class="block" id="para-1">
+  <p class="en-src"><span class="n">1.</span> This volume sets out the verse text of the Dāsbodh of Samarth Ramdas — twenty dashaks, two hundred samāsa — as it stands in the Shridhar Sārtha print, freed of everything that is not the poem.</p>
+  <label class="ilbl" for="p1">मराठी — परिच्छेद 1</label>
+  <textarea id="p1" class="field para" lang="mr" rows="4" data-i="1"></textarea>
+</article>
+<article class="block" id="para-2">
+  <p class="en-src"><span class="n">2.</span> The print is a sārtha: verse carried inside commentary. Here the commentary of Shri Shridhar Swami is set aside by selection and only the mūla — the ovī text itself — is kept. Nothing else is altered. The working rule of this edition admits no exception: the book is never changed to fit the instrument.</p>
+  <label class="ilbl" for="p2">मराठी — परिच्छेद 2</label>
+  <textarea id="p2" class="field para" lang="mr" rows="4" data-i="2"></textarea>
+</article>
+<article class="block" id="para-3">
+  <p class="en-src"><span class="n">3.</span> The text was not retyped. The print&#x27;s own digital layer, damaged by the encoding it was born with, was recovered whole — each broken glyph traced back to the character it stood for through a fixed table: deterministic, repeatable, checkable.</p>
+  <label class="ilbl" for="p3">मराठी — परिच्छेद 3</label>
+  <textarea id="p3" class="field para" lang="mr" rows="4" data-i="3"></textarea>
+</article>
+<article class="block" id="para-4">
+  <p class="en-src"><span class="n">4.</span> Recovery invites doubt, so the recovered text was made to earn trust. It was read against independent witnesses of the Dāsbodh — the Wikisource lineage and other digital editions — and where the witnesses parted ways, the disputed sites were put to a bilingual reader against the printed page itself, in measured sessions with planted controls, so that even the checking was checked.</p>
+  <label class="ilbl" for="p4">मराठी — परिच्छेद 4</label>
+  <textarea id="p4" class="field para" lang="mr" rows="4" data-i="4"></textarea>
+</article>
+<article class="block" id="para-5">
+  <p class="en-src"><span class="n">5.</span> Every verse printed here is tied, byte for byte, to a pinned master text recorded in the colophon; presentation is never allowed to rewrite the pāṭha. Where sources agree, the reading stands silently; every remaining doubt is kept visible in the apparatus.</p>
+  <label class="ilbl" for="p5">मराठी — परिच्छेद 5</label>
+  <textarea id="p5" class="field para" lang="mr" rows="4" data-i="5"></textarea>
+</article>
+<article class="block" id="para-6">
+  <p class="en-src"><span class="n">6.</span> This edition does not claim perfection. It claims a traceable reading: what was printed, why, and what remains open can each be checked — the full accounting stands in the colophon at the end of this volume.</p>
+  <label class="ilbl" for="p6">मराठी — परिच्छेद 6</label>
+  <textarea id="p6" class="field para" lang="mr" rows="4" data-i="6"></textarea>
+</article>
 </div>
 
 <h2>२ · पुष्पिका · Colophon heading</h2>
@@ -109,33 +148,123 @@ footer{max-width:42rem;margin:0 auto;padding:0 22px 40px;color:var(--quiet);font
     <p class="lbl">हवे · the need (English already set)</p>
     <p class="big">Sārtha-mūla view</p>
   </div>
+  <div class="cell write">
+    <label class="ilbl" for="hline">मराठी ओळ</label>
+    <input id="hline" class="field" type="text" lang="mr" autocomplete="off">
+  </div>
 </div>
 
-<h2>फाइल कशी असावी · File shape</h2>
-<div class="source">
-<pre style="white-space:pre-wrap;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;line-height:1.55"># nw022_mr_render
+<div id="export-wrap">
+  <button class="exp" id="exp" type="button" disabled>फाइल उतरवा · nw022_mr_render.txt</button>
+  <p class="gate-note" id="needAll">सातही पेटी भरा, मग बटण चालू होईल.</p>
+</div>
+
+<h2>बटण काय उतरवते · What the button saves</h2>
+<p class="note">You do not build this file. The button writes it.</p>
+<div class="shape" id="shape"># nw022_mr_render
 ## preface_mr
 
-&lt;paragraph 1&gt;
+&lt;परिच्छेद 1&gt;
 
-&lt;paragraph 2&gt;
+&lt;परिच्छेद 2&gt;
 
-&lt;paragraph 3&gt;
+&lt;परिच्छेद 3&gt;
 
-&lt;paragraph 4&gt;
+&lt;परिच्छेद 4&gt;
 
-&lt;paragraph 5&gt;
+&lt;परिच्छेद 5&gt;
 
-&lt;paragraph 6&gt;
+&lt;परिच्छेद 6&gt;
 
 ## colophon_heading_mr
-&lt;one line&gt;</pre>
-</div>
+&lt;मराठी ओळ&gt;</div>
 
 </main>
 <footer>
   नयन · NW-022 Arc B · writing request · not a session · nw022_mr_request<br>
   REVIEW CHANNEL ONLY
 </footer>
+<script>
+const SKEY="vidya_nw022_mr_request";
+const FILENAME="nw022_mr_render.txt";
+function fields(){
+  return [
+    document.getElementById("p1"),
+    document.getElementById("p2"),
+    document.getElementById("p3"),
+    document.getElementById("p4"),
+    document.getElementById("p5"),
+    document.getElementById("p6"),
+    document.getElementById("hline")
+  ];
+}
+function vals(){
+  return fields().map(el => (el.value || "").trim());
+}
+function ready(){
+  return vals().every(v => v.length > 0);
+}
+function assemble(){
+  const v = vals();
+  const paras = v.slice(0, 6);
+  const heading = v[6];
+  const body = paras.join("\n\n");
+  return "# nw022_mr_render\n## preface_mr\n\n" + body + "\n\n## colophon_heading_mr\n" + heading + "\n";
+}
+function persist(){
+  try {
+    localStorage.setItem(SKEY, JSON.stringify({fields: fields().map(el => el.value || ""), t: Date.now()}));
+  } catch (e) {
+    document.getElementById("storBanner").style.display = "block";
+  }
+}
+function load(){
+  try {
+    const raw = localStorage.getItem(SKEY);
+    if (!raw) return;
+    const o = JSON.parse(raw);
+    if (!o || !Array.isArray(o.fields)) return;
+    fields().forEach((el, i) => { if (typeof o.fields[i] === "string") el.value = o.fields[i]; });
+  } catch (e) {}
+}
+function sync(){
+  const ok = ready();
+  const btn = document.getElementById("exp");
+  btn.disabled = !ok;
+  document.getElementById("needAll").textContent = ok ? "" : "सातही पेटी भरा, मग बटण चालू होईल.";
+  const n = vals().filter(v => v.length > 0).length;
+  document.getElementById("prog").textContent = n + "/7";
+  persist();
+}
+function downloadTxt(){
+  if (!ready()) return;
+  const text = assemble();
+  const blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = FILENAME;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(a.href);
+  document.getElementById("exp").classList.add("copied");
+}
+window.__nayanExport = {
+  filename: FILENAME,
+  ready: ready,
+  assemble: assemble,
+  vals: vals
+};
+fields().forEach(el => el.addEventListener("input", sync));
+document.getElementById("exp").addEventListener("click", downloadTxt);
+try {
+  localStorage.setItem(SKEY + "_t", "1");
+  localStorage.removeItem(SKEY + "_t");
+} catch (e) {
+  document.getElementById("storBanner").style.display = "block";
+}
+load();
+sync();
+</script>
 </body>
 </html>
